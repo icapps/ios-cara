@@ -1,0 +1,35 @@
+# This is the minimum Fastlane version to use.
+fastlane_version '2.108.0'
+
+# Don't generate README files.
+skip_docs
+
+skip_docs
+
+##########################
+### BUILD SERVER SETUP ###
+##########################
+
+setup_travis
+
+#############
+### LANES ###
+#############
+
+lane :pr do
+  # Check the code formatting.
+  swiftlint strict: true,
+            path: "Example",
+            executable: 'Example/Pods/Swiftlint/swiftlint'
+
+  # Validate the QuickSpec to not use `fit`, `fcontext`, or `fdescribe`.
+  validate_specs directories: ['Example/Tests']
+
+  # Run the tests.
+  scan(
+    workspace:              'Example/Cara.xcworkspace',
+    scheme:                 'Tests',
+    clean:                  true,
+    skip_build:             true
+  )
+end
