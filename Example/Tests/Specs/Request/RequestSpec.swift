@@ -12,6 +12,7 @@ import Nimble
 @testable import Cara
 
 class RequestSpec: QuickSpec {
+    // swiftlint:disable function_body_length
     override func spec() {
         var configuration: MockedConfiguration!
         beforeEach {
@@ -36,6 +37,44 @@ class RequestSpec: QuickSpec {
                 expect {
                     _ = try request.makeURLRequest(with: configuration)
                 }.to(throwError(ResponseError.invalidURL))
+            }
+        }
+        
+        context("method") {
+            it("should have the correct GET method") {
+                let request = MockedRequest(url: URL(string: "request"), method: .get)
+                let urlRequest = try? request.makeURLRequest(with: configuration)
+                expect(urlRequest?.httpMethod) == "GET"
+            }
+            
+            it("should have the correct HEAD method") {
+                let request = MockedRequest(url: URL(string: "request"), method: .head)
+                let urlRequest = try? request.makeURLRequest(with: configuration)
+                expect(urlRequest?.httpMethod) == "HEAD"
+            }
+            
+            it("should have the correct POST method") {
+                let request = MockedRequest(url: URL(string: "request"), method: .post)
+                let urlRequest = try? request.makeURLRequest(with: configuration)
+                expect(urlRequest?.httpMethod) == "POST"
+            }
+            
+            it("should have the correct PATCH method") {
+                let request = MockedRequest(url: URL(string: "request"), method: .patch)
+                let urlRequest = try? request.makeURLRequest(with: configuration)
+                expect(urlRequest?.httpMethod) == "PATCH"
+            }
+            
+            it("should have the correct PUT method") {
+                let request = MockedRequest(url: URL(string: "request"), method: .put)
+                let urlRequest = try? request.makeURLRequest(with: configuration)
+                expect(urlRequest?.httpMethod) == "PUT"
+            }
+            
+            it("should have the correct DELETE method") {
+                let request = MockedRequest(url: URL(string: "request"), method: .delete)
+                let urlRequest = try? request.makeURLRequest(with: configuration)
+                expect(urlRequest?.httpMethod) == "DELETE"
             }
         }
     }

@@ -11,7 +11,7 @@ extension Request {
     func makeURLRequest(with configuration: Configuration) throws -> URLRequest {
         let url = try makeURL(with: configuration)
         var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "GET"
+        urlRequest.httpMethod = method.httpMethod
         return urlRequest
     }
     

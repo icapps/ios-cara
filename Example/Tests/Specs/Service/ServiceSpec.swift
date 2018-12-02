@@ -56,7 +56,7 @@ class ServiceSpec: QuickSpec {
                 it("should fail to execute a request because of an invalid url") {
                     self.stub(http(.get, uri: "https://relative.com/"), http(200))
                     
-                    let request = MockedRequest()
+                    let request = MockedRequest(url: nil)
                     waitUntil { done in
                         service.execute(request, with: MockedSerializer()) { response in
                             expect(response.data).to(beNil())
