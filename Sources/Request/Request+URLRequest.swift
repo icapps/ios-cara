@@ -18,10 +18,8 @@ extension Request {
     private func makeURL(with configuration: Configuration) throws -> URL {
         // A correct url should be set.
         guard let url = url else { throw ResponseError.invalidURL }
-        
         // When the url is an absolure url, just use this url.
         guard url.host == nil else { return url }
-        
         // Return the relative url appended to the base url.
         return configuration.baseURL.appendingPathComponent(url.absoluteString)
     }

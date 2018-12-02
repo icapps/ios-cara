@@ -12,6 +12,7 @@
 		9D446A9C21B3EAC100FEA1F7 /* ServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2BB56E21B2D5DC0072DA07 /* ServiceSpec.swift */; };
 		9D60FF2821B402CA0078F791 /* MockedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D60FF2721B402CA0078F791 /* MockedRequest.swift */; };
 		9D60FF2A21B402E00078F791 /* MockedConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D60FF2921B402E00078F791 /* MockedConfiguration.swift */; };
+		9D60FF2D21B42A560078F791 /* MockedSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D60FF2C21B42A560078F791 /* MockedSerializer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		9D2BB56E21B2D5DC0072DA07 /* ServiceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceSpec.swift; sourceTree = "<group>"; };
 		9D60FF2721B402CA0078F791 /* MockedRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedRequest.swift; sourceTree = "<group>"; };
 		9D60FF2921B402E00078F791 /* MockedConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedConfiguration.swift; sourceTree = "<group>"; };
+		9D60FF2C21B42A560078F791 /* MockedSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedSerializer.swift; sourceTree = "<group>"; };
 		D97FA3B1B8D63693AAF21BA5 /* Pods_Application.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Application.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F684B53926905060D617A429 /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -99,6 +101,7 @@
 			children = (
 				9D60FF2921B402E00078F791 /* MockedConfiguration.swift */,
 				9D60FF2721B402CA0078F791 /* MockedRequest.swift */,
+				9D60FF2C21B42A560078F791 /* MockedSerializer.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				9D0E402C21B3FC490088D678 /* CaraQuickConfiguration.swift in Sources */,
 				9D60FF2821B402CA0078F791 /* MockedRequest.swift in Sources */,
 				9D60FF2A21B402E00078F791 /* MockedConfiguration.swift in Sources */,
+				9D60FF2D21B42A560078F791 /* MockedSerializer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

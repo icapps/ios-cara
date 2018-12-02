@@ -11,6 +11,4 @@ import Foundation
 enum ResponseError: Error {
     /// The request's url was invalid.
     case invalidURL
-    /// A general error occured because the status code was in the error range.
-    case general
 }

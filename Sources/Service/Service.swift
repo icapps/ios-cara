@@ -11,11 +11,13 @@ public class Service {
     // MARK: - Internal
     
     private let configuration: Configuration
+    private let networkService: NetworkService
     
     // MARK: - Init
     
     init(configuration: Configuration) {
         self.configuration = configuration
+        self.networkService = NetworkService(configuration: configuration)
     }
     
     // MARK: - Execute
@@ -24,19 +26,25 @@ public class Service {
     ///
     /// ```swift
     /// let request = SomeRequest()
-    /// service.execute(request) { response in
+    /// let serializer = SomeSerializer()
+    /// service.execute(request, with: serializer) { response in
     ///    ...
     /// }
     /// ```
     ///
     /// - parameter request: The request to execute.
+    /// - parameter serializer: The result of the request will go through serialization.
     /// - paremeter completion: The block that is triggered on completion.
-    public func execute(_ request: Request, completion: @escaping (_ response: Response) -> Void) {
+    public func execute<S: Serializer>(_ request: Request,
+                                       with serializer: S,
+                                       completion: @escaping (_ response: S.Response) -> Void) {
         do {
-            try request.makeURLRequest(with: configuration)
-                       .execute(completion: completion)
+            // Try to generate a url request with the given `Request`.
+            let urlRequest = try request.makeURLRequest(with: configuration)
+            networkService.execute(urlRequest, with: serializer, completion: completion)
         } catch {
-            completion(.failure(error))
+            let response = serializer.serialize(data: nil, error: error, response: nil)
+            completion(response)
         }
     }
 }
