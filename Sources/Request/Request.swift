@@ -7,6 +7,8 @@
 
 /// A nicer way of defining the request header format.
 public typealias RequestHeaders = [String: String]
+/// A nicer way of defining the query format.
+public typealias RequestQuery = [String: String]
 
 /// The request you want to execute.
 public protocol Request {
@@ -15,6 +17,8 @@ public protocol Request {
     var url: URL? { get }
     /// The HTTP method that should be used for this request.
     var method: RequestMethod { get }
+    /// Set the url query for this request.
+    var query: RequestQuery? { get }
     /// Set the headers for this request.
     var headers: RequestHeaders? { get }
     /// Set the type of body with it's content. In Cara's case we support 2 major types of body:

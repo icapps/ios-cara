@@ -18,12 +18,13 @@ extension Request {
     }
     
     private func makeURL(with configuration: Configuration) throws -> URL {
-        // A correct url should be set.
+        // A correct url should be set. And when this is the case we alreay try to append the query
+        // to this url.
         guard let url = url else { throw ResponseError.invalidURL }
         // When the url is an absolure url, just use this url.
-        guard url.host == nil else { return url }
+        guard url.host == nil else { return url.appendingQuery(from: self) }
         // Return the relative url appended to the base url.
-        return configuration.baseURL.appendingPathComponent(url.absoluteString)
+        return configuration.baseURL.appendingPathComponent(url.absoluteString).appendingQuery(from: self)
     }
     
     private func makeHeaders(with configuration: Configuration) -> RequestHeaders? {
@@ -44,5 +45,13 @@ extension Request {
         if let body = body as? Data { return body }
         // In all other cases we try to parse the json.
         return try JSONSerialization.data(withJSONObject: body, options: [])
+    }
+}
+
+fileprivate extension URL {
+    func appendingQuery(from request: Request) -> URL {
+        guard var urlComponents = URLComponents(url: self, resolvingAgainstBaseURL: false) else { return self }
+        urlComponents.queryItems = request.query?.map { URLQueryItem(name: $0.key, value: $0.value) }
+        return urlComponents.url ?? self
     }
 }

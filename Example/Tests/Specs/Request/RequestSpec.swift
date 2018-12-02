@@ -79,6 +79,26 @@ class RequestSpec: QuickSpec {
         }
         
         context("headers") {
+            it("should have no query parameters") {
+                let request = MockedRequest(url: URL(string: "request"))
+                let urlRequest = try? request.makeURLRequest(with: configuration)
+                expect(urlRequest?.url?.query).to(beNil())
+            }
+            
+            it("should have one query parameter") {
+                let request = MockedRequest(url: URL(string: "request"), query: ["key": "value"])
+                let urlRequest = try? request.makeURLRequest(with: configuration)
+                expect(urlRequest?.url?.query) == "key=value"
+            }
+            
+            it("should have multiple query parameters") {
+                let request = MockedRequest(url: URL(string: "request"), query: ["key": "value", "jake": "the_snake"])
+                let urlRequest = try? request.makeURLRequest(with: configuration)
+                expect(urlRequest?.url?.query) == "key=value&jake=the_snake"
+            }
+        }
+        
+        context("headers") {
             it("should have no headers") {
                 let request = MockedRequest(url: URL(string: "request"))
                 let urlRequest = try? request.makeURLRequest(with: configuration)
