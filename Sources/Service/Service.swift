@@ -1,5 +1,5 @@
 //
-//  Some.swift
+//  Service.swift
 //  Cara
 //
 //  Created by Jelle Vandebeeck on 01/12/2018.
@@ -7,6 +7,16 @@
 
 /// This it the main executor of requests.
 public class Service {
+    
+    // MARK: - Internal
+    
+    private let configuration: Configuration
+    
+    // MARK: - Init
+    
+    init(configuration: Configuration) {
+        self.configuration = configuration
+    }
     
     // MARK: - Execute
     
@@ -23,7 +33,7 @@ public class Service {
     /// - paremeter completion: The block that is triggered on completion.
     public func execute(_ request: Request, completion: @escaping (_ response: Response) -> Void) {
         do {
-            try request.makeURLRequest()
+            try request.makeURLRequest(with: configuration)
                        .execute(completion: completion)
         } catch {
             completion(.failure(error))

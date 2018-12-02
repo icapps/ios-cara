@@ -1,5 +1,5 @@
 //
-//  Some.swift
+//  Request.swift
 //  Cara
 //
 //  Created by Jelle Vandebeeck on 01/12/2018.

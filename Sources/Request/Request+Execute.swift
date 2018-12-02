@@ -17,6 +17,12 @@ extension URLRequest {
                 return
             }
             
+            // When an error is returned from the server.
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
             // Otherwise the request succeeds.
             completion(.success)
         }
