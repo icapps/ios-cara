@@ -15,6 +15,9 @@ public class Service {
     
     // MARK: - Init
     
+    /// Initialize the Service layer.
+    ///
+    /// - parameter configuration: Configure the service layer through this instance.
     init(configuration: Configuration) {
         self.configuration = configuration
         self.networkService = NetworkService(configuration: configuration)
