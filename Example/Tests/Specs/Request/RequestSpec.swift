@@ -112,5 +112,29 @@ class RequestSpec: QuickSpec {
                 expect(urlRequest?.allHTTPHeaderFields?.count) == 2
             }
         }
+        
+        context("body") {
+            it("should have no body") {
+                let request = MockedRequest(url: URL(string: "request"))
+                let urlRequest = try? request.makeURLRequest(with: configuration)
+                expect(urlRequest?.httpBody).to(beNil())
+            }
+            
+            it("should have a json body") {
+                let body = ["hello": ["jake", ["the", "snake"]]]
+                let request = MockedRequest(url: URL(string: "request"), body: body)
+                let urlRequest = try? request.makeURLRequest(with: configuration)
+                let data = try? JSONSerialization.data(withJSONObject: body, options: [])
+                expect(urlRequest?.httpBody) == data
+            }
+            
+            it("should have a raw data body") {
+                let body = ["hello": ["jake", ["the", "snake"]]]
+                let data = try? JSONSerialization.data(withJSONObject: body, options: [])
+                let request = MockedRequest(url: URL(string: "request"), body: data)
+                let urlRequest = try? request.makeURLRequest(with: configuration)
+                expect(urlRequest?.httpBody) == data
+            }
+        }
     }
 }

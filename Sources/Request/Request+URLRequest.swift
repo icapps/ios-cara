@@ -13,6 +13,7 @@ extension Request {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.httpMethod
         urlRequest.allHTTPHeaderFields = makeHeaders(with: configuration)
+        urlRequest.httpBody = try makeBody()
         return urlRequest
     }
     
@@ -35,5 +36,13 @@ extension Request {
             requestHeaders?.merge(dict: headers)
         }
         return requestHeaders
+    }
+    
+    private func makeBody() throws -> Data? {
+        guard let body  = body else { return nil }
+        // When the body is of the data type we just return this raw data.
+        if let body = body as? Data { return body }
+        // In all other cases we try to parse the json.
+        return try JSONSerialization.data(withJSONObject: body, options: [])
     }
 }

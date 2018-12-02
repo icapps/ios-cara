@@ -17,4 +17,8 @@ public protocol Request {
     var method: RequestMethod { get }
     /// Set the headers for this request.
     var headers: RequestHeaders? { get }
+    /// Set the type of body with it's content. In Cara's case we support 2 major types of body:
+    /// - A raw `Data` object
+    /// - An `Any` object that can be parsed as a json.
+    var body: Any? { get }
 }
