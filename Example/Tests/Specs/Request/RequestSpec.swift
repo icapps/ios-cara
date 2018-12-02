@@ -94,7 +94,8 @@ class RequestSpec: QuickSpec {
             it("should have multiple query parameters") {
                 let request = MockedRequest(url: URL(string: "request"), query: ["key": "value", "jake": "the_snake"])
                 let urlRequest = try? request.makeURLRequest(with: configuration)
-                expect(urlRequest?.url?.query) == "key=value&jake=the_snake"
+                expect(urlRequest?.url?.query).to(contain("key=value"))
+                expect(urlRequest?.url?.query).to(contain("jake=the_snake"))
             }
         }
         
