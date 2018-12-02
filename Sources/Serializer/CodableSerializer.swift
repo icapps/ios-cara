@@ -7,12 +7,24 @@
 
 import Foundation
 
+/// You can use this serializer when you want to convert a data object returned from the server and parse
+/// it to a `Codable` model.
+///
+/// How to use this:
+/// ```swift
+/// let serializer = CodableSerializer<User>()
+/// ```
+/// In the example above the `User` conforms to `Codable`.
 public struct CodableSerializer<Model: Codable>: Serializer {
     
     // MARK: - Response
     
+    /// The codable response returned by the `CodableSerializer`.
     public enum Response {
+        /// When data is correctly parsed we return the `Codable` instance. This can also be nil when no
+        /// data was returned.
         case success(Model?)
+        /// Failure is triggered an error is returned or when parsing the data didn't succeed.
         case failure(Error)
     }
     
