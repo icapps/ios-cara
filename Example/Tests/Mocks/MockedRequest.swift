@@ -11,9 +11,11 @@ import Cara
 class MockedRequest: Request {
     var url: URL?
     var method: RequestMethod
+    var headers: RequestHeaders?
     
-    init(url: URL?, method: RequestMethod = .get) {
+    init(url: URL?, method: RequestMethod = .get, headers: RequestHeaders? = nil) {
         self.url = url
         self.method = method
+        self.headers = headers
     }
 }

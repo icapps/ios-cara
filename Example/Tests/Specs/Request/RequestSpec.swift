@@ -77,5 +77,40 @@ class RequestSpec: QuickSpec {
                 expect(urlRequest?.httpMethod) == "DELETE"
             }
         }
+        
+        context("headers") {
+            it("should have no headers") {
+                let request = MockedRequest(url: URL(string: "request"))
+                let urlRequest = try? request.makeURLRequest(with: configuration)
+                expect(urlRequest?.allHTTPHeaderFields?.count) == 0
+            }
+            
+            it("should have a key value header") {
+                let request = MockedRequest(url: URL(string: "request"), headers: ["key": "value"])
+                let urlRequest = try? request.makeURLRequest(with: configuration)
+                expect(urlRequest?.allHTTPHeaderFields?["key"]) == "value"
+                expect(urlRequest?.allHTTPHeaderFields?.count) == 1
+            }
+            
+            it("should have a key value header from the configuration") {
+                let configuration = MockedConfiguration(baseURL: URL(string: "https://relative.com")!,
+                                                        headers: ["key": "value"])
+                let request = MockedRequest(url: URL(string: "request"))
+                let urlRequest = try? request.makeURLRequest(with: configuration)
+                expect(urlRequest?.allHTTPHeaderFields?["key"]) == "value"
+                expect(urlRequest?.allHTTPHeaderFields?.count) == 1
+            }
+            
+            it("should have a key value header from both the request ast the configuration") {
+                let configuration = MockedConfiguration(baseURL: URL(string: "https://relative.com")!,
+                                                        headers: ["key": "value"])
+                let headers = ["key": "other_value", "second_key": "second_value"]
+                let request = MockedRequest(url: URL(string: "request"), headers: headers)
+                let urlRequest = try? request.makeURLRequest(with: configuration)
+                expect(urlRequest?.allHTTPHeaderFields?["key"]) == "other_value"
+                expect(urlRequest?.allHTTPHeaderFields?["second_key"]) == "second_value"
+                expect(urlRequest?.allHTTPHeaderFields?.count) == 2
+            }
+        }
     }
 }
