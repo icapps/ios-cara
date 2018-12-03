@@ -49,7 +49,7 @@ In order to trigger a request you have to do 2 things:
 
     _The serialization of the response will be done here. You have to implement the `serialize(data:error:response:)` function and this will be called when the response completes._
 
-Once both instances are created and you `Service` is configures, you can exectute the request.
+Once both instances are created and you `Service` is configured, you can execute the request.
 
 ```swift
 let request: Request = SomeRequest()
