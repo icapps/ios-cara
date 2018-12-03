@@ -16,6 +16,19 @@ import Foundation
 /// ```
 /// In the example above the `User` conforms to `Codable`.
 public struct CodableSerializer<Model: Codable>: Serializer {
+
+    // MARK: - Internal
+
+    private var decoder: JSONDecoder
+
+    // MARK: - Init
+
+    /// You can customise the `CodableSerializer` by passing another `JSONDecoder` is needed.
+    ///
+    /// - parameter decoder: The decoder what will be used to convert the json.
+    init(decoder: JSONDecoder = JSONDecoder()) {
+        self.decoder = decoder
+    }
     
     // MARK: - Response
     
@@ -47,7 +60,6 @@ public struct CodableSerializer<Model: Codable>: Serializer {
             !data.isEmpty else { return .success(nil) }
         
         do {
-            let decoder = JSONDecoder()
             let result = try decoder.decode(Model.self, from: data)
             return .success(result)
         } catch {
