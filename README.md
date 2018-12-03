@@ -138,6 +138,8 @@ service.execute(request, with: serializer) { response in
 }
 ```
 
+When required you can pass a custom `JSONDecoder` through the `init`.
+
 ## Contribute
 
 ### How to contribute ❓
