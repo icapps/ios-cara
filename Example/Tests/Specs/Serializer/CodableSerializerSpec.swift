@@ -13,8 +13,9 @@ import Mockingjay
 @testable import Cara
 
 private class User: Codable {
-    let firstName: String
-    let lastName: String
+    let firstName: String?
+    let lastName: String?
+    let birthDate: Date?
 }
 
 class CodableSerializerSpec: QuickSpec {
@@ -127,6 +128,26 @@ class CodableSerializerSpec: QuickSpec {
                         case .failure(let error):
                             expect(error as? ResponseError) == ResponseError.httpError(statusCode: 500)
                             done()
+                        }
+                    }
+                }
+            }
+
+            it("should serialize to a model with a different decoder") {
+                let body = ["birthDate": 1000]
+                self.stub(http(.get, uri: "https://relative.com/request"), json(body))
+
+                let request = MockedRequest(url: URL(string: "request"))
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .secondsSince1970
+                let serializer = CodableSerializer<User>(decoder: decoder)
+                waitUntil { done in
+                    service.execute(request, with: serializer) { response in
+                        switch response {
+                        case .success(let model):
+                            expect(model?.birthDate) == Date(timeIntervalSince1970: 1000)
+                            done()
+                        case .failure: break
                         }
                     }
                 }
