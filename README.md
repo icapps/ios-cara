@@ -10,6 +10,10 @@
 - [Installation](#installation)
 - [Features](#features)
     - [Configuration](#configuration)
+    - [Trigger a Request](#triggerarequest)
+    - [Serialization](#serialization)
+        - [Custom Serializer](#customserializer)
+        - [Codable Serializer](#codableserializer)
 - [Contribute](#contribute)
   - [How to contribute?](#howtocontribute)
   - [Contributors](#contributors)
@@ -60,6 +64,81 @@ service.execute(request, with: serializer) { response in
 ```
 
 The `response` returned by the completion block is the same as result of the serializer's `serialize(data:error:response:)` function.
+
+### Serialization
+
+With every request execution you have to pass a serializer. In most cases you will be able to use our `CodableSerializer`, but when you want to define a custom way of serializing your data, there is room for that too.
+
+#### Custom Serializer
+
+Create a custom class that conforms to `Serializer`. Here is a small example of how to do this.
+
+```swift
+struct CustomSerializer: Serializer {
+    enum Response {
+        case .success
+        case .failure(Error)
+    }
+
+    func serialize(data: Data?, error: Error?, response: URLResponse?) -> Response {
+        // data: data returned from the service request
+        // error: error returned from the service request
+        // response: the service request response
+
+        if let error = error {
+            return .failure(error)
+        } else {
+            return .success
+        }
+    }
+}
+```
+
+#### Codable Serializer
+
+We aleady supplied our **Cara** framework with one serializer: the `CodableSerializer`.
+
+This serializer can parse the json data returned from the service to your codable models. Here is an example of a simple `Codable` model:
+
+```swift
+class User: Codable {
+    let name: String
+}
+```
+
+Let's now see how we can serialize the result of a request to a single `User` model:
+
+```swift
+let request = SomeRequest()
+let serializer = CodableSerializer<User>()
+service.execute(request, with: serializer) { response in
+    switch response {
+    case .success(let model):
+        // The `model` instance is the parsed user model.
+    case .failure(let error):
+        // The `error` instance is the error returned from the service request.
+    }
+    ...
+}
+```
+
+But what if multiple models are returned? Easy:
+
+```swift
+let request = SomeRequest()
+let serializer = CodableSerializer<[User]>()
+service.execute(request, with: serializer) { response in
+    switch response {
+    case .success(let models):
+        // The `models` array contains the parsed `User` models.
+    case .failure(let error):
+        // The `error` instance is the error returned from the service request.
+    }
+    ...
+}
+```
+
+When required you can pass a custom `JSONDecoder` through the `init`.
 
 ## Contribute
 
