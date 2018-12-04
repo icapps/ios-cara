@@ -8,6 +8,12 @@
 
 import Cara
 
-struct MockedConfiguration: Cara.Configuration {
+class MockedConfiguration: Cara.Configuration {
     var baseURL: URL
+    var headers: RequestHeaders?
+    
+    init(baseURL: URL, headers: RequestHeaders? = nil) {
+        self.baseURL = baseURL
+        self.headers = headers
+    }
 }

@@ -9,4 +9,6 @@
 public protocol Configuration {
     /// The base url that is appended to the `Request`'s relative url.
     var baseURL: URL { get }
+    /// Set the headers that will be used for all the requests.
+    var headers: RequestHeaders? { get }
 }

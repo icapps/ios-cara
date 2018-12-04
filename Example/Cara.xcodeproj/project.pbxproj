@@ -14,6 +14,7 @@
 		9D60FF2A21B402E00078F791 /* MockedConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D60FF2921B402E00078F791 /* MockedConfiguration.swift */; };
 		9D60FF2D21B42A560078F791 /* MockedSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D60FF2C21B42A560078F791 /* MockedSerializer.swift */; };
 		9DAD37C221B439F80042C19C /* CodableSerializerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD37C121B439F80042C19C /* CodableSerializerSpec.swift */; };
+		9DAD37C521B45A900042C19C /* RequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD37C421B45A900042C19C /* RequestSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		9D60FF2921B402E00078F791 /* MockedConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedConfiguration.swift; sourceTree = "<group>"; };
 		9D60FF2C21B42A560078F791 /* MockedSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedSerializer.swift; sourceTree = "<group>"; };
 		9DAD37C121B439F80042C19C /* CodableSerializerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableSerializerSpec.swift; sourceTree = "<group>"; };
+		9DAD37C421B45A900042C19C /* RequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSpec.swift; sourceTree = "<group>"; };
 		D97FA3B1B8D63693AAF21BA5 /* Pods_Application.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Application.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F684B53926905060D617A429 /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -85,6 +87,7 @@
 		62263AAD1D0704F700393E94 /* Specs */ = {
 			isa = PBXGroup;
 			children = (
+				9DAD37C321B45A860042C19C /* Request */,
 				9DAD37BE21B4399F0042C19C /* Serializer */,
 				9DAD37BD21B439990042C19C /* Service */,
 			);
@@ -123,6 +126,14 @@
 				9DAD37C121B439F80042C19C /* CodableSerializerSpec.swift */,
 			);
 			path = Serializer;
+			sourceTree = "<group>";
+		};
+		9DAD37C321B45A860042C19C /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				9DAD37C421B45A900042C19C /* RequestSpec.swift */,
+			);
+			path = Request;
 			sourceTree = "<group>";
 		};
 		C69CA0DFE7102BE787B0A63F /* Pods */ = {
@@ -292,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D446A9C21B3EAC100FEA1F7 /* ServiceSpec.swift in Sources */,
+				9DAD37C521B45A900042C19C /* RequestSpec.swift in Sources */,
 				9D0E402C21B3FC490088D678 /* CaraQuickConfiguration.swift in Sources */,
 				9D60FF2821B402CA0078F791 /* MockedRequest.swift in Sources */,
 				9D60FF2A21B402E00078F791 /* MockedConfiguration.swift in Sources */,

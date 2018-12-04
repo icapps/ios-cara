@@ -8,6 +8,22 @@
 
 import Cara
 
-struct MockedRequest: Request {
+class MockedRequest: Request {
     var url: URL?
+    var method: RequestMethod
+    var query: RequestQuery?
+    var headers: RequestHeaders?
+    var body: Any?
+    
+    init(url: URL?,
+         method: RequestMethod = .get,
+         query: RequestQuery? = nil,
+         headers: RequestHeaders? = nil,
+         body: Any? = nil) {
+        self.url = url
+        self.method = method
+        self.query = query
+        self.headers = headers
+        self.body = body
+    }
 }

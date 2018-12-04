@@ -34,7 +34,7 @@ class CodableSerializerSpec: QuickSpec {
             it("should not serialize to a simple model but still be successful.") {
                 self.stub(http(.get, uri: "https://relative.com/request"), http(200))
                 
-                let request = MockedRequest(url: URL(string: "request"))
+                let request = MockedRequest(url: URL(string: "request"), method: .get)
                 waitUntil { done in
                     service.execute(request, with: serializer) { response in
                         switch response {
@@ -54,7 +54,7 @@ class CodableSerializerSpec: QuickSpec {
                 ]
                 self.stub(http(.get, uri: "https://relative.com/request"), json(body))
                 
-                let request = MockedRequest(url: URL(string: "request"))
+                let request = MockedRequest(url: URL(string: "request"), method: .get)
                 waitUntil { done in
                     service.execute(request, with: serializer) { response in
                         switch response {
@@ -104,7 +104,7 @@ class CodableSerializerSpec: QuickSpec {
             it("should throw an error in the serializer when the status code is a client one") {
                 self.stub(http(.get, uri: "https://relative.com/request"), http(400))
                 
-                let request = MockedRequest(url: URL(string: "request"))
+                let request = MockedRequest(url: URL(string: "request"), method: .get)
                 waitUntil { done in
                     service.execute(request, with: serializer) { response in
                         switch response {
@@ -120,7 +120,7 @@ class CodableSerializerSpec: QuickSpec {
             it("should throw an error in the serializer when the status code is a server one") {
                 self.stub(http(.get, uri: "https://relative.com/request"), http(500))
                 
-                let request = MockedRequest(url: URL(string: "request"))
+                let request = MockedRequest(url: URL(string: "request"), method: .get)
                 waitUntil { done in
                     service.execute(request, with: serializer) { response in
                         switch response {
