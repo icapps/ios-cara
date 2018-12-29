@@ -165,5 +165,11 @@ class RequestSpec: QuickSpec {
                 expect(urlRequest?.httpBody) == data
             }
         }
+        
+        it("should have the correct cache policy") {
+            let request = MockedRequest(url: URL(string: "request"), cachePolicy: .reloadIgnoringLocalCacheData)
+            let urlRequest = try? request.makeURLRequest(with: configuration)
+            expect(urlRequest?.cachePolicy) == .reloadIgnoringLocalCacheData
+        }
     }
 }
