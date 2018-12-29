@@ -9,10 +9,10 @@
 import Cara
 
 class MockedConfiguration: Cara.Configuration {
-    var baseURL: URL
+    var baseURL: URL?
     var headers: RequestHeaders?
     
-    init(baseURL: URL, headers: RequestHeaders? = nil) {
+    init(baseURL: URL?, headers: RequestHeaders? = nil) {
         self.baseURL = baseURL
         self.headers = headers
     }

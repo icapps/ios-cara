@@ -38,6 +38,14 @@ class RequestSpec: QuickSpec {
                     _ = try request.makeURLRequest(with: configuration)
                 }.to(throwError(ResponseError.invalidURL))
             }
+            
+            it("should throw an invalid url error when base url is missing") {
+                configuration = MockedConfiguration(baseURL: nil)
+                let request = MockedRequest(url: URL(string: "request"))
+                expect {
+                    _ = try request.makeURLRequest(with: configuration)
+                }.to(throwError(ResponseError.invalidURL))
+            }
         }
         
         context("method") {
