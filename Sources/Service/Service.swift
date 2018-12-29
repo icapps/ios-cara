@@ -38,16 +38,20 @@ open class Service {
     /// - parameter request: The request to execute.
     /// - parameter serializer: The result of the request will go through serialization.
     /// - paremeter completion: The block that is triggered on completion.
+    ///
+    /// - returns: The executed data task.
+    @discardableResult
     public func execute<S: Serializer>(_ request: Request,
                                        with serializer: S,
-                                       completion: @escaping (_ response: S.Response) -> Void) {
+                                       completion: @escaping (_ response: S.Response) -> Void) -> URLSessionDataTask? {
         do {
             // Try to generate a url request with the given `Request`.
             let urlRequest = try request.makeURLRequest(with: configuration)
-            networkService.execute(urlRequest, with: serializer, completion: completion)
+            return networkService.execute(urlRequest, with: serializer, completion: completion)
         } catch {
             let response = serializer.serialize(data: nil, error: error, response: nil)
             completion(response)
+            return nil
         }
     }
 }

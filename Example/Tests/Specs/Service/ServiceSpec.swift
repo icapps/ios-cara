@@ -51,6 +51,32 @@ class ServiceSpec: QuickSpec {
                     }
                 }
             }
+            
+            context("task") {
+                it("should return a task when request is triggered") {
+                    self.stub(http(.get, uri: "https://relative.com/request"), http(200))
+                    
+                    let request = MockedRequest(url: URL(string: "request"))
+                    var task: URLSessionDataTask?
+                    waitUntil { done in
+                        task = service.execute(request, with: MockedSerializer()) { _ in
+                            done()
+                        }
+                    }
+                    expect(task).toNot(beNil())
+                }
+                
+                it("should not return a task when request fail to trigger") {
+                    let request = MockedRequest(url: nil)
+                    var task: URLSessionDataTask?
+                    waitUntil { done in
+                        task = service.execute(request, with: MockedSerializer()) { _ in
+                            done()
+                        }
+                    }
+                    expect(task).to(beNil())
+                }
+            }
          
             context("serializer") {
                 it("should fail to execute a request because of an invalid url") {
