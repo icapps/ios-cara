@@ -20,8 +20,7 @@ struct MockedSerializer: Serializer {
     
     // MARK: - Serializer
     
-    func serialize(data: Data?, error: Error?, response: URLResponse?) -> MockedSerializer.Response {
-        let urlResponse = response as? HTTPURLResponse
-        return Response(data: data, error: error, statusCode: urlResponse?.statusCode)
+    func serialize(data: Data?, error: Error?, response: HTTPURLResponse?) -> MockedSerializer.Response {
+        return Response(data: data, error: error, statusCode: response?.statusCode)
     }
 }
