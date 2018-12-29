@@ -6,7 +6,7 @@
 //
 
 /// This it the main executor of requests.
-public class Service {
+open class Service {
     
     // MARK: - Internal
     
@@ -18,7 +18,7 @@ public class Service {
     /// Initialize the Service layer.
     ///
     /// - parameter configuration: Configure the service layer through this instance.
-    init(configuration: Configuration) {
+    public init(configuration: Configuration) {
         self.configuration = configuration
         self.networkService = NetworkService(configuration: configuration)
     }

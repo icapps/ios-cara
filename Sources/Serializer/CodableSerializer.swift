@@ -26,7 +26,7 @@ public struct CodableSerializer<Model: Codable>: Serializer {
     /// You can customise the `CodableSerializer` by passing another `JSONDecoder` is needed.
     ///
     /// - parameter decoder: The decoder what will be used to convert the json.
-    init(decoder: JSONDecoder = JSONDecoder()) {
+    public init(decoder: JSONDecoder = JSONDecoder()) {
         self.decoder = decoder
     }
     
@@ -43,7 +43,7 @@ public struct CodableSerializer<Model: Codable>: Serializer {
     
     // MARK: - Serialize
     
-    public func serialize(data: Data?, error: Error?, response: URLResponse?) -> CodableSerializer<Model>.Response {
+    public func serialize(data: Data?, error: Error?, response: HTTPURLResponse?) -> CodableSerializer<Model>.Response {
         // When an error occurs we return this error.
         if let error = error { return .failure(error) }
         
