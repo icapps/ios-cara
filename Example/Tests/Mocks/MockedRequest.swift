@@ -14,16 +14,19 @@ class MockedRequest: Request {
     var query: RequestQuery?
     var headers: RequestHeaders?
     var body: Any?
+    var cachePolicy: URLRequest.CachePolicy
     
     init(url: URL?,
          method: RequestMethod = .get,
          query: RequestQuery? = nil,
          headers: RequestHeaders? = nil,
-         body: Any? = nil) {
+         body: Any? = nil,
+         cachePolicy: URLRequest.CachePolicy = .useProtocolCachePolicy) {
         self.url = url
         self.method = method
         self.query = query
         self.headers = headers
         self.body = body
+        self.cachePolicy = cachePolicy
     }
 }
