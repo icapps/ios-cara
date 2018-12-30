@@ -15,8 +15,8 @@ public protocol Serializer {
     ///
     /// - parameter data: The body'sdata returned by the response.
     /// - parameter error: The error given by the request.
-    /// - parameter response: The url response for more customization.
+    /// - parameter response: The http url response for more customization.
     ///
     /// - returns: A generic response defined by the implementation class.
-    func serialize(data: Data?, error: Error?, response: URLResponse?) -> Response
+    func serialize(data: Data?, error: Error?, response: HTTPURLResponse?) -> Response
 }

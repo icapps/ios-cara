@@ -6,7 +6,7 @@
 //
 
 /// This it the main executor of requests.
-public class Service {
+open class Service {
     
     // MARK: - Internal
     
@@ -18,7 +18,7 @@ public class Service {
     /// Initialize the Service layer.
     ///
     /// - parameter configuration: Configure the service layer through this instance.
-    init(configuration: Configuration) {
+    public init(configuration: Configuration) {
         self.configuration = configuration
         self.networkService = NetworkService(configuration: configuration)
     }
@@ -38,16 +38,20 @@ public class Service {
     /// - parameter request: The request to execute.
     /// - parameter serializer: The result of the request will go through serialization.
     /// - paremeter completion: The block that is triggered on completion.
+    ///
+    /// - returns: The executed data task.
+    @discardableResult
     public func execute<S: Serializer>(_ request: Request,
                                        with serializer: S,
-                                       completion: @escaping (_ response: S.Response) -> Void) {
+                                       completion: @escaping (_ response: S.Response) -> Void) -> URLSessionDataTask? {
         do {
             // Try to generate a url request with the given `Request`.
             let urlRequest = try request.makeURLRequest(with: configuration)
-            networkService.execute(urlRequest, with: serializer, completion: completion)
+            return networkService.execute(urlRequest, with: serializer, completion: completion)
         } catch {
             let response = serializer.serialize(data: nil, error: error, response: nil)
             completion(response)
+            return nil
         }
     }
 }

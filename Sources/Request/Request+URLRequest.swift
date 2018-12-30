@@ -23,8 +23,10 @@ extension Request {
         guard let url = url else { throw ResponseError.invalidURL }
         // When the url is an absolure url, just use this url.
         guard url.host == nil else { return url.appendingQuery(from: self) }
+        // When the url is a relative url we should have a base url defined.
+        guard let baseURL = configuration.baseURL else { throw ResponseError.invalidURL }
         // Return the relative url appended to the base url.
-        return configuration.baseURL.appendingPathComponent(url.absoluteString).appendingQuery(from: self)
+        return baseURL.appendingPathComponent(url.absoluteString).appendingQuery(from: self)
     }
     
     private func makeHeaders(with configuration: Configuration) -> RequestHeaders? {

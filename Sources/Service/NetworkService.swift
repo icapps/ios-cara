@@ -23,12 +23,13 @@ class NetworkService {
     
     func execute<S: Serializer>(_ urlRequest: URLRequest,
                                 with serializer: S,
-                                completion: @escaping (_ response: S.Response) -> Void) {
+                                completion: @escaping (_ response: S.Response) -> Void) -> URLSessionDataTask {
         let session = URLSession.shared
         let task = session.dataTask(with: urlRequest) { data, urlResponse, error in
-            let response = serializer.serialize(data: data, error: error, response: urlResponse)
+            let response = serializer.serialize(data: data, error: error, response: urlResponse as? HTTPURLResponse)
             completion(response)
         }
         task.resume()
+        return task
     }
 }
