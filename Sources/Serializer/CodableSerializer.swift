@@ -50,8 +50,8 @@ public struct CodableSerializer<Model: Codable>: Serializer {
         // When a status code larger or equal than 400 is returned we return a custom error.
         if
             let response = response,
-            response.httpStatusCode >= 400 {
-            return .failure(ResponseError.httpError(statusCode: response.httpStatusCode))
+            let responseError = ResponseError(statusCode: response.statusCode) {
+            return .failure(responseError)
         }
         
         /// When no data object (or an empty one) is returned from the server we have a successful.

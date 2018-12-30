@@ -27,7 +27,9 @@ class NetworkService {
         let executionQueue: DispatchQueue? = OperationQueue.current?.underlyingQueue
         let session = URLSession.shared
         let task = session.dataTask(with: urlRequest) { [weak self] data, urlResponse, error in
-            let response = serializer.serialize(data: data, error: error, response: urlResponse as? HTTPURLResponse)
+            let response = serializer.serialize(data: data,
+                                                error: error ?? urlResponse?.httpError,
+                                                response: urlResponse as? HTTPURLResponse)
             // Make sure the completion handler is triggered on the same queue as the `execute` was triggered on.
             self?.complete(on: executionQueue, block: { completion(response) })
         }
@@ -41,5 +43,12 @@ class NetworkService {
             return
         }
         queue.async(execute: block)
+    }
+}
+
+extension URLResponse {
+    var httpError: Error? {
+        guard let response = self as? HTTPURLResponse else { return nil }
+        return ResponseError(statusCode: response.statusCode)
     }
 }

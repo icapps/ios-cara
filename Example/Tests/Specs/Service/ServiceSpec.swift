@@ -156,6 +156,21 @@ class ServiceSpec: QuickSpec {
                         }
                     }
                 }
+                
+                it("should return a http error") {
+                    self.stub(http(.get, uri: "https://relative.com/request"), http(400))
+                    
+                    let request = MockedRequest(url: URL(string: "request"))
+                    let serializer = MockedSerializer()
+                    waitUntil { done in
+                        service.execute(request, with: serializer) { response in
+                            expect(response.data).toNot(beNil())
+                            expect(response.error as? ResponseError) == ResponseError.badRequest
+                            expect(response.statusCode) == 400
+                            done()
+                        }
+                    }
+                }
             }
         }
     }

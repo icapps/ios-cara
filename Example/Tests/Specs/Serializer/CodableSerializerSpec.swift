@@ -110,7 +110,7 @@ class CodableSerializerSpec: QuickSpec {
                         switch response {
                         case .success: break
                         case .failure(let error):
-                            expect(error as? ResponseError) == ResponseError.httpError(statusCode: 400)
+                            expect(error as? ResponseError) == ResponseError.badRequest
                             done()
                         }
                     }
@@ -126,7 +126,7 @@ class CodableSerializerSpec: QuickSpec {
                         switch response {
                         case .success: break
                         case .failure(let error):
-                            expect(error as? ResponseError) == ResponseError.httpError(statusCode: 500)
+                            expect(error as? ResponseError) == ResponseError.internalServerError
                             done()
                         }
                     }
