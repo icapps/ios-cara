@@ -26,14 +26,22 @@ class NetworkService: NSObject {
     func execute<S: Serializer>(_ urlRequest: URLRequest,
                                 with serializer: S,
                                 completion: @escaping (_ response: S.Response) -> Void) -> URLSessionDataTask {
+        // Get the originating queue.
         let executionQueue: DispatchQueue? = OperationQueue.current?.underlyingQueue
+        // Trigger the loggers before the request is done.
+        configuration.start(urlRequest: urlRequest)
+        // Prepare the session.
         let session = URLSession(configuration: URLSessionConfiguration.default,
                                  delegate: self,
                                  delegateQueue: nil)
+        // Execute the task.
         let task = session.dataTask(with: urlRequest) { [weak self] data, urlResponse, error in
+            let responseError: Error? = error ?? urlResponse?.httpError
             let response = serializer.serialize(data: data,
-                                                error: error ?? urlResponse?.httpError,
+                                                error: responseError,
                                                 response: urlResponse as? HTTPURLResponse)
+            // Trigger the loggers when the request finished.
+            self?.configuration.end(urlRequest: urlRequest, urlResponse: urlResponse, error: responseError)
             // Make sure the completion handler is triggered on the same queue as the `execute` was triggered on.
             self?.complete(on: executionQueue, block: { completion(response) })
         }
@@ -60,7 +68,6 @@ extension NetworkService: URLSessionDataDelegate {
         guard
             let serverTrust = challenge.protectionSpace.serverTrust,
             challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust else {
-            print("🔑 Public key pinning failed due to invalid trust for host", host)
             completionHandler(.cancelAuthenticationChallenge, nil)
             return
         }
