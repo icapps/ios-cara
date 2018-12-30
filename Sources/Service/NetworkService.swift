@@ -24,12 +24,22 @@ class NetworkService {
     func execute<S: Serializer>(_ urlRequest: URLRequest,
                                 with serializer: S,
                                 completion: @escaping (_ response: S.Response) -> Void) -> URLSessionDataTask {
+        let executionQueue: DispatchQueue? = OperationQueue.current?.underlyingQueue
         let session = URLSession.shared
-        let task = session.dataTask(with: urlRequest) { data, urlResponse, error in
+        let task = session.dataTask(with: urlRequest) { [weak self] data, urlResponse, error in
             let response = serializer.serialize(data: data, error: error, response: urlResponse as? HTTPURLResponse)
-            completion(response)
+            // Make sure the completion handler is triggered on the same queue as the `execute` was triggered on.
+            self?.complete(on: executionQueue, block: { completion(response) })
         }
         task.resume()
         return task
+    }
+    
+    private func complete(on queue: DispatchQueue?, block: @escaping () -> Void) {
+        guard let queue = queue else {
+            block()
+            return
+        }
+        queue.async(execute: block)
     }
 }
