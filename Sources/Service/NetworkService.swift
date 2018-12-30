@@ -63,6 +63,15 @@ extension NetworkService: URLSessionDataDelegate {
     func urlSession(_ session: URLSession,
                     didReceive challenge: URLAuthenticationChallenge,
                     completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        pinningService.handle(challenge: challenge, completionHandler: completionHandler)
+        let host = challenge.protectionSpace.host
+        guard
+            let serverTrust = challenge.protectionSpace.serverTrust,
+            challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust else {
+            print("🔑 Public key pinning failed due to invalid trust for host", host)
+            completionHandler(.cancelAuthenticationChallenge, nil)
+            return
+        }
+        
+        pinningService.handle(serverTrust, host: host, completionHandler: completionHandler)
     }
 }
