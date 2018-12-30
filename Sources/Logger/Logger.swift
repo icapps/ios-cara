@@ -9,8 +9,15 @@ import Foundation
 
 /// A class can conform to this protocol in order to get more information before and after a request.
 public protocol Logger {
-    /// Trigger before a request is fired.
+    /// The `start` function is triggered just before a request if fired.
+    ///
+    /// - parameters urlRequest: The request that is will be executed.
     func start(urlRequest: URLRequest)
-    /// Trigger after a request completed.
-    func end(urlRequest: URLRequest, urlResponse: URLResponse?, error: Error?)
+    /// The `end` function is triggered just after the request finised collecting the metrics.
+    ///
+    /// - parameters urlRequest: The request that is was executed after redirection.
+    /// - parameters urlResponse: The response of the request.
+    /// - parameters metrics: The metrics for the request.
+    /// - parameters error: The error is an error occured.
+    func end(urlRequest: URLRequest, urlResponse: URLResponse, metrics: URLSessionTaskMetrics, error: Error?)
 }

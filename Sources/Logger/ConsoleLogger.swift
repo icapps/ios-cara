@@ -21,27 +21,33 @@ extension ConsoleLogger: Logger {
         os_log("☁️ %{public}@: %{public}@", log: OSLog.request, type: .info, method, url.absoluteString)
     }
     
-    public func end(urlRequest: URLRequest, urlResponse: URLResponse?, error: Error?) {
+    public func end(urlRequest: URLRequest, urlResponse: URLResponse, metrics: URLSessionTaskMetrics, error: Error?) {
         guard
             let method = urlRequest.httpMethod,
             let httpResponse = urlResponse as? HTTPURLResponse,
-            let url = urlRequest.url else { return }
+            let url = urlRequest.url,
+            let transactionMetric = metrics.transactionMetrics.first,
+            let requestEndDate = transactionMetric.requestEndDate,
+            let domainLookupStartDate = transactionMetric.domainLookupStartDate else { return }
         
+        let totalDuration = requestEndDate.timeIntervalSince(domainLookupStartDate)
         if let error = error {
-            os_log("⛈ %{public}@ %i: %{public}@\nError: %{public}@",
+            os_log("⛈ %{public}@ %i: %{public}@ 💥 %{public}@ ⏳ %.3fms",
                    log: OSLog.request,
                    type: .info,
                    method,
                    httpResponse.statusCode,
                    url.absoluteString,
-                   error.localizedDescription)
+                   error.localizedDescription,
+                   totalDuration)
         } else {
-            os_log("☀️ %{public}@ %i: %{public}@",
+            os_log("☀️ %{public}@ %i: %{public}@ ⏳ %.3fms",
                    log: OSLog.request,
                    type: .info,
                    method,
                    httpResponse.statusCode,
-                   url.absoluteString)
+                   url.absoluteString,
+                   totalDuration)
         }
     }
 }

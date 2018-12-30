@@ -12,7 +12,7 @@ extension Configuration {
         loggers?.forEach { $0.start(urlRequest: urlRequest) }
     }
     
-    func end(urlRequest: URLRequest, urlResponse: URLResponse?, error: Error?) {
-        loggers?.forEach { $0.end(urlRequest: urlRequest, urlResponse: urlResponse, error: error) }
+    func end(urlRequest: URLRequest, urlResponse: URLResponse, metrics: URLSessionTaskMetrics, error: Error?) {
+        loggers?.forEach { $0.end(urlRequest: urlRequest, urlResponse: urlResponse, metrics: metrics, error: error) }
     }
 }
