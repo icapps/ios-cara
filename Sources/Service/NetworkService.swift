@@ -52,13 +52,6 @@ class NetworkService: NSObject {
     }
 }
 
-extension URLResponse {
-    var httpError: Error? {
-        guard let response = self as? HTTPURLResponse else { return nil }
-        return ResponseError(statusCode: response.statusCode)
-    }
-}
-
 extension NetworkService: URLSessionDataDelegate {
     func urlSession(_ session: URLSession,
                     didReceive challenge: URLAuthenticationChallenge,

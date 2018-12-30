@@ -59,7 +59,7 @@ class PublicKeyPinningService {
                 // When the public keys don't match continue to the next certificate.
                 guard sha256.base64EncodedString() == publicKeyString else { continue }
                 
-                print("🔑 Handle public key pinning for host", index, host)
+                print("🔑 Handle public key pinning for host", host)
                 completionHandler(.useCredential, URLCredential(trust: secTrust))
                 return
             }
