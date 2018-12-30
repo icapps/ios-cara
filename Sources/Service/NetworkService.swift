@@ -7,16 +7,18 @@
 
 import Foundation
 
-class NetworkService {
+class NetworkService: NSObject {
     
     // MARK: - Internal
     
     private let configuration: Configuration
+    private let pinningService: PublicKeyPinningService
     
     // MARK: - Init
     
-    init(configuration: Configuration) {
+    init(configuration: Configuration, pinningService: PublicKeyPinningService) {
         self.configuration = configuration
+        self.pinningService = pinningService
     }
     
     // MARK: - Execute
@@ -25,7 +27,9 @@ class NetworkService {
                                 with serializer: S,
                                 completion: @escaping (_ response: S.Response) -> Void) -> URLSessionDataTask {
         let executionQueue: DispatchQueue? = OperationQueue.current?.underlyingQueue
-        let session = URLSession.shared
+        let session = URLSession(configuration: URLSessionConfiguration.default,
+                                 delegate: self,
+                                 delegateQueue: nil)
         let task = session.dataTask(with: urlRequest) { [weak self] data, urlResponse, error in
             let response = serializer.serialize(data: data,
                                                 error: error ?? urlResponse?.httpError,
@@ -36,6 +40,8 @@ class NetworkService {
         task.resume()
         return task
     }
+    
+    // MARK: - Helpers
     
     private func complete(on queue: DispatchQueue?, block: @escaping () -> Void) {
         guard let queue = queue else {
@@ -50,5 +56,13 @@ extension URLResponse {
     var httpError: Error? {
         guard let response = self as? HTTPURLResponse else { return nil }
         return ResponseError(statusCode: response.statusCode)
+    }
+}
+
+extension NetworkService: URLSessionDataDelegate {
+    func urlSession(_ session: URLSession,
+                    didReceive challenge: URLAuthenticationChallenge,
+                    completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        pinningService.handle(challenge: challenge, completionHandler: completionHandler)
     }
 }
