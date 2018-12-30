@@ -20,7 +20,8 @@ open class Service {
     /// - parameter configuration: Configure the service layer through this instance.
     public init(configuration: Configuration) {
         self.configuration = configuration
-        self.networkService = NetworkService(configuration: configuration)
+        self.networkService = NetworkService(configuration: configuration,
+                                             pinningService: PublicKeyPinningService(configuration: configuration))
     }
     
     // MARK: - Execute

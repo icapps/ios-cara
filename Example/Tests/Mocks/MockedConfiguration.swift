@@ -11,9 +11,11 @@ import Cara
 class MockedConfiguration: Cara.Configuration {
     var baseURL: URL?
     var headers: RequestHeaders?
+    var publicKeys: PublicKeys?
     
-    init(baseURL: URL?, headers: RequestHeaders? = nil) {
+    init(baseURL: URL?, headers: RequestHeaders? = nil, publicKeys: PublicKeys? = nil) {
         self.baseURL = baseURL
         self.headers = headers
+        self.publicKeys = publicKeys
     }
 }

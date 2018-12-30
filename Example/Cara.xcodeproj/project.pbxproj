@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		04D9267E96450E6532CC7727 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F684B53926905060D617A429 /* Pods_Tests.framework */; };
 		9D0E402C21B3FC490088D678 /* CaraQuickConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0E402B21B3FC490088D678 /* CaraQuickConfiguration.swift */; };
+		9D21FEF121D8EE98006EF131 /* PublicKeyPinningServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D21FEF021D8EE98006EF131 /* PublicKeyPinningServiceSpec.swift */; };
+		9D21FEF321D8F02F006EF131 /* SecTrust+Apple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D21FEF221D8F02F006EF131 /* SecTrust+Apple.swift */; };
+		9D21FEF521D8F05C006EF131 /* apple.com.cer in Resources */ = {isa = PBXBuildFile; fileRef = 9D21FEF421D8F05C006EF131 /* apple.com.cer */; };
 		9D28DFA521D8C562002B538A /* ResponseErrorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D28DFA421D8C562002B538A /* ResponseErrorSpec.swift */; };
 		9D446A9C21B3EAC100FEA1F7 /* ServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2BB56E21B2D5DC0072DA07 /* ServiceSpec.swift */; };
 		9D60FF2821B402CA0078F791 /* MockedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D60FF2721B402CA0078F791 /* MockedRequest.swift */; };
@@ -26,6 +29,9 @@
 		607FACE51AFB9204008FA782 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D0E402B21B3FC490088D678 /* CaraQuickConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaraQuickConfiguration.swift; sourceTree = "<group>"; };
+		9D21FEF021D8EE98006EF131 /* PublicKeyPinningServiceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKeyPinningServiceSpec.swift; sourceTree = "<group>"; };
+		9D21FEF221D8F02F006EF131 /* SecTrust+Apple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SecTrust+Apple.swift"; sourceTree = "<group>"; };
+		9D21FEF421D8F05C006EF131 /* apple.com.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = apple.com.cer; sourceTree = "<group>"; };
 		9D28DFA421D8C562002B538A /* ResponseErrorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseErrorSpec.swift; sourceTree = "<group>"; };
 		9D2BB56E21B2D5DC0072DA07 /* ServiceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceSpec.swift; sourceTree = "<group>"; };
 		9D60FF2721B402CA0078F791 /* MockedRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedRequest.swift; sourceTree = "<group>"; };
@@ -72,6 +78,7 @@
 			children = (
 				9D0E402A21B3FC2D0088D678 /* Helpers */,
 				9D60FF2621B402BE0078F791 /* Mocks */,
+				9D21FEF621D8F061006EF131 /* Resources */,
 				62263AAD1D0704F700393E94 /* Specs */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -100,8 +107,17 @@
 			isa = PBXGroup;
 			children = (
 				9D0E402B21B3FC490088D678 /* CaraQuickConfiguration.swift */,
+				9D21FEF221D8F02F006EF131 /* SecTrust+Apple.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		9D21FEF621D8F061006EF131 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9D21FEF421D8F05C006EF131 /* apple.com.cer */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		9D60FF2621B402BE0078F791 /* Mocks */ = {
@@ -117,6 +133,7 @@
 		9DAD37BD21B439990042C19C /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				9D21FEF021D8EE98006EF131 /* PublicKeyPinningServiceSpec.swift */,
 				9D28DFA421D8C562002B538A /* ResponseErrorSpec.swift */,
 				9D2BB56E21B2D5DC0072DA07 /* ServiceSpec.swift */,
 			);
@@ -222,6 +239,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D21FEF521D8F05C006EF131 /* apple.com.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +296,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Cara/Cara.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Mockingjay/Mockingjay.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
@@ -288,6 +307,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cara.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mockingjay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
@@ -310,7 +330,9 @@
 				9D0E402C21B3FC490088D678 /* CaraQuickConfiguration.swift in Sources */,
 				9D60FF2821B402CA0078F791 /* MockedRequest.swift in Sources */,
 				9D60FF2A21B402E00078F791 /* MockedConfiguration.swift in Sources */,
+				9D21FEF121D8EE98006EF131 /* PublicKeyPinningServiceSpec.swift in Sources */,
 				9D60FF2D21B42A560078F791 /* MockedSerializer.swift in Sources */,
+				9D21FEF321D8F02F006EF131 /* SecTrust+Apple.swift in Sources */,
 				9D28DFA521D8C562002B538A /* ResponseErrorSpec.swift in Sources */,
 				9DAD37C221B439F80042C19C /* CodableSerializerSpec.swift in Sources */,
 			);

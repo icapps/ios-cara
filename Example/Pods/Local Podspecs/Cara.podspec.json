@@ -21,5 +21,10 @@
     "tvos": "10.0",
     "osx": "10.10"
   },
-  "source_files": "Sources/**/*"
+  "source_files": "Sources/**/*",
+  "dependencies": {
+    "CryptoSwift": [
+      "~> 0.13"
+    ]
+  }
 }
