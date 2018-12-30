@@ -25,4 +25,6 @@ public protocol Request {
     /// - A raw `Data` object
     /// - An `Any` object that can be parsed as a json.
     var body: Any? { get }
+    /// Set a cache policy for every request.
+    var cachePolicy: URLRequest.CachePolicy { get }
 }

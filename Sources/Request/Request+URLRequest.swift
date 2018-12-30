@@ -14,6 +14,7 @@ extension Request {
         urlRequest.httpMethod = method.httpMethod
         urlRequest.allHTTPHeaderFields = makeHeaders(with: configuration)
         urlRequest.httpBody = try makeBody()
+        urlRequest.cachePolicy = cachePolicy
         return urlRequest
     }
     
