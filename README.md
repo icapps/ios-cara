@@ -14,6 +14,9 @@
     - [Serialization](#serialization)
         - [Custom Serializer](#custom-serializer)
         - [Codable Serializer](#codable-serializer)
+    - [Logger](#logger)
+        - [Custom Logger](#custom-logger)
+        - [Console Logger](#console-logger)
     - [Public Key Pinning](#public-key-pinning)
 - [Contribute](#contribute)
   - [How to contribute?](#how-to-contribute-)
@@ -142,6 +145,59 @@ service.execute(request, with: serializer) { response in
 ```
 
 When required you can pass a custom `JSONDecoder` through the `init`.
+
+### Logger
+
+You can get some information about the request and it's response. This can come in handy when you want to log all the request to the Console. In order to get what you want to have to create an object that conforms to `Logger` and pass it to `Cara` through the `Configuration`.
+
+#### Custom Logger
+
+Create a custom class that conforms to `Logger`. Here is a small example of how to do this.
+
+```swift
+struct CustomLogger: Logger {
+    func start(urlRequest: URLRequest) {
+        // Triggered just before a request if fired
+    }
+
+    func end(urlRequest: URLRequest, urlResponse: URLResponse, metrics: URLSessionTaskMetrics, error: Error?) {
+        // Triggered just after the request finised collecting the metrics
+    }
+}
+```
+
+When you want to use the `CustomLogger` in your application you have to pass it to the `loggers` array in the `configuration`.
+
+```swift
+class SomeConfiguration: Configuration {
+    ...
+
+    var loggers: [Logger]? {
+        return [CustomLogger()]
+    }
+}
+```
+
+#### Console Logger
+
+We aleady supplied our **Cara** framework with one logger: the `ConsoleLogger`.
+
+This logger send the request and response information through `os_log` to the console. Below is an example of the printed logs:
+
+```swift
+```
+
+When you want to use the `ConsoleLogger` in your application you have to pass it to the `loggers` array in the `configuration`.
+
+```swift
+class SomeConfiguration: Configuration {
+    ...
+
+    var loggers: [Logger]? {
+        return [ConsoleLogger()]
+    }
+}
+```
 
 ### Public Key Pinning
 
