@@ -12,6 +12,8 @@
 		9D21FEF121D8EE98006EF131 /* PublicKeyPinningServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D21FEF021D8EE98006EF131 /* PublicKeyPinningServiceSpec.swift */; };
 		9D21FEF321D8F02F006EF131 /* SecTrust+Apple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D21FEF221D8F02F006EF131 /* SecTrust+Apple.swift */; };
 		9D21FEF521D8F05C006EF131 /* apple.com.cer in Resources */ = {isa = PBXBuildFile; fileRef = 9D21FEF421D8F05C006EF131 /* apple.com.cer */; };
+		9D21FF0621D97196006EF131 /* NetworkServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D21FF0521D97196006EF131 /* NetworkServiceSpec.swift */; };
+		9D21FF0821D971C6006EF131 /* MockedPublicKeyPinningService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D21FF0721D971C6006EF131 /* MockedPublicKeyPinningService.swift */; };
 		9D28DFA521D8C562002B538A /* ResponseErrorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D28DFA421D8C562002B538A /* ResponseErrorSpec.swift */; };
 		9D446A9C21B3EAC100FEA1F7 /* ServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2BB56E21B2D5DC0072DA07 /* ServiceSpec.swift */; };
 		9D60FF2821B402CA0078F791 /* MockedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D60FF2721B402CA0078F791 /* MockedRequest.swift */; };
@@ -19,6 +21,7 @@
 		9D60FF2D21B42A560078F791 /* MockedSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D60FF2C21B42A560078F791 /* MockedSerializer.swift */; };
 		9DAD37C221B439F80042C19C /* CodableSerializerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD37C121B439F80042C19C /* CodableSerializerSpec.swift */; };
 		9DAD37C521B45A900042C19C /* RequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD37C421B45A900042C19C /* RequestSpec.swift */; };
+		9DEA80C321D97275002A56A7 /* MockedLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEA80C221D97275002A56A7 /* MockedLogger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,8 @@
 		9D21FEF021D8EE98006EF131 /* PublicKeyPinningServiceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKeyPinningServiceSpec.swift; sourceTree = "<group>"; };
 		9D21FEF221D8F02F006EF131 /* SecTrust+Apple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SecTrust+Apple.swift"; sourceTree = "<group>"; };
 		9D21FEF421D8F05C006EF131 /* apple.com.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = apple.com.cer; sourceTree = "<group>"; };
+		9D21FF0521D97196006EF131 /* NetworkServiceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceSpec.swift; sourceTree = "<group>"; };
+		9D21FF0721D971C6006EF131 /* MockedPublicKeyPinningService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedPublicKeyPinningService.swift; sourceTree = "<group>"; };
 		9D28DFA421D8C562002B538A /* ResponseErrorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseErrorSpec.swift; sourceTree = "<group>"; };
 		9D2BB56E21B2D5DC0072DA07 /* ServiceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceSpec.swift; sourceTree = "<group>"; };
 		9D60FF2721B402CA0078F791 /* MockedRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedRequest.swift; sourceTree = "<group>"; };
@@ -39,6 +44,7 @@
 		9D60FF2C21B42A560078F791 /* MockedSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedSerializer.swift; sourceTree = "<group>"; };
 		9DAD37C121B439F80042C19C /* CodableSerializerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableSerializerSpec.swift; sourceTree = "<group>"; };
 		9DAD37C421B45A900042C19C /* RequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSpec.swift; sourceTree = "<group>"; };
+		9DEA80C221D97275002A56A7 /* MockedLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedLogger.swift; sourceTree = "<group>"; };
 		D97FA3B1B8D63693AAF21BA5 /* Pods_Application.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Application.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F684B53926905060D617A429 /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -124,6 +130,8 @@
 			isa = PBXGroup;
 			children = (
 				9D60FF2921B402E00078F791 /* MockedConfiguration.swift */,
+				9DEA80C221D97275002A56A7 /* MockedLogger.swift */,
+				9D21FF0721D971C6006EF131 /* MockedPublicKeyPinningService.swift */,
 				9D60FF2721B402CA0078F791 /* MockedRequest.swift */,
 				9D60FF2C21B42A560078F791 /* MockedSerializer.swift */,
 			);
@@ -133,6 +141,7 @@
 		9DAD37BD21B439990042C19C /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				9D21FF0521D97196006EF131 /* NetworkServiceSpec.swift */,
 				9D21FEF021D8EE98006EF131 /* PublicKeyPinningServiceSpec.swift */,
 				9D28DFA421D8C562002B538A /* ResponseErrorSpec.swift */,
 				9D2BB56E21B2D5DC0072DA07 /* ServiceSpec.swift */,
@@ -326,13 +335,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D446A9C21B3EAC100FEA1F7 /* ServiceSpec.swift in Sources */,
+				9D21FF0621D97196006EF131 /* NetworkServiceSpec.swift in Sources */,
 				9DAD37C521B45A900042C19C /* RequestSpec.swift in Sources */,
 				9D0E402C21B3FC490088D678 /* CaraQuickConfiguration.swift in Sources */,
 				9D60FF2821B402CA0078F791 /* MockedRequest.swift in Sources */,
+				9D21FF0821D971C6006EF131 /* MockedPublicKeyPinningService.swift in Sources */,
 				9D60FF2A21B402E00078F791 /* MockedConfiguration.swift in Sources */,
 				9D21FEF121D8EE98006EF131 /* PublicKeyPinningServiceSpec.swift in Sources */,
 				9D60FF2D21B42A560078F791 /* MockedSerializer.swift in Sources */,
 				9D21FEF321D8F02F006EF131 /* SecTrust+Apple.swift in Sources */,
+				9DEA80C321D97275002A56A7 /* MockedLogger.swift in Sources */,
 				9D28DFA521D8C562002B538A /* ResponseErrorSpec.swift in Sources */,
 				9DAD37C221B439F80042C19C /* CodableSerializerSpec.swift in Sources */,
 			);

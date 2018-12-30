@@ -28,7 +28,7 @@ extension ConsoleLogger: Logger {
             let url = urlRequest.url,
             let transactionMetric = metrics.transactionMetrics.first,
             let requestEndDate = transactionMetric.requestEndDate,
-            let domainLookupStartDate = transactionMetric.domainLookupStartDate else { return }
+            let domainLookupStartDate =  transactionMetric.domainLookupStartDate else { return }
         
         let totalDuration = requestEndDate.timeIntervalSince(domainLookupStartDate)
         if let error = error {

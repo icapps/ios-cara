@@ -23,6 +23,7 @@ class NetworkService: NSObject {
     
     // MARK: - Execute
     
+    @discardableResult
     func execute<S: Serializer>(_ urlRequest: URLRequest,
                                 with serializer: S,
                                 completion: @escaping (_ response: S.Response) -> Void) -> URLSessionDataTask {
