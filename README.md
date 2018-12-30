@@ -59,12 +59,14 @@ Once both instances are created and you `Service` is configured, you can execute
 ```swift
 let request: Request = SomeRequest()
 let serializer: Serializer = JSONSerializer()
-service.execute(request, with: serializer) { response in
+let task = service.execute(request, with: serializer) { response in
     ...
 }
 ```
 
-The `response` returned by the completion block is the same as result of the serializer's `serialize(data:error:response:)` function.
+The `response` returned by the completion block is the same as result of the serializer's `serialize(data:error:response:)` function. Executing a request returns a `URLSessionDataTask`, this can be used to, for example, cancel the request.
+
+When you trigger a request on a custom `queue`, the execution block will return on that same `queue`. This way you have full control of the threading in your application.
 
 ### Serialization
 
@@ -81,7 +83,7 @@ struct CustomSerializer: Serializer {
         case .failure(Error)
     }
 
-    func serialize(data: Data?, error: Error?, response: URLResponse?) -> Response {
+    func serialize(data: Data?, error: Error?, response: HTTPURLResponse?) -> Response {
         // data: data returned from the service request
         // error: error returned from the service request
         // response: the service request response
