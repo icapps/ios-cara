@@ -14,6 +14,7 @@
     - [Serialization](#serialization)
         - [Custom Serializer](#custom-serializer)
         - [Codable Serializer](#codable-serializer)
+    - [Public Key Pinning](#public-key-pinning)
 - [Contribute](#contribute)
   - [How to contribute?](#how-to-contribute-)
   - [Contributors](#contributors)
@@ -139,6 +140,25 @@ service.execute(request, with: serializer) { response in
 ```
 
 When required you can pass a custom `JSONDecoder` through the `init`.
+
+### Public Key Pinning
+
+You can also make sure that some URL's are pinned for security reasons. It's fairly simple on how you can do this. Just add the correct host with it's SHA256 encryped public key to the `publicKeys` property of the `Configuration`.
+
+```swift
+class SomeConfiguration: Configuration {
+    ...
+
+    var publicKeys: PublicKeys? {
+        return [
+            "apple.com": "9GzkflclMUOxhMgy32AWL/OGkMZF/5NIjvL8M/4rb3k=",
+            "google.com": "l2Z/zhy2hByKIqvgRkpKRm6M234/2HAEwiPXx5T8YYI="
+        ]
+    }
+}
+```
+
+> There is a quick way to get the correct public key for a certain domain. Go to [SSL Server Test](https://www.ssllabs.com/ssltest/) by SSL Labs in order to perform an analysis of the SSL configuration of any web server. In the inputfield you enter the domain in order to get the process started. On the next page click the first IP address that appears, and on the page after, you'll notice the `Pin SHA256` field. The value is the public key string we need.
 
 ## Contribute
 
