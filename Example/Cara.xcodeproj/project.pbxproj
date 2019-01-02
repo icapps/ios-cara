@@ -15,6 +15,7 @@
 		4858291A21DD4611007EB5D9 /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4858291921DD4611007EB5D9 /* DemoViewController.swift */; };
 		4858291C21DD4659007EB5D9 /* NetworkReachability.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4858291B21DD4659007EB5D9 /* NetworkReachability.storyboard */; };
 		4858291E21DD4662007EB5D9 /* NetworkReachabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4858291D21DD4662007EB5D9 /* NetworkReachabilityViewController.swift */; };
+		4858292121DD4C79007EB5D9 /* NetworkReachabilitySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4858292021DD4C79007EB5D9 /* NetworkReachabilitySpec.swift */; };
 		9D0E402C21B3FC490088D678 /* CaraQuickConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0E402B21B3FC490088D678 /* CaraQuickConfiguration.swift */; };
 		9D21FEF121D8EE98006EF131 /* PublicKeyPinningServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D21FEF021D8EE98006EF131 /* PublicKeyPinningServiceSpec.swift */; };
 		9D21FEF321D8F02F006EF131 /* SecTrust+Apple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D21FEF221D8F02F006EF131 /* SecTrust+Apple.swift */; };
@@ -46,6 +47,7 @@
 		4858291921DD4611007EB5D9 /* DemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
 		4858291B21DD4659007EB5D9 /* NetworkReachability.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NetworkReachability.storyboard; sourceTree = "<group>"; };
 		4858291D21DD4662007EB5D9 /* NetworkReachabilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachabilityViewController.swift; sourceTree = "<group>"; };
+		4858292021DD4C79007EB5D9 /* NetworkReachabilitySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachabilitySpec.swift; sourceTree = "<group>"; };
 		4988D65755E7E3702B299D5A /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C18691E9CCE6AA5DA2037B9 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +138,14 @@
 			path = Demo;
 			sourceTree = "<group>";
 		};
+		4858291F21DD4C65007EB5D9 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				4858292021DD4C79007EB5D9 /* NetworkReachabilitySpec.swift */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +189,7 @@
 		62263AAD1D0704F700393E94 /* Specs */ = {
 			isa = PBXGroup;
 			children = (
+				4858291F21DD4C65007EB5D9 /* Reachability */,
 				9DAD37C321B45A860042C19C /* Request */,
 				9DAD37BE21B4399F0042C19C /* Serializer */,
 				9DAD37BD21B439990042C19C /* Service */,
@@ -510,6 +521,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4858292121DD4C79007EB5D9 /* NetworkReachabilitySpec.swift in Sources */,
 				9D446A9C21B3EAC100FEA1F7 /* ServiceSpec.swift in Sources */,
 				9D21FF0621D97196006EF131 /* NetworkServiceSpec.swift in Sources */,
 				9DAD37C521B45A900042C19C /* RequestSpec.swift in Sources */,
