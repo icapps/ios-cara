@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Q6P-5d-GHx">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Network Reachability View Controller-->
+        <scene sceneID="zGb-BS-e9X">
+            <objects>
+                <viewController id="Q6P-5d-GHx" customClass="NetworkReachabilityViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lpS-Zl-Pd4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="mvY-ZZ-fiL">
+                                <rect key="frame" x="10" y="40" width="355" height="648"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CKj-ew-prN">
+                                        <rect key="frame" x="0.0" y="0.0" width="355" height="154.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JK3-5g-Jox">
+                                        <rect key="frame" x="0.0" y="164.5" width="355" height="154.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ARW-zm-aXP">
+                                        <rect key="frame" x="0.0" y="329" width="355" height="154.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyb-PL-mO7">
+                                        <rect key="frame" x="0.0" y="493.5" width="355" height="154.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mvY-ZZ-fiL" firstAttribute="leading" secondItem="VYG-2m-Oje" secondAttribute="leading" constant="10" id="Tyh-S2-6Mq"/>
+                            <constraint firstItem="VYG-2m-Oje" firstAttribute="trailing" secondItem="mvY-ZZ-fiL" secondAttribute="trailing" constant="10" id="Vrb-31-POz"/>
+                            <constraint firstItem="mvY-ZZ-fiL" firstAttribute="top" secondItem="VYG-2m-Oje" secondAttribute="top" constant="20" id="oVZ-VM-M7v"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VYG-2m-Oje"/>
+                    </view>
+                    <connections>
+                        <outlet property="connectedLabel" destination="JK3-5g-Jox" id="EET-Iv-MFH"/>
+                        <outlet property="connectedViaCellular" destination="ARW-zm-aXP" id="TSL-Hk-gMR"/>
+                        <outlet property="connectedViaWiFi" destination="fyb-PL-mO7" id="QUa-DQ-M82"/>
+                        <outlet property="statusLabel" destination="CKj-ew-prN" id="yhj-2K-5eg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KAn-Sh-bv2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="39" y="-62"/>
+        </scene>
+    </scenes>
+</document>

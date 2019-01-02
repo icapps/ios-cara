@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		04D9267E96450E6532CC7727 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F684B53926905060D617A429 /* Pods_Tests.framework */; };
 		4858290421DD41A8007EB5D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4858290321DD41A8007EB5D9 /* AppDelegate.swift */; };
-		4858290621DD41A8007EB5D9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4858290521DD41A8007EB5D9 /* ViewController.swift */; };
-		4858290921DD41A8007EB5D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4858290721DD41A8007EB5D9 /* Main.storyboard */; };
 		4858290B21DD41AA007EB5D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4858290A21DD41AA007EB5D9 /* Assets.xcassets */; };
 		4858290E21DD41AA007EB5D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4858290C21DD41AA007EB5D9 /* LaunchScreen.storyboard */; };
+		4858291821DD460A007EB5D9 /* Demo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4858291721DD460A007EB5D9 /* Demo.storyboard */; };
+		4858291A21DD4611007EB5D9 /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4858291921DD4611007EB5D9 /* DemoViewController.swift */; };
+		4858291C21DD4659007EB5D9 /* NetworkReachability.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4858291B21DD4659007EB5D9 /* NetworkReachability.storyboard */; };
+		4858291E21DD4662007EB5D9 /* NetworkReachabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4858291D21DD4662007EB5D9 /* NetworkReachabilityViewController.swift */; };
 		9D0E402C21B3FC490088D678 /* CaraQuickConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0E402B21B3FC490088D678 /* CaraQuickConfiguration.swift */; };
 		9D21FEF121D8EE98006EF131 /* PublicKeyPinningServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D21FEF021D8EE98006EF131 /* PublicKeyPinningServiceSpec.swift */; };
 		9D21FEF321D8F02F006EF131 /* SecTrust+Apple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D21FEF221D8F02F006EF131 /* SecTrust+Apple.swift */; };
@@ -37,11 +39,13 @@
 		3D48A914BCD078F715AA2644 /* Pods-Application.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Application.release.xcconfig"; path = "Pods/Target Support Files/Pods-Application/Pods-Application.release.xcconfig"; sourceTree = "<group>"; };
 		4858290121DD41A8007EB5D9 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4858290321DD41A8007EB5D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4858290521DD41A8007EB5D9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4858290821DD41A8007EB5D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4858290A21DD41AA007EB5D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4858290D21DD41AA007EB5D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4858290F21DD41AA007EB5D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4858291721DD460A007EB5D9 /* Demo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Demo.storyboard; sourceTree = "<group>"; };
+		4858291921DD4611007EB5D9 /* DemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
+		4858291B21DD4659007EB5D9 /* NetworkReachability.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NetworkReachability.storyboard; sourceTree = "<group>"; };
+		4858291D21DD4662007EB5D9 /* NetworkReachabilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachabilityViewController.swift; sourceTree = "<group>"; };
 		4988D65755E7E3702B299D5A /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C18691E9CCE6AA5DA2037B9 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,14 +92,48 @@
 		4858290221DD41A8007EB5D9 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				4858291421DD45DB007EB5D9 /* Modules */,
+				4858291321DD45C7007EB5D9 /* Supporting Files */,
 				4858290321DD41A8007EB5D9 /* AppDelegate.swift */,
-				4858290521DD41A8007EB5D9 /* ViewController.swift */,
-				4858290721DD41A8007EB5D9 /* Main.storyboard */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
+		4858291321DD45C7007EB5D9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				4858290A21DD41AA007EB5D9 /* Assets.xcassets */,
 				4858290C21DD41AA007EB5D9 /* LaunchScreen.storyboard */,
 				4858290F21DD41AA007EB5D9 /* Info.plist */,
 			);
-			path = Example;
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4858291421DD45DB007EB5D9 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				4858291621DD45F5007EB5D9 /* Demo */,
+				4858291521DD45E6007EB5D9 /* NetworkReachability */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		4858291521DD45E6007EB5D9 /* NetworkReachability */ = {
+			isa = PBXGroup;
+			children = (
+				4858291B21DD4659007EB5D9 /* NetworkReachability.storyboard */,
+				4858291D21DD4662007EB5D9 /* NetworkReachabilityViewController.swift */,
+			);
+			path = NetworkReachability;
+			sourceTree = "<group>";
+		};
+		4858291621DD45F5007EB5D9 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				4858291721DD460A007EB5D9 /* Demo.storyboard */,
+				4858291921DD4611007EB5D9 /* DemoViewController.swift */,
+			);
+			path = Demo;
 			sourceTree = "<group>";
 		};
 		607FACC71AFB9204008FA782 = {
@@ -278,7 +316,7 @@
 				DefaultBuildSystemTypeForWorkspace = Original;
 				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 0930;
-				ORGANIZATIONNAME = CocoaPods;
+				ORGANIZATIONNAME = icapps;
 				TargetAttributes = {
 					4858290021DD41A8007EB5D9 = {
 						CreatedOnToolsVersion = 10.1;
@@ -315,9 +353,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4858291C21DD4659007EB5D9 /* NetworkReachability.storyboard in Resources */,
 				4858290E21DD41AA007EB5D9 /* LaunchScreen.storyboard in Resources */,
 				4858290B21DD41AA007EB5D9 /* Assets.xcassets in Resources */,
-				4858290921DD41A8007EB5D9 /* Main.storyboard in Resources */,
+				4858291821DD460A007EB5D9 /* Demo.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,7 +500,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4858290621DD41A8007EB5D9 /* ViewController.swift in Sources */,
+				4858291E21DD4662007EB5D9 /* NetworkReachabilityViewController.swift in Sources */,
+				4858291A21DD4611007EB5D9 /* DemoViewController.swift in Sources */,
 				4858290421DD41A8007EB5D9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -489,14 +529,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4858290721DD41A8007EB5D9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4858290821DD41A8007EB5D9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4858290C21DD41AA007EB5D9 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -523,7 +555,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = Example/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Example/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -550,7 +582,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = Example/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Example/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_FAST_MATH = YES;
