@@ -26,4 +26,5 @@ Cara is the webservice layer that is (or should be) most commonly used throughou
 
   s.source_files = 'Sources/**/*'
   s.dependency 'CryptoSwift', '~> 0.13'
+  s.dependency 'Connectivity', '~> 2.0.0'
 end
