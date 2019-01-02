@@ -25,6 +25,9 @@
   "dependencies": {
     "CryptoSwift": [
       "~> 0.13"
+    ],
+    "Connectivity": [
+      "~> 2.0.0"
     ]
   }
 }
