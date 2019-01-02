@@ -18,6 +18,7 @@
         - [Custom Logger](#custom-logger)
         - [Console Logger](#console-logger)
     - [Public Key Pinning](#public-key-pinning)
+    - [Network Reachability](#network-reachability)
 - [Contribute](#contribute)
   - [How to contribute?](#how-to-contribute-)
   - [Contributors](#contributors)
@@ -218,6 +219,58 @@ class SomeConfiguration: Configuration {
 
 > There is a quick way to get the correct public key for a certain domain. Go to [SSL Server Test](https://www.ssllabs.com/ssltest/) by SSL Labs in order to perform an analysis of the SSL configuration of any web server. In the inputfield you enter the domain in order to get the process started. On the next page click the first IP address that appears, and on the page after, you'll notice the `Pin SHA256` field. The value is the public key string we need.
 
+### Network Reachability
+
+NetworkReachability is a wrapper, providing a reliable measure of whether Internet connectivity is available.
+
+#### Listener
+
+To get started using NetworkReachability, simply instantiate an instance and assign a closure to be invoked when NetworkReachability detects that you are connected to the Internet, when disconnected, or in both cases as follows:
+
+```swift
+let reachability = NetworkReachability()
+reachability.listener = { status in
+    switch status {
+        case .connected:
+        case .connectedViaWiFi:
+        case .connectedViaWiFiWithoutInternet:
+        case .connectedViaWWAN:
+        case .connectedViaWWANWithoutInternet:
+        case .notConnected:
+    }
+}
+reachability.startListening()
+```
+
+#### On/Off
+
+You may check the following properties of the NetworkReachability object directly if you are only interested in certain types of connections:
+
+```swift
+var isConnected: Bool
+
+var isConnectedViaCellular: Bool
+
+var isConnectedViaWiFi: Bool
+
+var isConnectedViaCellularWithoutInternet: Bool
+
+var isConnectedViaWiFiWithoutInternet: Bool
+```
+
+### Polling
+
+In certain cases you may need to be kept constantly apprised of changes in connectivity state and therefore may wish to enable polling. Where enabled, NetworkReachability will not wait on changes, but will poll the connectivity URLs every 10 seconds.
+
+To enable polling:
+
+```swift
+reachability.isPollingEnabled = true
+reachability.startNotifier()
+```
+
+Remember to call `stopNotifier()` when you are done.
+
 ## Contribute
 
 ### How to contribute ❓
@@ -231,6 +284,7 @@ class SomeConfiguration: Configuration {
 ### Contributors 🤙
 
 - Jelle Vandebeeck, [@fousa](https://github.com/fousa)
+- Dylan Gyesbreghs, [@dgyesbreghs](https://github.com/dgyesbreghs)
 
 ## License
 
