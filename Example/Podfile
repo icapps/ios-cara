@@ -9,6 +9,10 @@ use_frameworks!
 # Ignore the pod warnings.
 inhibit_all_warnings!
 
+target 'Example' do
+  pod 'Cara', :path => '../'
+end
+
 target 'Tests' do
   pod 'Cara', :path => '../'
 
