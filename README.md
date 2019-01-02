@@ -10,12 +10,16 @@
 - [Installation](#installation)
 - [Features](#features)
     - [Configuration](#configuration)
-    - [Trigger a Request](#triggerarequest)
+    - [Trigger a Request](#trigger-a-request)
     - [Serialization](#serialization)
-        - [Custom Serializer](#customserializer)
-        - [Codable Serializer](#codableserializer)
+        - [Custom Serializer](#custom-serializer)
+        - [Codable Serializer](#codable-serializer)
+    - [Logger](#logger)
+        - [Custom Logger](#custom-logger)
+        - [Console Logger](#console-logger)
+    - [Public Key Pinning](#public-key-pinning)
 - [Contribute](#contribute)
-  - [How to contribute?](#howtocontribute)
+  - [How to contribute?](#how-to-contribute-)
   - [Contributors](#contributors)
 - [License](#license)
 
@@ -58,12 +62,14 @@ Once both instances are created and you `Service` is configured, you can execute
 ```swift
 let request: Request = SomeRequest()
 let serializer: Serializer = JSONSerializer()
-service.execute(request, with: serializer) { response in
+let task = service.execute(request, with: serializer) { response in
     ...
 }
 ```
 
-The `response` returned by the completion block is the same as result of the serializer's `serialize(data:error:response:)` function.
+The `response` returned by the completion block is the same as result of the serializer's `serialize(data:error:response:)` function. Executing a request returns a `URLSessionDataTask`, this can be used to, for example, cancel the request.
+
+When you trigger a request on a custom `queue`, the execution block will return on that same `queue`. This way you have full control of the threading in your application.
 
 ### Serialization
 
@@ -80,7 +86,7 @@ struct CustomSerializer: Serializer {
         case .failure(Error)
     }
 
-    func serialize(data: Data?, error: Error?, response: URLResponse?) -> Response {
+    func serialize(data: Data?, error: Error?, response: HTTPURLResponse?) -> Response {
         // data: data returned from the service request
         // error: error returned from the service request
         // response: the service request response
@@ -139,6 +145,78 @@ service.execute(request, with: serializer) { response in
 ```
 
 When required you can pass a custom `JSONDecoder` through the `init`.
+
+### Logger
+
+You can get some information about the request and it's response. This can come in handy when you want to log all the request to the Console. In order to get what you want to have to create an object that conforms to `Logger` and pass it to `Cara` through the `Configuration`.
+
+#### Custom Logger
+
+Create a custom class that conforms to `Logger`. Here is a small example of how to do this.
+
+```swift
+struct CustomLogger: Logger {
+    func start(urlRequest: URLRequest) {
+        // Triggered just before a request if fired
+    }
+
+    func end(urlRequest: URLRequest, urlResponse: URLResponse, metrics: URLSessionTaskMetrics, error: Error?) {
+        // Triggered just after the request finised collecting the metrics
+    }
+}
+```
+
+When you want to use the `CustomLogger` in your application you have to pass it to the `loggers` array in the `configuration`.
+
+```swift
+class SomeConfiguration: Configuration {
+    ...
+
+    var loggers: [Logger]? {
+        return [CustomLogger()]
+    }
+}
+```
+
+#### Console Logger
+
+We aleady supplied our **Cara** framework with one logger: the `ConsoleLogger`.
+
+This logger send the request and response information through `os_log` to the console. Below is an example of the printed logs:
+
+```swift
+```
+
+When you want to use the `ConsoleLogger` in your application you have to pass it to the `loggers` array in the `configuration`.
+
+```swift
+class SomeConfiguration: Configuration {
+    ...
+
+    var loggers: [Logger]? {
+        return [ConsoleLogger()]
+    }
+}
+```
+
+### Public Key Pinning
+
+You can also make sure that some URL's are pinned for security reasons. It's fairly simple on how you can do this. Just add the correct host with it's SHA256 encryped public key to the `publicKeys` property of the `Configuration`.
+
+```swift
+class SomeConfiguration: Configuration {
+    ...
+
+    var publicKeys: PublicKeys? {
+        return [
+            "apple.com": "9GzkflclMUOxhMgy32AWL/OGkMZF/5NIjvL8M/4rb3k=",
+            "google.com": "l2Z/zhy2hByKIqvgRkpKRm6M234/2HAEwiPXx5T8YYI="
+        ]
+    }
+}
+```
+
+> There is a quick way to get the correct public key for a certain domain. Go to [SSL Server Test](https://www.ssllabs.com/ssltest/) by SSL Labs in order to perform an analysis of the SSL configuration of any web server. In the inputfield you enter the domain in order to get the process started. On the next page click the first IP address that appears, and on the page after, you'll notice the `Pin SHA256` field. The value is the public key string we need.
 
 ## Contribute
 
