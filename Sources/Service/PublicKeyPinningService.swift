@@ -57,9 +57,7 @@ class PublicKeyPinningService {
                 keyWithHeader.append(publicKeyData as Data)
                 let sha256 = keyWithHeader.sha256()
                 // When the public keys don't match continue to the next certificate.
-                guard sha256.base64EncodedString() == publicKeyString else { continue }
-                
-                print("🔑 Handle public key pinning for host", host)
+                guard sha256.base64EncodedString() == publicKeyString else { continue }                
                 completionHandler(.useCredential, URLCredential(trust: secTrust))
                 return
             }

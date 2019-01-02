@@ -16,4 +16,6 @@ public protocol Configuration {
     var headers: RequestHeaders? { get }
     /// Set the public keys for the hosts.
     var publicKeys: PublicKeys? { get }
+    /// Set the loggers when you want to receive more information on the requests.
+    var loggers: [Logger]? { get }
 }
