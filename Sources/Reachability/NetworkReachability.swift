@@ -24,6 +24,10 @@ open class NetworkReachability {
         }
     }
     
+    public var isConnected: Bool {
+        return connectivy.isConnected
+    }
+    
     public var isConnectedViaCellular: Bool {
         return connectivy.isConnectedViaCellular
     }
