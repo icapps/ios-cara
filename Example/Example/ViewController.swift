@@ -15,16 +15,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let networkReachability = NetworkReachability()
-        networkReachability.isPollingEnabled = true
         networkReachability.listener = { status in
-            print(status)
+            print("🍞 Status: \(status)")
         }
         networkReachability.startListening()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-            print("Connected: \(networkReachability.isConnected)")
-            print("Cellular: \(networkReachability.isConnectedViaCellular)")
-            print("WiFi: \(networkReachability.isConnectedViaWiFi)")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            print("🍞 Connected: \(networkReachability.isConnected)")
+            print("🍞 Cellular: \(networkReachability.isConnectedViaCellular)")
+            print("🍞 WiFi: \(networkReachability.isConnectedViaWiFi)")
         }
     }
 
