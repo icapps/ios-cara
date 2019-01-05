@@ -12,6 +12,15 @@ open class Service {
     
     private let configuration: Configuration
     private let networkService: NetworkService
+    private let networkReachability: NetworkReachability
+    
+    // MARK: - Public
+    
+    public var networkStatusChange: NetworkStatusChange? {
+        didSet {
+            networkReachability.networkStatusChange = networkStatusChange
+        }
+    }
     
     // MARK: - Init
     
@@ -22,6 +31,7 @@ open class Service {
         self.configuration = configuration
         self.networkService = NetworkService(configuration: configuration,
                                              pinningService: PublicKeyPinningService(configuration: configuration))
+        self.networkReachability = NetworkReachability(configuration: configuration)
     }
     
     // MARK: - Execute
@@ -54,5 +64,17 @@ open class Service {
             completion(response)
             return nil
         }
+    }
+    
+    // MARK: - Network Reachability
+    
+    /// Starts listening for changes in network reachability status.
+    public func startListening() {
+        networkReachability.startListening()
+    }
+    
+    /// Stops listening for changes in network reachability status.
+    public func stopListening() {
+        networkReachability.stopListening()
     }
 }
