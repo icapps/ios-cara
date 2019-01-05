@@ -225,11 +225,10 @@ NetworkReachability is a wrapper, providing a reliable measure of whether Intern
 
 #### Listener
 
-To get started using NetworkReachability, simply instantiate an instance and assign a closure to be invoked when NetworkReachability detects that you are connected to the Internet, when disconnected, or in both cases as follows:
+To get started using the Listener, simply instantiate an instance and assign a closure `networkStatusChange` to be invoked when we detects that you are connected to the Internet, when disconnected, or in both cases as follows:
 
 ```swift
-let reachability = NetworkReachability()
-reachability.listener = { status in
+service.networkStatusChange = { status in
     switch status {
         case .connected:
         case .connectedViaWiFi:
@@ -239,37 +238,8 @@ reachability.listener = { status in
         case .notConnected:
     }
 }
-reachability.startListening()
+service.startListening()
 ```
-
-#### On/Off
-
-You may check the following properties of the NetworkReachability object directly if you are only interested in certain types of connections:
-
-```swift
-var isConnected: Bool
-
-var isConnectedViaCellular: Bool
-
-var isConnectedViaWiFi: Bool
-
-var isConnectedViaCellularWithoutInternet: Bool
-
-var isConnectedViaWiFiWithoutInternet: Bool
-```
-
-### Polling
-
-In certain cases you may need to be kept constantly apprised of changes in connectivity state and therefore may wish to enable polling. Where enabled, NetworkReachability will not wait on changes, but will poll the connectivity URLs every 10 seconds.
-
-To enable polling:
-
-```swift
-reachability.isPollingEnabled = true
-reachability.startNotifier()
-```
-
-Remember to call `stopNotifier()` when you are done.
 
 ## Contribute
 
