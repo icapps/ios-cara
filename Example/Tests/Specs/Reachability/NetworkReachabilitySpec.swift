@@ -9,34 +9,39 @@
 import Quick
 import Nimble
 import Mockingjay
-import Connectivity
 
 @testable import Cara
 
 class NetworkReachabilitySpec: QuickSpec {
     
-    class MockedNetworkReachability: NetworkReachability {        
+    class MockedNetworkReachability: NetworkReachability {
+        private(set) var didTriggerStartListening: Bool = false
+        private(set) var didTriggerStopListening: Bool = false
         override func startListening() {
-            guard let listener = listener else { return }
-            listener(ConnectivityStatus.connectedViaWiFi)
+            didTriggerStartListening = true
+        }
+        override func stopListening() {
+            didTriggerStopListening = true
         }
     }
     
     override func spec() {
-        describe("CodableSerializer") {
-            var networkReachability: NetworkReachability!
+        describe("NetworkReachability") {
+            var configuration: MockedConfiguration!
+            var networkReachability: MockedNetworkReachability!
             beforeEach {
-                networkReachability = MockedNetworkReachability()
+                configuration = MockedConfiguration(baseURL: URL(string: "https://relative.com/"))
+                networkReachability = MockedNetworkReachability(configuration: configuration)
+            }
+
+            it("should trigger start listening") {
+                networkReachability.startListening()
+                expect(networkReachability.didTriggerStartListening) == true
             }
             
-            it("should return ConnectivityStatus.connectedViaWiFi.") {
-                waitUntil { done in
-                    networkReachability.listener = { status in
-                        expect(status) == ConnectivityStatus.connectedViaWiFi
-                        done()
-                    }
-                    networkReachability.startListening()
-                }
+            it("should trigger stop listening") {
+                networkReachability.stopListening()
+                expect(networkReachability.didTriggerStopListening) == true
             }
         }
     }
