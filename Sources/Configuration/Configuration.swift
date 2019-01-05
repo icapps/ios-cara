@@ -18,4 +18,6 @@ public protocol Configuration {
     var publicKeys: PublicKeys? { get }
     /// Set the loggers when you want to receive more information on the requests.
     var loggers: [Logger]? { get }
+    /// Set the URLs we can use to detect network changes.
+    var connectivityURLs: [URL]? { get }
 }
