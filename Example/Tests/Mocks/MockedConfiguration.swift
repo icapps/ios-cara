@@ -13,10 +13,12 @@ class MockedConfiguration: Cara.Configuration {
     var headers: RequestHeaders?
     var publicKeys: PublicKeys?
     var loggers: [Logger]?
+    var connectivityURLs: [URL]?
     
-    init(baseURL: URL?, headers: RequestHeaders? = nil, publicKeys: PublicKeys? = nil) {
+    init(baseURL: URL?, headers: RequestHeaders? = nil, publicKeys: PublicKeys? = nil, connectivityURLs: [URL]? = nil) {
         self.baseURL = baseURL
         self.headers = headers
         self.publicKeys = publicKeys
+        self.connectivityURLs = connectivityURLs
     }
 }
