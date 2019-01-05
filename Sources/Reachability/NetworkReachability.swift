@@ -14,27 +14,13 @@ class NetworkReachability {
     // MARK: - Public Properties
     public var networkStatusChange: NetworkStatusChange?
     
-    public var connectivityURLs: [URL]? {
-        get {
-            return connectivy.connectivityURLs
-        }
-        set {
-            if let value = newValue {
-                connectivy.connectivityURLs = value
-            }
-        }
-    }
-    
     // MARK: - Internal Properties
-    private lazy var connectivy: Connectivity = {
-        let connectivy = Connectivity()
-        connectivy.framework = .network
-        return connectivy
-    }()
+    private let configuration: Configuration
+    private let connectivy: Connectivity = Connectivity()
     
     // MARK: - Init
-    public init(connectivityURLs: [URL]? = nil) {
-        self.connectivityURLs = connectivityURLs
+    public init(configuration: Configuration) {
+        self.configuration = configuration
         setupConnectivity()
     }
     
@@ -52,6 +38,8 @@ class NetworkReachability {
         let networkChanged: Connectivity.NetworkConnected = { [weak self] connectivy in
             self?.updateConnectionStatus(connectivy)
         }
+        connectivy.framework = .network
+        connectivy.setup(configuration: configuration)
         connectivy.whenConnected = networkChanged
         connectivy.whenDisconnected = networkChanged
     }
