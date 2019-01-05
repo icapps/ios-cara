@@ -7,41 +7,22 @@
 
 import Connectivity
 
-open class NetworkReachability {
+public typealias NetworkStatusChange = (Connectivity.Status) -> Void
+
+class NetworkReachability {
     
     // MARK: - Public Properties
-    public typealias Listener = (Connectivity.Status) -> Void
+    public var networkStatusChange: NetworkStatusChange?
     
-    public var listener: Listener?
-    
-    public var isPollingEnabled: Bool {
-        set {
-            connectivy.isPollingEnabled = newValue
-            connectivy.startNotifier()
-        }
+    public var connectivityURLs: [URL]? {
         get {
-            return connectivy.isPollingEnabled
+            return connectivy.connectivityURLs
         }
-    }
-    
-    public var isConnected: Bool {
-        return connectivy.isConnected
-    }
-    
-    public var isConnectedViaCellular: Bool {
-        return connectivy.isConnectedViaCellular
-    }
-    
-    public var isConnectedViaWiFi: Bool {
-        return connectivy.isConnectedViaWiFi
-    }
-    
-    public var isConnectedViaCellularWithoutInternet: Bool {
-        return connectivy.isConnectedViaCellularWithoutInternet
-    }
-    
-    public var isConnectedViaWiFiWithoutInternet: Bool {
-        return connectivy.isConnectedViaWiFiWithoutInternet
+        set {
+            if let value = newValue {
+                connectivy.connectivityURLs = value
+            }
+        }
     }
     
     // MARK: - Internal Properties
@@ -52,7 +33,8 @@ open class NetworkReachability {
     }()
     
     // MARK: - Init
-    public init() {
+    public init(connectivityURLs: [URL]? = nil) {
+        self.connectivityURLs = connectivityURLs
         setupConnectivity()
     }
     
@@ -75,7 +57,7 @@ open class NetworkReachability {
     }
     
     private func updateConnectionStatus(_ connectivity: Connectivity) {
-        guard let listener = listener else { return }
-        listener(connectivity.status)
+        guard let networkStatusChange = networkStatusChange else { return }
+        networkStatusChange(connectivity.status)
     }
 }
