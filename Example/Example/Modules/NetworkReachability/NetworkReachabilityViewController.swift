@@ -11,12 +11,18 @@ import Cara
 
 class NetworkReachabilityViewController: UIViewController {
 
-    fileprivate let networkReachability = NetworkReachability()
+    // MARK: - Internal
+    
+    private let service: Service = Service(configuration: ServiceConfiguration())
+    
+    // MARK: - Outlets
     
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var connectedLabel: UILabel!
     @IBOutlet weak var connectedViaCellular: UILabel!
     @IBOutlet weak var connectedViaWiFi: UILabel!
+    
+    // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,15 +31,9 @@ class NetworkReachabilityViewController: UIViewController {
     }
     
     func setupView() {
-        networkReachability.listener = { status in
+        service.networkStatusChange = { status in
             self.statusLabel.text = "🍞 Status: \(status)"
         }
-        networkReachability.startListening()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.connectedLabel.text = "🍞 Connected: \(self.networkReachability.isConnected)"
-            self.connectedViaCellular.text = "🍞 Cellular: \(self.networkReachability.isConnectedViaCellular)"
-            self.connectedViaWiFi.text = "🍞 WiFi: \(self.networkReachability.isConnectedViaWiFi)"
-        }
+        service.startListening()
     }
 }
