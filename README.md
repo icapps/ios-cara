@@ -1,6 +1,6 @@
 ![](./Images/CaraShield.jpg)
 
-[![CI Status](http://img.shields.io/travis/icapps/ios-cara.svg?style=flat)](https://travis-ci.org/icapps/ios-cara)
+[![CI Status](https://travis-ci.org/icapps/ios-cara.svg?branch=master)
 [![Language Swift 4.0](https://img.shields.io/badge/Language-Swift%204.2-orange.svg?style=flat)](https://swift.org)
 
 > Cara is the webservice layer that is (or should be) most commonly used throughout our apps.
