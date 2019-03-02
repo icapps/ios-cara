@@ -44,6 +44,10 @@ class ResponseErrorSpec: QuickSpec {
                 expect(ResponseError(statusCode: 500)) == ResponseError.internalServerError
             }
             
+            it("should be an service unavailable error") {
+                expect(ResponseError(statusCode: 503)) == ResponseError.serviceUnavailable
+            }
+            
             it("should be a server error") {
                 expect(ResponseError(statusCode: 501)) == .serverError(statusCode: 501)
                 expect(ResponseError(statusCode: 901)) == .serverError(statusCode: 901)
