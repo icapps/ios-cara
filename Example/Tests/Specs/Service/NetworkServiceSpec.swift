@@ -62,10 +62,12 @@ class NetworkServiceSpec: QuickSpec {
                     self.stub(http(.get, uri: "https://relative.com/one"), http(401))
                     let one = URLRequest(url: URL(string: "https://relative.com/one")!)
                     
-                    configuration.retryHandle = { error, retry in
+                    let interceptor = MockedInterceptor()
+                    interceptor.interceptHandle = { error, retry in
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: retry)
                         return false
                     }
+                    service.interceptor = interceptor
                     
                     waitUntil { done in
                         service.execute(one, with: MockedSerializer(), retry: {}, completion: { _ in
@@ -78,10 +80,12 @@ class NetworkServiceSpec: QuickSpec {
                     self.stub(http(.get, uri: "https://relative.com/one"), http(401))
                     let one = URLRequest(url: URL(string: "https://relative.com/one")!)
                     
-                    configuration.retryHandle = { error, retry in
+                    let interceptor = MockedInterceptor()
+                    interceptor.interceptHandle = { error, retry in
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: retry)
                         return true
                     }
+                    service.interceptor = interceptor
                     
                     waitUntil { done in
                         service.execute(one, with: MockedSerializer(), retry: {

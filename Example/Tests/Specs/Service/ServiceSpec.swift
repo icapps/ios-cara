@@ -91,11 +91,13 @@ class ServiceSpec: QuickSpec {
                     let request = MockedRequest(url: URL(string: "request"))
                     let serializer = MockedSerializer()
                     
-                    configuration.retryHandle = { error, retry in
+                    let interceptor = MockedInterceptor()
+                    interceptor.interceptHandle = { error, retry in
                         configuration.headers = ["Some": "Header"]
                         self.stub(http(.get, uri: "https://relative.com/request"), http(200))
                         return false
                     }
+                    service.interceptor = interceptor
                     
                     waitUntil { done in
                         service.execute(request, with: serializer) { _ in
@@ -109,12 +111,14 @@ class ServiceSpec: QuickSpec {
                     self.stub(http(.get, uri: "https://relative.com/request"), http(401))
                     let request = MockedRequest(url: URL(string: "request"))
                     
-                    configuration.retryHandle = { error, retry in
+                    let interceptor = MockedInterceptor()
+                    interceptor.interceptHandle = { error, retry in
                         configuration.headers = ["Some": "Header"]
                         self.stub(http(.get, uri: "https://relative.com/request"), http(200))
                         DispatchQueue.global().asyncAfter(deadline: .now() + 0.1, execute: retry)
                         return true
                     }
+                    service.interceptor = interceptor
                     
                     waitUntil { done in
                         service.execute(request, with: MockedSerializer()) { _ in
