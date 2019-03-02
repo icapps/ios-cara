@@ -46,9 +46,11 @@ open class Service {
                                        with serializer: S,
                                        completion: @escaping (_ response: S.Response) -> Void) -> URLSessionDataTask? {
         do {
-            // Try to generate a url request with the given `Request`.
+            // Create the request.
             let urlRequest = try request.makeURLRequest(with: configuration)
-            return networkService.execute(urlRequest, with: serializer, completion: completion)
+            return networkService.execute(urlRequest, with: serializer, retry: { [weak self] in
+                self?.execute(request, with: serializer, completion: completion)
+            }, completion: completion)
         } catch {
             let response = serializer.serialize(data: nil, error: error, response: nil)
             completion(response)

@@ -17,8 +17,9 @@ class ServiceSpec: QuickSpec {
     override func spec() {
         describe("Service") {
             var service: Service!
+            var configuration: MockedConfiguration!
             beforeEach {
-                let configuration = MockedConfiguration(baseURL: URL(string: "https://relative.com/")!)
+                configuration = MockedConfiguration(baseURL: URL(string: "https://relative.com/")!)
                 service = Service(configuration: configuration)
             }
             
@@ -75,6 +76,52 @@ class ServiceSpec: QuickSpec {
                         }
                     }
                     expect(task).to(beNil())
+                }
+            }
+            
+            context("retry") {
+                var logger: MockedLogger!
+                beforeEach {
+                    logger = MockedLogger()
+                    configuration.loggers = [logger]
+                }
+                
+                it("should not retry a request") {
+                    self.stub(http(.get, uri: "https://relative.com/request"), http(401))
+                    let request = MockedRequest(url: URL(string: "request"))
+                    let serializer = MockedSerializer()
+                    
+                    configuration.retryHandle = { error, retry in
+                        configuration.headers = ["Some": "Header"]
+                        self.stub(http(.get, uri: "https://relative.com/request"), http(200))
+                        return false
+                    }
+                    
+                    waitUntil { done in
+                        service.execute(request, with: serializer) { _ in
+                            expect(logger.didTriggerStartRequest?.allHTTPHeaderFields?["Some"]).to(beNil())
+                            done()
+                        }
+                    }
+                }
+                
+                it("should retry a request with the new headers") {
+                    self.stub(http(.get, uri: "https://relative.com/request"), http(401))
+                    let request = MockedRequest(url: URL(string: "request"))
+                    
+                    configuration.retryHandle = { error, retry in
+                        configuration.headers = ["Some": "Header"]
+                        self.stub(http(.get, uri: "https://relative.com/request"), http(200))
+                        DispatchQueue.global().asyncAfter(deadline: .now() + 0.1, execute: retry)
+                        return true
+                    }
+                    
+                    waitUntil { done in
+                        service.execute(request, with: MockedSerializer()) { _ in
+                            expect(logger.didTriggerStartRequest?.allHTTPHeaderFields?["Some"]) == "Header"
+                            done()
+                        }
+                    }
                 }
             }
          

@@ -18,4 +18,7 @@ public protocol Configuration {
     var publicKeys: PublicKeys? { get }
     /// Set the loggers when you want to receive more information on the requests.
     var loggers: [Logger]? { get }
+    
+    func retry(error: ResponseError, retry: @escaping () -> Void) -> Bool
+}
 }

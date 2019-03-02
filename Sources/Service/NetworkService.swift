@@ -26,18 +26,25 @@ class NetworkService: NSObject {
     @discardableResult
     func execute<S: Serializer>(_ urlRequest: URLRequest,
                                 with serializer: S,
+                                retry: @escaping () -> Void,
                                 completion: @escaping (_ response: S.Response) -> Void) -> URLSessionDataTask {
         // Get the originating queue.
         let executionQueue: DispatchQueue? = OperationQueue.current?.underlyingQueue
         // Trigger the loggers before the request is done.
         configuration.start(urlRequest: urlRequest)
         // Prepare the session.
-        let session = URLSession(configuration: URLSessionConfiguration.default,
-                                 delegate: self,
-                                 delegateQueue: nil)
+        let session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
         // Execute the task.
         let task = session.dataTask(with: urlRequest) { [weak self] data, urlResponse, error in
-            let responseError: Error? = error ?? urlResponse?.httpError
+            /// When the url response has a response error and the configuration states that a retry will occur.
+            if
+                let responseError = urlResponse?.responseError,
+                let configuration = self?.configuration,
+                configuration.retry(error: responseError, retry: retry) {
+                return
+            }
+            
+            let responseError: Error? = error ?? urlResponse?.responseError
             let response = serializer.serialize(data: data,
                                                 error: responseError,
                                                 response: urlResponse as? HTTPURLResponse)
@@ -50,6 +57,7 @@ class NetworkService: NSObject {
     
     // MARK: - Helpers
     
+    /// Perform the block on the given queue, when no queue is given we just execute the block.
     private func complete(on queue: DispatchQueue?, block: @escaping () -> Void) {
         guard let queue = queue else {
             block()
@@ -83,6 +91,6 @@ extension NetworkService: URLSessionDataDelegate {
         configuration.end(urlRequest: urlRequest,
                           urlResponse: urlResponse,
                           metrics: metrics,
-                          error: task.error ?? urlResponse.httpError)
+                          error: task.error ?? urlResponse.responseError)
     }
 }

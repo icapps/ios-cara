@@ -19,4 +19,9 @@ class MockedConfiguration: Cara.Configuration {
         self.headers = headers
         self.publicKeys = publicKeys
     }
+    
+    var retryHandle: ((_ error: ResponseError, _ retry: @escaping () -> Void) -> Bool)?
+    func retry(error: ResponseError, retry: @escaping () -> Void) -> Bool {
+        return retryHandle?(error, retry) ?? false
+    }
 }
