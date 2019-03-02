@@ -36,11 +36,12 @@ class NetworkService: NSObject {
         let session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
         // Execute the task.
         let task = session.dataTask(with: urlRequest) { [weak self] data, urlResponse, error in
-            /// When the url response has a response error and the configuration states that a retry will occur.
+            /// When the url response has a response error and an interceptor is set we check if the request flow
+            /// should be stopped.
             if
                 let responseError = urlResponse?.responseError,
-                let configuration = self?.configuration,
-                configuration.retry(error: responseError, retry: retry) {
+                let interceptor = self?.interceptor,
+                interceptor.intercept(responseError, retry: retry) {
                 return
             }
             
@@ -54,6 +55,10 @@ class NetworkService: NSObject {
         task.resume()
         return task
     }
+    
+    // MARK: - Retry
+    
+    var interceptor: Interceptor?
     
     // MARK: - Helpers
     

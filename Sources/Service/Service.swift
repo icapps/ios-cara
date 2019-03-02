@@ -57,4 +57,14 @@ open class Service {
             return nil
         }
     }
+    
+    // MARK: - Interceptor
+    
+    /// Define the interceptor. This can be usefull when you want to handle some status code
+    /// differently.
+    /// ex. refresh, maintenance mode, ...
+    public var interceptor: Interceptor? {
+        set { networkService.interceptor = newValue }
+        get { return networkService.interceptor }
+    }
 }
