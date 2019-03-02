@@ -21,4 +21,3 @@ public protocol Configuration {
     
     func retry(error: ResponseError, retry: @escaping () -> Void) -> Bool
 }
-}
