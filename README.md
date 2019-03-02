@@ -46,7 +46,7 @@ let service = Service(configuration: configuration)
 
 Once this is done you are good to go. For more information on what configuration options are available, take a look at the documentation inside the `Configuration.swift` file.
 
-You will also need to implement the `retry(error:retry)` function. This function is responsible for custom error handling. When you return `true` the completion handler will not be triggered and this means that you will perform a retry at some point. Manually handle `retry()` in order to continue the execution.
+You will also need to implement the `retry(error:retry)` function. This function is responsible for custom error handling. When you return `true` the completion handler will not be triggered. In this case you can choose to manually retry the request (call `retry()` after a token refresh), or just stop the flow.
 
 ```swift
 func retry(error: ResponseError, retry: @escaping () -> Void) -> Bool {
