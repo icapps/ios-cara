@@ -51,10 +51,10 @@ Once this is done you are good to go. For more information on what configuration
 
 An intercept will _intercept_ the request when an error of type `ResponseError` occurs.
 
-When this happens `intercept(_:retry:)` will be triggered and you should return `true` or `false` to indicate if you want the normal response flow to stop. When you stop the flow it will be possible to retry the request by calling the `retry()` block.
+When this happens `intercept(_:data:retry:)` will be triggered and you should return `true` or `false` to indicate if you want the normal response flow to stop. When you stop the flow it will be possible to retry the request by calling the `retry()` block.
 
 ```swift
-func intercept(_ error: ResponseError, retry: @escaping () -> Void) -> Bool {
+func intercept(_ error: ResponseError, data: Data?, retry: @escaping () -> Void) -> Bool {
     if error == .unauthorized {
         // Execute the retry block after one second. The failed request will be retried.
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: retry)

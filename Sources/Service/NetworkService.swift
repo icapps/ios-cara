@@ -41,7 +41,7 @@ class NetworkService: NSObject {
             if
                 let responseError = urlResponse?.responseError,
                 let interceptor = self?.interceptor,
-                interceptor.intercept(responseError, retry: retry) {
+                interceptor.intercept(responseError, data: data, retry: retry) {
                 return
             }
             

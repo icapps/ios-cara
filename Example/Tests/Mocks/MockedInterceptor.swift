@@ -10,7 +10,7 @@ import Cara
 
 class MockedInterceptor: Interceptor {
     var interceptHandle: ((_ error: ResponseError, _ retry: @escaping () -> Void) -> Bool)?
-    func intercept(_ error: ResponseError, retry: @escaping () -> Void) -> Bool {
+    func intercept(_ error: ResponseError, data: Data?, retry: @escaping () -> Void) -> Bool {
         return interceptHandle?(error, retry) ?? false
     }
 }
