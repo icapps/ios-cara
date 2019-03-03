@@ -45,6 +45,22 @@ public enum ResponseError: Error {
     }
 }
 
+extension ResponseError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .invalidURL: return "[1000] Invalid URL"
+        case .badRequest: return "[400] Bad Request"
+        case .unauthorized: return "[401] Unauthorized"
+        case .forbidden: return "[403] Forbidden"
+        case .notFound: return "[404] Not Found"
+        case .clientError(let statusCode): return "[\(statusCode)] Client Error"
+        case .internalServerError: return "[500] Internal Server Error"
+        case .serviceUnavailable: return "[503] Service Unavailable"
+        case .serverError(let statusCode): return "[\(statusCode)] Server Error"
+        }
+    }
+}
+
 extension ResponseError: Equatable {
     public static func == (lhs: ResponseError, rhs: ResponseError) -> Bool {
         switch (lhs, rhs) {
