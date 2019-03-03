@@ -25,5 +25,4 @@ Cara is the webservice layer that is (or should be) most commonly used throughou
   s.osx.deployment_target = '10.10'
 
   s.source_files = 'Sources/**/*'
-  s.dependency 'CryptoSwift', '~> 0.13'
 end
