@@ -38,9 +38,9 @@ class NetworkServiceSpec: QuickSpec {
                     self.stub(http(.get, uri: "https://relative.com/request"), delay: 0.1, http(200))
                     let request = URLRequest(url: URL(string: "https://relative.com/request")!)
                     
-                    service.execute(request, with: MockedSerializer()) { _ in }
-                    expect(loggerOne.didTriggerStart) == true
-                    expect(loggerTwo.didTriggerStart) == true
+                    service.execute(request, with: MockedSerializer(), retry: {}, completion: { _ in })
+                    expect(loggerOne.didTriggerStartRequest).toNot(beNil())
+                    expect(loggerTwo.didTriggerStartRequest).toNot(beNil())
                 }
                 
                 it("should trigger the end on all the configuration") {
@@ -48,12 +48,50 @@ class NetworkServiceSpec: QuickSpec {
                     let request = URLRequest(url: URL(string: "https://relative.com/request")!)
                     
                     waitUntil { done in
-                        service.execute(request, with: MockedSerializer()) { _ in
+                        service.execute(request, with: MockedSerializer(), retry: {}, completion: { _ in
                             done()
-                        }
+                        })
                     }
                     expect(loggerOne.didTriggerEnd) == true
                     expect(loggerTwo.didTriggerEnd) == true
+                }
+            }
+            
+            context("refresh") {
+                it("should not retry a request") {
+                    self.stub(http(.get, uri: "https://relative.com/one"), http(401))
+                    let one = URLRequest(url: URL(string: "https://relative.com/one")!)
+                    
+                    let interceptor = MockedInterceptor()
+                    interceptor.interceptHandle = { error, retry in
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: retry)
+                        return false
+                    }
+                    service.interceptor = interceptor
+                    
+                    waitUntil { done in
+                        service.execute(one, with: MockedSerializer(), retry: {}, completion: { _ in
+                            done()
+                        })
+                    }
+                }
+                
+                it("should retry a request") {
+                    self.stub(http(.get, uri: "https://relative.com/one"), http(401))
+                    let one = URLRequest(url: URL(string: "https://relative.com/one")!)
+                    
+                    let interceptor = MockedInterceptor()
+                    interceptor.interceptHandle = { error, retry in
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: retry)
+                        return true
+                    }
+                    service.interceptor = interceptor
+                    
+                    waitUntil { done in
+                        service.execute(one, with: MockedSerializer(), retry: {
+                            done()
+                        }, completion: { _ in })
+                    }
                 }
             }
             
@@ -64,10 +102,10 @@ class NetworkServiceSpec: QuickSpec {
                     
                     waitUntil { done in
                         DispatchQueue.main.async {
-                            service.execute(request, with: MockedSerializer()) { _ in
+                            service.execute(request, with: MockedSerializer(), retry: {}, completion: { _ in
                                 expect(Thread.isMainThread) == true
                                 done()
-                            }
+                            })
                         }
                     }
                 }
@@ -78,12 +116,11 @@ class NetworkServiceSpec: QuickSpec {
                     
                     waitUntil { done in
                         DispatchQueue.global(qos: .utility).async {
-                            service.execute(request, with: MockedSerializer()) { _ in
+                            service.execute(request, with: MockedSerializer(), retry: {}, completion: { _ in
                                 expect(Thread.isMainThread) == false
                                 done()
-                            }
+                            })
                         }
-                        
                     }
                 }
             }

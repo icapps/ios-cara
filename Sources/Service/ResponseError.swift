@@ -24,6 +24,7 @@ public enum ResponseError: Error {
     // MARK: - HTTP server errors
     
     case internalServerError
+    case serviceUnavailable
     case serverError(statusCode: Int)
     
     // MARK: - Init
@@ -37,6 +38,7 @@ public enum ResponseError: Error {
         case 403: self = .forbidden
         case 404: self = .notFound
         case 500: self = .internalServerError
+        case 503: self = .serviceUnavailable
         case 405...499: self = .clientError(statusCode: statusCode)
         default: self = .serverError(statusCode: statusCode)
         }
@@ -53,6 +55,7 @@ extension ResponseError: Equatable {
         case (.notFound, notFound): return true
         case (.clientError(let lhsStatusCode), clientError(let rhsStatusCode)): return lhsStatusCode == rhsStatusCode
         case (.internalServerError, internalServerError): return true
+        case (.serviceUnavailable, serviceUnavailable): return true
         case (.serverError(let lhsStatusCode), serverError(let rhsStatusCode)): return lhsStatusCode == rhsStatusCode
         default: return false
         }

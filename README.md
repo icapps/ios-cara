@@ -10,6 +10,7 @@
 - [Installation](#installation)
 - [Features](#features)
     - [Configuration](#configuration)
+    - [Interceptor](#interceptor)
     - [Trigger a Request](#trigger-a-request)
     - [Serialization](#serialization)
         - [Custom Serializer](#custom-serializer)
@@ -45,6 +46,29 @@ let service = Service(configuration: configuration)
 ```
 
 Once this is done you are good to go. For more information on what configuration options are available, take a look at the documentation inside the `Configuration.swift` file.
+
+### Interceptor
+
+An intercept will _intercept_ the request when an error of type `ResponseError` occurs.
+
+When this happens `intercept(_:retry:)` will be triggered and you should return `true` or `false` to indicate if you want the normal response flow to stop. When you stop the flow it will be possible to retry the request by calling the `retry()` block.
+
+```swift
+func intercept(_ error: ResponseError, retry: @escaping () -> Void) -> Bool {
+    if error == .unauthorized {
+        // Execute the retry block after one second. The failed request will be retried.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: retry)
+        return true
+    } else if error == .serviceUnavailable {
+        // When this error occurs the flow will be stopped. So the normal completion block after serialization will not be 
+        // triggered.
+        return true
+    } else {
+        // Continue the flow and start serializing.
+        return false
+    }
+}
+```
 
 ### Trigger a Request
 

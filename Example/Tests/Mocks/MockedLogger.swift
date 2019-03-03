@@ -10,9 +10,9 @@ import Foundation
 import Cara
 
 class MockedLogger: Logger {
-    private(set) var didTriggerStart: Bool = false
+    private(set) var didTriggerStartRequest: URLRequest?
     func start(urlRequest: URLRequest) {
-        didTriggerStart = true
+        didTriggerStartRequest = urlRequest
     }
     
     private(set) var didTriggerEnd: Bool = false

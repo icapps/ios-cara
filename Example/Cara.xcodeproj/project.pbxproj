@@ -21,6 +21,7 @@
 		9D60FF2D21B42A560078F791 /* MockedSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D60FF2C21B42A560078F791 /* MockedSerializer.swift */; };
 		9DAD37C221B439F80042C19C /* CodableSerializerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD37C121B439F80042C19C /* CodableSerializerSpec.swift */; };
 		9DAD37C521B45A900042C19C /* RequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD37C421B45A900042C19C /* RequestSpec.swift */; };
+		9DCD7F59222B00330042539B /* MockedInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCD7F58222B00330042539B /* MockedInterceptor.swift */; };
 		9DEA80C321D97275002A56A7 /* MockedLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEA80C221D97275002A56A7 /* MockedLogger.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		9D60FF2C21B42A560078F791 /* MockedSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedSerializer.swift; sourceTree = "<group>"; };
 		9DAD37C121B439F80042C19C /* CodableSerializerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableSerializerSpec.swift; sourceTree = "<group>"; };
 		9DAD37C421B45A900042C19C /* RequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSpec.swift; sourceTree = "<group>"; };
+		9DCD7F58222B00330042539B /* MockedInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedInterceptor.swift; sourceTree = "<group>"; };
 		9DEA80C221D97275002A56A7 /* MockedLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedLogger.swift; sourceTree = "<group>"; };
 		D97FA3B1B8D63693AAF21BA5 /* Pods_Application.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Application.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F684B53926905060D617A429 /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				9D60FF2921B402E00078F791 /* MockedConfiguration.swift */,
+				9DCD7F58222B00330042539B /* MockedInterceptor.swift */,
 				9DEA80C221D97275002A56A7 /* MockedLogger.swift */,
 				9D21FF0721D971C6006EF131 /* MockedPublicKeyPinningService.swift */,
 				9D60FF2721B402CA0078F791 /* MockedRequest.swift */,
@@ -303,7 +306,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Cara/Cara.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Mockingjay/Mockingjay.framework",
@@ -324,7 +327,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -338,6 +341,7 @@
 				9D21FF0621D97196006EF131 /* NetworkServiceSpec.swift in Sources */,
 				9DAD37C521B45A900042C19C /* RequestSpec.swift in Sources */,
 				9D0E402C21B3FC490088D678 /* CaraQuickConfiguration.swift in Sources */,
+				9DCD7F59222B00330042539B /* MockedInterceptor.swift in Sources */,
 				9D60FF2821B402CA0078F791 /* MockedRequest.swift in Sources */,
 				9D21FF0821D971C6006EF131 /* MockedPublicKeyPinningService.swift in Sources */,
 				9D60FF2A21B402E00078F791 /* MockedConfiguration.swift in Sources */,
