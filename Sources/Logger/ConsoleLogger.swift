@@ -68,7 +68,5 @@ extension ConsoleLogger: Logger {
                        url.absoluteString)
             }
         }
-        
-        
     }
 }
