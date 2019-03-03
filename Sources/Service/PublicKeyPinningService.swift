@@ -6,7 +6,8 @@
 //
 
 import Foundation
-import CryptoSwift
+import Security
+import CommonCrypto
 
 class PublicKeyPinningService {
     
@@ -55,7 +56,7 @@ class PublicKeyPinningService {
             if let publicKeyData = SecKeyCopyExternalRepresentation(publicKey, &error) {
                 var keyWithHeader = Data(bytes: rsa2048Asn1Header)
                 keyWithHeader.append(publicKeyData as Data)
-                let sha256 = keyWithHeader.sha256()
+                let sha256 = keyWithHeader.sha256
                 // When the public keys don't match continue to the next certificate.
                 guard sha256.base64EncodedString() == publicKeyString else { continue }                
                 completionHandler(.useCredential, URLCredential(trust: secTrust))
@@ -64,5 +65,13 @@ class PublicKeyPinningService {
         }
         
         completionHandler(.cancelAuthenticationChallenge, nil)
+    }
+}
+
+private extension Data {
+    var sha256: Data {
+        var hash = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
+        withUnsafeBytes { _ = CC_SHA256($0, CC_LONG(self.count), &hash) }
+        return Data(bytes: hash)
     }
 }

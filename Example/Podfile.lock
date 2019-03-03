@@ -1,7 +1,5 @@
 PODS:
-  - Cara (1.0.0):
-    - CryptoSwift (~> 0.13)
-  - CryptoSwift (0.13.1)
+  - Cara (1.0.0)
   - Mockingjay (2.0.1):
     - Mockingjay/Core (= 2.0.1)
     - Mockingjay/XCTest (= 2.0.1)
@@ -23,7 +21,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - CryptoSwift
     - Mockingjay
     - Nimble
     - Quick
@@ -35,8 +32,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Cara: 20bb9de236189c0edbd244caf48210d5ca8376a9
-  CryptoSwift: ff68c35a53e03177d31aaa2c1e8b3e010aeed6cb
+  Cara: 7bd0fc988ccc33954be01e8b2a61ffd213f4dd81
   Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
   Nimble: 04f732da099ea4d153122aec8c2a88fd0c7219ae
   Quick: 2623cb30d7a7f41ca62f684f679586558f483d46
@@ -45,4 +41,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: ad86ce978961012c0d4241a21e19bc6aa2f5ce17
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1

@@ -46,6 +46,21 @@ class RequestSpec: QuickSpec {
                     _ = try request.makeURLRequest(with: configuration)
                 }.to(throwError(ResponseError.invalidURL))
             }
+            
+            it("should correctly set the url when a query is given within a relative url") {
+                let url = URL(string: "request?key=value")!
+                let request = MockedRequest(url: url, query: ["jake": "the_snake"])
+                let urlRequest = try? request.makeURLRequest(with: configuration)
+                expect(urlRequest?.url?.absoluteString) == "https://relative.com/request?key=value&jake=the_snake"
+            }
+            
+            it("should correctly set the url when a query is given with a relative url") {
+                var urlComponents = URLComponents(string: "request")!
+                urlComponents.queryItems = [URLQueryItem(name: "key", value: "value")]
+                let request = MockedRequest(url: urlComponents.url!, query: ["jake": "the_snake"])
+                let urlRequest = try? request.makeURLRequest(with: configuration)
+                expect(urlRequest?.url?.absoluteString) == "https://relative.com/request?key=value&jake=the_snake"
+            }
         }
         
         context("method") {
@@ -86,7 +101,7 @@ class RequestSpec: QuickSpec {
             }
         }
         
-        context("headers") {
+        context("query") {
             it("should have no query parameters") {
                 let request = MockedRequest(url: URL(string: "request"))
                 let urlRequest = try? request.makeURLRequest(with: configuration)
@@ -101,6 +116,15 @@ class RequestSpec: QuickSpec {
             
             it("should have multiple query parameters") {
                 let request = MockedRequest(url: URL(string: "request"), query: ["key": "value", "jake": "the_snake"])
+                let urlRequest = try? request.makeURLRequest(with: configuration)
+                expect(urlRequest?.url?.query).to(contain("key=value"))
+                expect(urlRequest?.url?.query).to(contain("jake=the_snake"))
+            }
+            
+            it("should append extra query paramaters") {
+                var urlComponents = URLComponents(string: "request")!
+                urlComponents.queryItems = [URLQueryItem(name: "key", value: "value")]
+                let request = MockedRequest(url: urlComponents.url!, query: ["jake": "the_snake"])
                 let urlRequest = try? request.makeURLRequest(with: configuration)
                 expect(urlRequest?.url?.query).to(contain("key=value"))
                 expect(urlRequest?.url?.query).to(contain("jake=the_snake"))

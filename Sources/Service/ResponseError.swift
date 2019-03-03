@@ -24,6 +24,7 @@ public enum ResponseError: Error {
     // MARK: - HTTP server errors
     
     case internalServerError
+    case serviceUnavailable
     case serverError(statusCode: Int)
     
     // MARK: - Init
@@ -37,8 +38,25 @@ public enum ResponseError: Error {
         case 403: self = .forbidden
         case 404: self = .notFound
         case 500: self = .internalServerError
+        case 503: self = .serviceUnavailable
         case 405...499: self = .clientError(statusCode: statusCode)
         default: self = .serverError(statusCode: statusCode)
+        }
+    }
+}
+
+extension ResponseError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .invalidURL: return "[1000] Invalid URL"
+        case .badRequest: return "[400] Bad Request"
+        case .unauthorized: return "[401] Unauthorized"
+        case .forbidden: return "[403] Forbidden"
+        case .notFound: return "[404] Not Found"
+        case .clientError(let statusCode): return "[\(statusCode)] Client Error"
+        case .internalServerError: return "[500] Internal Server Error"
+        case .serviceUnavailable: return "[503] Service Unavailable"
+        case .serverError(let statusCode): return "[\(statusCode)] Server Error"
         }
     }
 }
@@ -53,6 +71,7 @@ extension ResponseError: Equatable {
         case (.notFound, notFound): return true
         case (.clientError(let lhsStatusCode), clientError(let rhsStatusCode)): return lhsStatusCode == rhsStatusCode
         case (.internalServerError, internalServerError): return true
+        case (.serviceUnavailable, serviceUnavailable): return true
         case (.serverError(let lhsStatusCode), serverError(let rhsStatusCode)): return lhsStatusCode == rhsStatusCode
         default: return false
         }

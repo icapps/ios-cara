@@ -8,7 +8,7 @@
 import Foundation
 
 extension URLResponse {
-    var httpError: Error? {
+    var responseError: ResponseError? {
         guard let response = self as? HTTPURLResponse else { return nil }
         return ResponseError(statusCode: response.statusCode)
     }
