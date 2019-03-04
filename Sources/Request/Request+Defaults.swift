@@ -23,4 +23,8 @@ extension Request {
     public var cachePolicy: URLRequest.CachePolicy {
         return .useProtocolCachePolicy
     }
+    
+    public var networkServiceType: NSURLRequest.NetworkServiceType {
+        return .default
+    }
 }

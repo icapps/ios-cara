@@ -27,4 +27,6 @@ public protocol Request {
     var body: Any? { get }
     /// Set a cache policy for every request.
     var cachePolicy: URLRequest.CachePolicy { get }
+    /// Set the network service type to prioritize the request.
+    var networkServiceType: NSURLRequest.NetworkServiceType { get }
 }

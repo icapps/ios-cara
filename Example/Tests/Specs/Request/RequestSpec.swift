@@ -195,5 +195,11 @@ class RequestSpec: QuickSpec {
             let urlRequest = try? request.makeURLRequest(with: configuration)
             expect(urlRequest?.cachePolicy) == .reloadIgnoringLocalCacheData
         }
+        
+        it("should have the correct network service type") {
+            let request = MockedRequest(url: URL(string: "request"), networkServiceType: .background)
+            let urlRequest = try? request.makeURLRequest(with: configuration)
+            expect(urlRequest?.networkServiceType) == .background
+        }
     }
 }

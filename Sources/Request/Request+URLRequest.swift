@@ -15,6 +15,7 @@ extension Request {
         urlRequest.allHTTPHeaderFields = makeHeaders(with: configuration)
         urlRequest.httpBody = try makeBody()
         urlRequest.cachePolicy = cachePolicy
+        urlRequest.networkServiceType = networkServiceType
         return urlRequest
     }
     
