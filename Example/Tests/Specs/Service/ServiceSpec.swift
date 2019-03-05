@@ -105,6 +105,7 @@ class ServiceSpec: QuickSpec {
                             done()
                         }
                     }
+                    expect(interceptor.didReceiveRetryCount) == 0
                 }
                 
                 it("should retry a request with the new headers") {
@@ -126,6 +127,34 @@ class ServiceSpec: QuickSpec {
                             done()
                         }
                     }
+                    expect(interceptor.didReceiveRetryCount) == 0
+                }
+
+                it("should retry a request with the new headers and have a retry count of one") {
+                    self.stub(http(.get, uri: "https://relative.com/request"), http(401))
+                    let request = MockedRequest(url: URL(string: "request"))
+
+                    let interceptor = MockedInterceptor()
+                    var count: Int = 0
+                    interceptor.interceptHandle = { error, retry in
+                        count += 1
+                        configuration.headers = ["Some": "Header"]
+                        if count > 1 {
+                            // Make sure the second try also fails.
+                            self.stub(http(.get, uri: "https://relative.com/request"), http(200))
+                        }
+                        DispatchQueue.global().asyncAfter(deadline: .now() + 0.1, execute: retry)
+                        return true
+                    }
+                    service.interceptor = interceptor
+
+                    waitUntil { done in
+                        service.execute(request, with: MockedSerializer()) { _ in
+                            expect(logger.didTriggerStartRequest?.allHTTPHeaderFields?["Some"]) == "Header"
+                            done()
+                        }
+                    }
+                    expect(interceptor.didReceiveRetryCount) == 1
                 }
             }
          
