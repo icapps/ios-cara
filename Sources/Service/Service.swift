@@ -45,11 +45,19 @@ open class Service {
     public func execute<S: Serializer>(_ request: Request,
                                        with serializer: S,
                                        completion: @escaping (_ response: S.Response) -> Void) -> URLSessionDataTask? {
+        return execute(request, with: serializer, retryCount: 0, completion: completion)
+    }
+
+    /// This private function is used just to keep track of the retry count of the current request.
+    private func execute<S: Serializer>(_ request: Request,
+                                        with serializer: S,
+                                        retryCount: UInt,
+                                        completion: @escaping (_ response: S.Response) -> Void) -> URLSessionDataTask? {
         do {
             // Create the request.
             let urlRequest = try request.makeURLRequest(with: configuration)
-            return networkService.execute(urlRequest, with: serializer, retry: { [weak self] in
-                self?.execute(request, with: serializer, completion: completion)
+            return networkService.execute(urlRequest, with: serializer, retryCount: retryCount, retry: { [weak self] in
+                self?.execute(request, with: serializer, retryCount: retryCount + 1, completion: completion)
             }, completion: completion)
         } catch {
             let response = serializer.serialize(data: nil, error: error, response: nil)

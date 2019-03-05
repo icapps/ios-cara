@@ -26,6 +26,7 @@ class NetworkService: NSObject {
     @discardableResult
     func execute<S: Serializer>(_ urlRequest: URLRequest,
                                 with serializer: S,
+                                retryCount: UInt,
                                 retry: @escaping () -> Void,
                                 completion: @escaping (_ response: S.Response) -> Void) -> URLSessionDataTask {
         // Get the originating queue.
@@ -41,7 +42,7 @@ class NetworkService: NSObject {
             if
                 let responseError = urlResponse?.responseError,
                 let interceptor = self?.interceptor,
-                interceptor.intercept(responseError, data: data, retry: retry) {
+                interceptor.intercept(responseError, data: data, retryCount: retryCount, retry: retry) {
                 return
             }
             
