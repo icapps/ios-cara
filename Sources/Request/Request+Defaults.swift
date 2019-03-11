@@ -27,4 +27,8 @@ extension Request {
     public var networkServiceType: NSURLRequest.NetworkServiceType {
         return .default
     }
+    
+    public var isInterceptable: Bool {
+        return true
+    }
 }

@@ -24,8 +24,10 @@ class NetworkService: NSObject {
     // MARK: - Execute
     
     @discardableResult
+    // swiftlint:disable function_parameter_count
     func execute<S: Serializer>(_ urlRequest: URLRequest,
                                 with serializer: S,
+                                isInterceptable: Bool,
                                 retryCount: UInt,
                                 retry: @escaping () -> Void,
                                 completion: @escaping (_ response: S.Response) -> Void) -> URLSessionDataTask {
@@ -42,6 +44,7 @@ class NetworkService: NSObject {
             if
                 let responseError = urlResponse?.responseError,
                 let interceptor = self?.interceptor,
+                isInterceptable,
                 interceptor.intercept(responseError, data: data, retryCount: retryCount, retry: retry) {
                 return
             }
