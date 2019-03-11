@@ -70,6 +70,8 @@ func intercept(_ error: ResponseError, data: Data?, retry: @escaping () -> Void)
 }
 ```
 
+⚠️ The `Request` can define it it can be intercepted with the `isInterceptable` property. This should always be true in most cases. But, for example, the refresh tokens request should not be intercepted.
+
 ### Trigger a Request
 
 In order to trigger a request you have to do 2 things:
