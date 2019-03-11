@@ -38,7 +38,12 @@ class NetworkServiceSpec: QuickSpec {
                     self.stub(http(.get, uri: "https://relative.com/request"), delay: 0.1, http(200))
                     let request = URLRequest(url: URL(string: "https://relative.com/request")!)
                     
-                    service.execute(request, with: MockedSerializer(), retryCount: 0, retry: {}, completion: { _ in })
+                    service.execute(request,
+                                    with: MockedSerializer(),
+                                    isInterceptable: true,
+                                    retryCount: 0,
+                                    retry: {},
+                                    completion: { _ in })
                     expect(loggerOne.didTriggerStartRequest).toNot(beNil())
                     expect(loggerTwo.didTriggerStartRequest).toNot(beNil())
                 }
@@ -48,7 +53,12 @@ class NetworkServiceSpec: QuickSpec {
                     let request = URLRequest(url: URL(string: "https://relative.com/request")!)
                     
                     waitUntil { done in
-                        service.execute(request, with: MockedSerializer(), retryCount: 0, retry: {}, completion: { _ in
+                        service.execute(request,
+                                        with: MockedSerializer(),
+                                        isInterceptable: true,
+                                        retryCount: 0,
+                                        retry: {},
+                                        completion: { _ in
                             done()
                         })
                     }
@@ -70,7 +80,12 @@ class NetworkServiceSpec: QuickSpec {
                     service.interceptor = interceptor
                     
                     waitUntil { done in
-                        service.execute(one, with: MockedSerializer(), retryCount: 0, retry: {}, completion: { _ in
+                        service.execute(one,
+                                        with: MockedSerializer(),
+                                        isInterceptable: true,
+                                        retryCount: 0,
+                                        retry: {},
+                                        completion: { _ in
                             done()
                         })
                     }
@@ -88,9 +103,32 @@ class NetworkServiceSpec: QuickSpec {
                     service.interceptor = interceptor
                     
                     waitUntil { done in
-                        service.execute(one, with: MockedSerializer(), retryCount: 0, retry: {
+                        service.execute(one, with: MockedSerializer(), isInterceptable: true, retryCount: 0, retry: {
                             done()
                         }, completion: { _ in })
+                    }
+                }
+                
+                it("should not retry a request when not interceptable") {
+                    self.stub(http(.get, uri: "https://relative.com/one"), http(401))
+                    let one = URLRequest(url: URL(string: "https://relative.com/one")!)
+                    
+                    let interceptor = MockedInterceptor()
+                    interceptor.interceptHandle = { error, retry in
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: retry)
+                        return true
+                    }
+                    service.interceptor = interceptor
+                    
+                    waitUntil { done in
+                        service.execute(one,
+                                        with: MockedSerializer(),
+                                        isInterceptable: false,
+                                        retryCount: 0,
+                                        retry: {},
+                                        completion: { _ in
+                            done()
+                        })
                     }
                 }
             }
@@ -104,6 +142,7 @@ class NetworkServiceSpec: QuickSpec {
                         DispatchQueue.main.async {
                             service.execute(request,
                                             with: MockedSerializer(),
+                                            isInterceptable: true,
                                             retryCount: 0,
                                             retry: {}, completion: { _ in
                                 expect(Thread.isMainThread) == true
@@ -121,6 +160,7 @@ class NetworkServiceSpec: QuickSpec {
                         DispatchQueue.global(qos: .utility).async {
                             service.execute(request,
                                             with: MockedSerializer(),
+                                            isInterceptable: true,
                                             retryCount: 0,
                                             retry: {},
                                             completion: { _ in
