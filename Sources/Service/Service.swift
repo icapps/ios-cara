@@ -56,7 +56,11 @@ open class Service {
         do {
             // Create the request.
             let urlRequest = try request.makeURLRequest(with: configuration)
-            return networkService.execute(urlRequest, with: serializer, retryCount: retryCount, retry: { [weak self] in
+            return networkService.execute(urlRequest,
+                                          with: serializer,
+                                          isInterceptable: request.isInterceptable,
+                                          retryCount: retryCount,
+                                          retry: { [weak self] in
                 self?.execute(request, with: serializer, retryCount: retryCount + 1, completion: completion)
             }, completion: completion)
         } catch {

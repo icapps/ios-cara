@@ -29,4 +29,7 @@ public protocol Request {
     var cachePolicy: URLRequest.CachePolicy { get }
     /// Set the network service type to prioritize the request.
     var networkServiceType: NSURLRequest.NetworkServiceType { get }
+    /// Define if the request can be intercepted. Make sure this is set to false when you are for example
+    /// refreshing the tokens. The refresh request should not be interceptable.
+    var isInterceptable: Bool { get }
 }
