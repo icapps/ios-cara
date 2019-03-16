@@ -29,7 +29,7 @@ public enum ResponseError: Error {
     
     // MARK: - Init
     
-    init?(statusCode: Int) {
+    public init?(statusCode: Int) {
         switch statusCode {
         // This is not an error.
         case 0...399: return nil
