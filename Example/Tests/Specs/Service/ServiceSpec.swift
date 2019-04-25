@@ -158,6 +158,36 @@ class ServiceSpec: QuickSpec {
                 }
             }
          
+            context("threading") {
+                it("should return on the main queue") {
+                    self.stub(http(.get, uri: "https://relative.com/request"), http(200))
+                    let request = MockedRequest(url: URL(string: "request"))
+
+                    waitUntil { done in
+                        DispatchQueue.main.async {
+                            service.execute(request, with: MockedSerializer()) { _ in
+                                expect(Thread.isMainThread) == true
+                                done()
+                            }
+                        }
+                    }
+                }
+
+                it("should not return on the main queue") {
+                    self.stub(http(.get, uri: "https://relative.com/request"), http(200))
+                    let request = MockedRequest(url: URL(string: "request"))
+
+                    waitUntil { done in
+                        DispatchQueue.global(qos: .utility).async {
+                            service.execute(request, with: MockedSerializer()) { _ in
+                                expect(Thread.isMainThread) == false
+                                done()
+                            }
+                        }
+                    }
+                }
+            }
+
             context("serializer") {
                 it("should fail to execute a request because of an invalid url") {
                     self.stub(http(.get, uri: "https://relative.com/"), http(200))
