@@ -5,6 +5,8 @@
 //  Created by Jelle Vandebeeck on 01/12/2018.
 //
 
+import Foundation
+
 /// This it the main executor of requests.
 open class Service {
     
@@ -45,13 +47,16 @@ open class Service {
     public func execute<S: Serializer>(_ request: Request,
                                        with serializer: S,
                                        completion: @escaping (_ response: S.Response) -> Void) -> URLSessionDataTask? {
-        return execute(request, with: serializer, retryCount: 0, completion: completion)
+        // Get the originating queue.
+        let executionQueue: DispatchQueue? = OperationQueue.current?.underlyingQueue
+        return execute(request, with: serializer, retryCount: 0, executionQueue: executionQueue, completion: completion)
     }
 
     /// This private function is used just to keep track of the retry count of the current request.
     private func execute<S: Serializer>(_ request: Request,
                                         with serializer: S,
                                         retryCount: UInt,
+                                        executionQueue: DispatchQueue?,
                                         completion: @escaping (_ response: S.Response) -> Void) -> URLSessionDataTask? {
         do {
             // Create the request.
@@ -60,8 +65,13 @@ open class Service {
                                           with: serializer,
                                           isInterceptable: request.isInterceptable,
                                           retryCount: retryCount,
+                                          executionQueue: executionQueue,
                                           retry: { [weak self] in
-                self?.execute(request, with: serializer, retryCount: retryCount + 1, completion: completion)
+                self?.execute(request,
+                              with: serializer,
+                              retryCount: retryCount + 1,
+                              executionQueue: executionQueue,
+                              completion: completion)
             }, completion: completion)
         } catch {
             let response = serializer.serialize(data: nil, error: error, response: nil)

@@ -9,6 +9,7 @@
 import Quick
 import Nimble
 import Mockingjay
+import Foundation
 
 @testable import Cara
 
@@ -42,6 +43,7 @@ class NetworkServiceSpec: QuickSpec {
                                     with: MockedSerializer(),
                                     isInterceptable: true,
                                     retryCount: 0,
+                                    executionQueue: nil,
                                     retry: {},
                                     completion: { _ in })
                     expect(loggerOne.didTriggerStartRequest).toNot(beNil())
@@ -57,6 +59,7 @@ class NetworkServiceSpec: QuickSpec {
                                         with: MockedSerializer(),
                                         isInterceptable: true,
                                         retryCount: 0,
+                                        executionQueue: nil,
                                         retry: {},
                                         completion: { _ in
                             done()
@@ -84,6 +87,7 @@ class NetworkServiceSpec: QuickSpec {
                                         with: MockedSerializer(),
                                         isInterceptable: true,
                                         retryCount: 0,
+                                        executionQueue: nil,
                                         retry: {},
                                         completion: { _ in
                             done()
@@ -103,7 +107,12 @@ class NetworkServiceSpec: QuickSpec {
                     service.interceptor = interceptor
                     
                     waitUntil { done in
-                        service.execute(one, with: MockedSerializer(), isInterceptable: true, retryCount: 0, retry: {
+                        service.execute(one,
+                                        with: MockedSerializer(),
+                                        isInterceptable: true,
+                                        retryCount: 0,
+                                        executionQueue: nil,
+                                        retry: {
                             done()
                         }, completion: { _ in })
                     }
@@ -125,6 +134,7 @@ class NetworkServiceSpec: QuickSpec {
                                         with: MockedSerializer(),
                                         isInterceptable: false,
                                         retryCount: 0,
+                                        executionQueue: nil,
                                         retry: {},
                                         completion: { _ in
                             done()
@@ -144,6 +154,7 @@ class NetworkServiceSpec: QuickSpec {
                                             with: MockedSerializer(),
                                             isInterceptable: true,
                                             retryCount: 0,
+                                            executionQueue: DispatchQueue.main,
                                             retry: {}, completion: { _ in
                                 expect(Thread.isMainThread) == true
                                 done()
@@ -162,6 +173,7 @@ class NetworkServiceSpec: QuickSpec {
                                             with: MockedSerializer(),
                                             isInterceptable: true,
                                             retryCount: 0,
+                                            executionQueue: DispatchQueue.global(),
                                             retry: {},
                                             completion: { _ in
                                 expect(Thread.isMainThread) == false
