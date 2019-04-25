@@ -1,0 +1,19 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "1.0.3",
+  "iOS" : [
+    {
+      "name" : "Cara",
+      "hash" : "fc711727a030872a158769468274836dd2ca90212368cd1324bcb3dc7e350297",
+      "swiftToolchainVersion" : "5.0.1 (swiftlang-1001.0.82.4 clang-1001.0.46.5)"
+    }
+  ]
+}

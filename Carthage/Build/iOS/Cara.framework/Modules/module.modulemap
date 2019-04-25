@@ -1,0 +1,11 @@
+framework module Cara {
+  umbrella header "Cara-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module Cara.Swift {
+    header "Cara-Swift.h"
+    requires objc
+}
