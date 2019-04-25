@@ -12,7 +12,7 @@ import Nimble
 @testable import Cara
 
 class ResponseErrorSpec: QuickSpec {
-    // swiftlint:disable  lines function_body_length
+    // swiftlint:disable function_body_length
     override func spec() {
         describe("ResponseError") {
             context("handling") {

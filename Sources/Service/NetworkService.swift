@@ -29,10 +29,9 @@ class NetworkService: NSObject {
                                 with serializer: S,
                                 isInterceptable: Bool,
                                 retryCount: UInt,
+                                executionQueue: DispatchQueue?,
                                 retry: @escaping () -> Void,
                                 completion: @escaping (_ response: S.Response) -> Void) -> URLSessionDataTask {
-        // Get the originating queue.
-        let executionQueue: DispatchQueue? = OperationQueue.current?.underlyingQueue
         // Trigger the loggers before the request is done.
         configuration.start(urlRequest: urlRequest)
         // Prepare the session.
