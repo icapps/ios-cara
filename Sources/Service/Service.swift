@@ -53,6 +53,7 @@ open class Service {
     }
 
     /// This private function is used just to keep track of the retry count of the current request.
+    @discardableResult
     private func execute<S: Serializer>(_ request: Request,
                                         with serializer: S,
                                         retryCount: UInt,
