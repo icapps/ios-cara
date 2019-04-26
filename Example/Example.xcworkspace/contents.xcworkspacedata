@@ -5,7 +5,7 @@
       location = "group:../Cara/Cara.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:/Users/fousa/Projects/icapps/cara/Example/Example.xcodeproj">
+      location = "group:Example.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
