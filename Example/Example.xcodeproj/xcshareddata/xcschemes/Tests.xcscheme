@@ -17,7 +17,7 @@
                BlueprintIdentifier = "607FACE41AFB9204008FA782"
                BuildableName = "Tests.xctest"
                BlueprintName = "Tests"
-               ReferencedContainer = "container:Cara.xcodeproj">
+               ReferencedContainer = "container:Example.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,7 +32,7 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "000000000930"
+            BlueprintIdentifier = "0000000009B0"
             BuildableName = "Cara.framework"
             BlueprintName = "Cara"
             ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -48,7 +48,7 @@
                BlueprintIdentifier = "607FACE41AFB9204008FA782"
                BuildableName = "Tests.xctest"
                BlueprintName = "Tests"
-               ReferencedContainer = "container:Cara.xcodeproj">
+               ReferencedContainer = "container:Example.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -58,7 +58,7 @@
             BlueprintIdentifier = "607FACE41AFB9204008FA782"
             BuildableName = "Tests.xctest"
             BlueprintName = "Tests"
-            ReferencedContainer = "container:Cara.xcodeproj">
+            ReferencedContainer = "container:Example.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -80,7 +80,7 @@
             BlueprintIdentifier = "607FACE41AFB9204008FA782"
             BuildableName = "Tests.xctest"
             BlueprintName = "Tests"
-            ReferencedContainer = "container:Cara.xcodeproj">
+            ReferencedContainer = "container:Example.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
