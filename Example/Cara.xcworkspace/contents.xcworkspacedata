@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../Cara/Cara.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:/Users/fousa/Projects/icapps/cara/Example/Example.xcodeproj">
    </FileRef>
    <FileRef
