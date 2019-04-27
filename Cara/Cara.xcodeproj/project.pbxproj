@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9D551C762273749400DDD584 /* Cara.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D551C742273749400DDD584 /* Cara.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9D551C902273753000DDD584 /* Cara.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D551C742273749400DDD584 /* Cara.h */; };
+		9D551C902273753000DDD584 /* Cara.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D551C742273749400DDD584 /* Cara.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D551CAC2273765500DDD584 /* Interceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551C952273765500DDD584 /* Interceptor.swift */; };
 		9D551CAD2273765500DDD584 /* Interceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551C952273765500DDD584 /* Interceptor.swift */; };
 		9D551CAE2273765500DDD584 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551C962273765500DDD584 /* Configuration.swift */; };
