@@ -10,8 +10,6 @@ use_frameworks!
 inhibit_all_warnings!
 
 target 'Tests' do
-  pod 'Cara', :path => '../'
-
   # Linter
   pod 'SwiftLint', '~> 0.28'
 

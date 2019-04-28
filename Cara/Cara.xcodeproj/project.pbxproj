@@ -1,0 +1,632 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9D551C762273749400DDD584 /* Cara.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D551C742273749400DDD584 /* Cara.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9D551C902273753000DDD584 /* Cara.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D551C742273749400DDD584 /* Cara.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9D551CAC2273765500DDD584 /* Interceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551C952273765500DDD584 /* Interceptor.swift */; };
+		9D551CAD2273765500DDD584 /* Interceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551C952273765500DDD584 /* Interceptor.swift */; };
+		9D551CAE2273765500DDD584 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551C962273765500DDD584 /* Configuration.swift */; };
+		9D551CAF2273765500DDD584 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551C962273765500DDD584 /* Configuration.swift */; };
+		9D551CB02273765500DDD584 /* CodableSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551C982273765500DDD584 /* CodableSerializer.swift */; };
+		9D551CB12273765500DDD584 /* CodableSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551C982273765500DDD584 /* CodableSerializer.swift */; };
+		9D551CB22273765500DDD584 /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551C992273765500DDD584 /* Serializer.swift */; };
+		9D551CB32273765500DDD584 /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551C992273765500DDD584 /* Serializer.swift */; };
+		9D551CB42273765500DDD584 /* Configuration+Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551C9B2273765500DDD584 /* Configuration+Logger.swift */; };
+		9D551CB52273765500DDD584 /* Configuration+Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551C9B2273765500DDD584 /* Configuration+Logger.swift */; };
+		9D551CB62273765500DDD584 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551C9C2273765500DDD584 /* Logger.swift */; };
+		9D551CB72273765500DDD584 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551C9C2273765500DDD584 /* Logger.swift */; };
+		9D551CB82273765500DDD584 /* OSLog+Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551C9D2273765500DDD584 /* OSLog+Request.swift */; };
+		9D551CB92273765500DDD584 /* OSLog+Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551C9D2273765500DDD584 /* OSLog+Request.swift */; };
+		9D551CBA2273765500DDD584 /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551C9E2273765500DDD584 /* ConsoleLogger.swift */; };
+		9D551CBB2273765500DDD584 /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551C9E2273765500DDD584 /* ConsoleLogger.swift */; };
+		9D551CBC2273765500DDD584 /* URLResponse+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551CA02273765500DDD584 /* URLResponse+Error.swift */; };
+		9D551CBD2273765500DDD584 /* URLResponse+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551CA02273765500DDD584 /* URLResponse+Error.swift */; };
+		9D551CBE2273765500DDD584 /* Dictionary+Merge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551CA12273765500DDD584 /* Dictionary+Merge.swift */; };
+		9D551CBF2273765500DDD584 /* Dictionary+Merge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551CA12273765500DDD584 /* Dictionary+Merge.swift */; };
+		9D551CC02273765500DDD584 /* Request+Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551CA32273765500DDD584 /* Request+Defaults.swift */; };
+		9D551CC12273765500DDD584 /* Request+Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551CA32273765500DDD584 /* Request+Defaults.swift */; };
+		9D551CC22273765500DDD584 /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551CA42273765500DDD584 /* RequestMethod.swift */; };
+		9D551CC32273765500DDD584 /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551CA42273765500DDD584 /* RequestMethod.swift */; };
+		9D551CC42273765500DDD584 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551CA52273765500DDD584 /* Request.swift */; };
+		9D551CC52273765500DDD584 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551CA52273765500DDD584 /* Request.swift */; };
+		9D551CC62273765500DDD584 /* Request+URLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551CA62273765500DDD584 /* Request+URLRequest.swift */; };
+		9D551CC72273765500DDD584 /* Request+URLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551CA62273765500DDD584 /* Request+URLRequest.swift */; };
+		9D551CC82273765500DDD584 /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551CA82273765500DDD584 /* ResponseError.swift */; };
+		9D551CC92273765500DDD584 /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551CA82273765500DDD584 /* ResponseError.swift */; };
+		9D551CCA2273765500DDD584 /* PublicKeyPinningService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551CA92273765500DDD584 /* PublicKeyPinningService.swift */; };
+		9D551CCB2273765500DDD584 /* PublicKeyPinningService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551CA92273765500DDD584 /* PublicKeyPinningService.swift */; };
+		9D551CCC2273765500DDD584 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551CAA2273765500DDD584 /* Service.swift */; };
+		9D551CCD2273765500DDD584 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551CAA2273765500DDD584 /* Service.swift */; };
+		9D551CCE2273765500DDD584 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551CAB2273765500DDD584 /* NetworkService.swift */; };
+		9D551CCF2273765500DDD584 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D551CAB2273765500DDD584 /* NetworkService.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		9D551C712273749400DDD584 /* Cara.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cara.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D551C742273749400DDD584 /* Cara.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cara.h; sourceTree = "<group>"; };
+		9D551C752273749400DDD584 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D551C88227374FF00DDD584 /* Cara.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cara.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D551C952273765500DDD584 /* Interceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interceptor.swift; sourceTree = "<group>"; };
+		9D551C962273765500DDD584 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		9D551C982273765500DDD584 /* CodableSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableSerializer.swift; sourceTree = "<group>"; };
+		9D551C992273765500DDD584 /* Serializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serializer.swift; sourceTree = "<group>"; };
+		9D551C9B2273765500DDD584 /* Configuration+Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Configuration+Logger.swift"; sourceTree = "<group>"; };
+		9D551C9C2273765500DDD584 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		9D551C9D2273765500DDD584 /* OSLog+Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OSLog+Request.swift"; sourceTree = "<group>"; };
+		9D551C9E2273765500DDD584 /* ConsoleLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleLogger.swift; sourceTree = "<group>"; };
+		9D551CA02273765500DDD584 /* URLResponse+Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLResponse+Error.swift"; sourceTree = "<group>"; };
+		9D551CA12273765500DDD584 /* Dictionary+Merge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Merge.swift"; sourceTree = "<group>"; };
+		9D551CA32273765500DDD584 /* Request+Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Request+Defaults.swift"; sourceTree = "<group>"; };
+		9D551CA42273765500DDD584 /* RequestMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
+		9D551CA52273765500DDD584 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		9D551CA62273765500DDD584 /* Request+URLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Request+URLRequest.swift"; sourceTree = "<group>"; };
+		9D551CA82273765500DDD584 /* ResponseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
+		9D551CA92273765500DDD584 /* PublicKeyPinningService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicKeyPinningService.swift; sourceTree = "<group>"; };
+		9D551CAA2273765500DDD584 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		9D551CAB2273765500DDD584 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9D551C6E2273749400DDD584 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D551C85227374FF00DDD584 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9D551C672273749400DDD584 = {
+			isa = PBXGroup;
+			children = (
+				9D551C732273749400DDD584 /* Cara */,
+				9D551C722273749400DDD584 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9D551C722273749400DDD584 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9D551C712273749400DDD584 /* Cara.framework */,
+				9D551C88227374FF00DDD584 /* Cara.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9D551C732273749400DDD584 /* Cara */ = {
+			isa = PBXGroup;
+			children = (
+				9D551C742273749400DDD584 /* Cara.h */,
+				9D551C932273765500DDD584 /* Sources */,
+				9D551C822273749900DDD584 /* Supporting Files */,
+			);
+			path = Cara;
+			sourceTree = "<group>";
+		};
+		9D551C822273749900DDD584 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9D551C752273749400DDD584 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9D551C932273765500DDD584 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				9D551C942273765500DDD584 /* Configuration */,
+				9D551C9F2273765500DDD584 /* Extensions */,
+				9D551C9A2273765500DDD584 /* Logger */,
+				9D551CA22273765500DDD584 /* Request */,
+				9D551C972273765500DDD584 /* Serializer */,
+				9D551CA72273765500DDD584 /* Service */,
+			);
+			name = Sources;
+			path = ../../Sources;
+			sourceTree = "<group>";
+		};
+		9D551C942273765500DDD584 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				9D551C962273765500DDD584 /* Configuration.swift */,
+				9D551C952273765500DDD584 /* Interceptor.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		9D551C972273765500DDD584 /* Serializer */ = {
+			isa = PBXGroup;
+			children = (
+				9D551C982273765500DDD584 /* CodableSerializer.swift */,
+				9D551C992273765500DDD584 /* Serializer.swift */,
+			);
+			path = Serializer;
+			sourceTree = "<group>";
+		};
+		9D551C9A2273765500DDD584 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				9D551C9B2273765500DDD584 /* Configuration+Logger.swift */,
+				9D551C9E2273765500DDD584 /* ConsoleLogger.swift */,
+				9D551C9C2273765500DDD584 /* Logger.swift */,
+				9D551C9D2273765500DDD584 /* OSLog+Request.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+		9D551C9F2273765500DDD584 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9D551CA12273765500DDD584 /* Dictionary+Merge.swift */,
+				9D551CA02273765500DDD584 /* URLResponse+Error.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9D551CA22273765500DDD584 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				9D551CA52273765500DDD584 /* Request.swift */,
+				9D551CA32273765500DDD584 /* Request+Defaults.swift */,
+				9D551CA62273765500DDD584 /* Request+URLRequest.swift */,
+				9D551CA42273765500DDD584 /* RequestMethod.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		9D551CA72273765500DDD584 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				9D551CAB2273765500DDD584 /* NetworkService.swift */,
+				9D551CA92273765500DDD584 /* PublicKeyPinningService.swift */,
+				9D551CA82273765500DDD584 /* ResponseError.swift */,
+				9D551CAA2273765500DDD584 /* Service.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		9D551C6C2273749400DDD584 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D551C762273749400DDD584 /* Cara.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D551C83227374FF00DDD584 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D551C902273753000DDD584 /* Cara.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		9D551C702273749400DDD584 /* Cara */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9D551C792273749400DDD584 /* Build configuration list for PBXNativeTarget "Cara" */;
+			buildPhases = (
+				9D551C6C2273749400DDD584 /* Headers */,
+				9D551C6D2273749400DDD584 /* Sources */,
+				9D551C6E2273749400DDD584 /* Frameworks */,
+				9D551C6F2273749400DDD584 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Cara;
+			productName = Cara;
+			productReference = 9D551C712273749400DDD584 /* Cara.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		9D551C87227374FF00DDD584 /* Cara Tv */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9D551C8D227374FF00DDD584 /* Build configuration list for PBXNativeTarget "Cara Tv" */;
+			buildPhases = (
+				9D551C83227374FF00DDD584 /* Headers */,
+				9D551C84227374FF00DDD584 /* Sources */,
+				9D551C85227374FF00DDD584 /* Frameworks */,
+				9D551C86227374FF00DDD584 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Cara Tv";
+			productName = "Cara Tv";
+			productReference = 9D551C88227374FF00DDD584 /* Cara.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9D551C682273749400DDD584 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				DefaultBuildSystemTypeForWorkspace = Original;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = iCapps;
+				TargetAttributes = {
+					9D551C702273749400DDD584 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					9D551C87227374FF00DDD584 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 9D551C6B2273749400DDD584 /* Build configuration list for PBXProject "Cara" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9D551C672273749400DDD584;
+			productRefGroup = 9D551C722273749400DDD584 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9D551C702273749400DDD584 /* Cara */,
+				9D551C87227374FF00DDD584 /* Cara Tv */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9D551C6F2273749400DDD584 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D551C86227374FF00DDD584 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9D551C6D2273749400DDD584 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D551CC02273765500DDD584 /* Request+Defaults.swift in Sources */,
+				9D551CC42273765500DDD584 /* Request.swift in Sources */,
+				9D551CAE2273765500DDD584 /* Configuration.swift in Sources */,
+				9D551CBC2273765500DDD584 /* URLResponse+Error.swift in Sources */,
+				9D551CCE2273765500DDD584 /* NetworkService.swift in Sources */,
+				9D551CCA2273765500DDD584 /* PublicKeyPinningService.swift in Sources */,
+				9D551CBE2273765500DDD584 /* Dictionary+Merge.swift in Sources */,
+				9D551CC62273765500DDD584 /* Request+URLRequest.swift in Sources */,
+				9D551CC22273765500DDD584 /* RequestMethod.swift in Sources */,
+				9D551CBA2273765500DDD584 /* ConsoleLogger.swift in Sources */,
+				9D551CB62273765500DDD584 /* Logger.swift in Sources */,
+				9D551CB22273765500DDD584 /* Serializer.swift in Sources */,
+				9D551CCC2273765500DDD584 /* Service.swift in Sources */,
+				9D551CB02273765500DDD584 /* CodableSerializer.swift in Sources */,
+				9D551CAC2273765500DDD584 /* Interceptor.swift in Sources */,
+				9D551CC82273765500DDD584 /* ResponseError.swift in Sources */,
+				9D551CB42273765500DDD584 /* Configuration+Logger.swift in Sources */,
+				9D551CB82273765500DDD584 /* OSLog+Request.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D551C84227374FF00DDD584 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D551CC12273765500DDD584 /* Request+Defaults.swift in Sources */,
+				9D551CC52273765500DDD584 /* Request.swift in Sources */,
+				9D551CAF2273765500DDD584 /* Configuration.swift in Sources */,
+				9D551CBD2273765500DDD584 /* URLResponse+Error.swift in Sources */,
+				9D551CCF2273765500DDD584 /* NetworkService.swift in Sources */,
+				9D551CCB2273765500DDD584 /* PublicKeyPinningService.swift in Sources */,
+				9D551CBF2273765500DDD584 /* Dictionary+Merge.swift in Sources */,
+				9D551CC72273765500DDD584 /* Request+URLRequest.swift in Sources */,
+				9D551CC32273765500DDD584 /* RequestMethod.swift in Sources */,
+				9D551CBB2273765500DDD584 /* ConsoleLogger.swift in Sources */,
+				9D551CB72273765500DDD584 /* Logger.swift in Sources */,
+				9D551CB32273765500DDD584 /* Serializer.swift in Sources */,
+				9D551CCD2273765500DDD584 /* Service.swift in Sources */,
+				9D551CB12273765500DDD584 /* CodableSerializer.swift in Sources */,
+				9D551CAD2273765500DDD584 /* Interceptor.swift in Sources */,
+				9D551CC92273765500DDD584 /* ResponseError.swift in Sources */,
+				9D551CB52273765500DDD584 /* Configuration+Logger.swift in Sources */,
+				9D551CB92273765500DDD584 /* OSLog+Request.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		9D551C772273749400DDD584 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9D551C782273749400DDD584 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9D551C7A2273749400DDD584 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = SCZPF223NC;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Cara/Supporting Files/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.icapps.cara.Cara;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9D551C7B2273749400DDD584 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = SCZPF223NC;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Cara/Supporting Files/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.icapps.cara.Cara;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9D551C8E227374FF00DDD584 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = SCZPF223NC;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Cara/Supporting Files/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.icapps.cara;
+				PRODUCT_NAME = Cara;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		9D551C8F227374FF00DDD584 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = SCZPF223NC;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Cara/Supporting Files/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.icapps.cara;
+				PRODUCT_NAME = Cara;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9D551C6B2273749400DDD584 /* Build configuration list for PBXProject "Cara" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D551C772273749400DDD584 /* Debug */,
+				9D551C782273749400DDD584 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9D551C792273749400DDD584 /* Build configuration list for PBXNativeTarget "Cara" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D551C7A2273749400DDD584 /* Debug */,
+				9D551C7B2273749400DDD584 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9D551C8D227374FF00DDD584 /* Build configuration list for PBXNativeTarget "Cara Tv" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D551C8E227374FF00DDD584 /* Debug */,
+				9D551C8F227374FF00DDD584 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9D551C682273749400DDD584 /* Project object */;
+}
