@@ -4,9 +4,9 @@ import PackageDescription
 let package = Package(
   name: "Cara",
   platforms: [
-      .macOS(.v10_10),
-      .iOS(.v10_0),
-      .tvOS(.v10_0)
+      .macOS(.v10_12),
+      .iOS(.v10),
+      .tvOS(.v10)
   ],
   products: [
     .library(name: "Cara", targets: ["Cara"])
@@ -15,5 +15,5 @@ let package = Package(
   targets: [
     .target(name: "Cara", dependencies: [], path: "Sources")
   ],
-  swiftLanguageVersions: [5]
+  swiftLanguageVersions: [.v4_2]
 )
