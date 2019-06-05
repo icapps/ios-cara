@@ -8,6 +8,8 @@
 ## TOC
 
 - [Installation](#installation)
+    - [Swift Package Manager](#swift-package-manager)
+    - [Cocoapods](#cocoapods)
 - [Features](#features)
     - [Configuration](#configuration)
     - [Interceptor](#interceptor)
@@ -26,6 +28,12 @@
 
 ## Installation 💾
 
+## Swift Package Manager
+
+You can install `Cara` using the Swift Package Manager. This is available starting from Xcode 11. Just search for `icapps/ios-cara` and install it.
+
+## Cocoapods
+
 Cara is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your `Podfile`:
 
 ```ruby
@@ -33,6 +41,8 @@ pod 'Cara', git: 'https://github.com/icapps/ios-cara.git', commit: '...'
 ```
 
 _Pass the correct commit reference to make sure your code doesn't break in future updates._
+
+
 
 ## Features
 
