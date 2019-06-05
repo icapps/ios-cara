@@ -42,8 +42,6 @@ pod 'Cara', git: 'https://github.com/icapps/ios-cara.git', commit: '...'
 
 _Pass the correct commit reference to make sure your code doesn't break in future updates._
 
-
-
 ## Features
 
 ### Configuration
