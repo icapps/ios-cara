@@ -1,8 +1,13 @@
+// swift-tools-version:5.0
 import PackageDescription
 
 let package = Package(
   name: "Cara",
-  dependencies: [
-    .Package(url: "https://github.com/icapps/ios-cara.git", majorVersion: 1, minor: 1)
-  ]
+  products: [
+    .library(name: "Cara", targets: ["Cara"])
+  ],
+  dependencies: [],
+  targets: [
+        .target(name: "Cara", dependencies: [], path: "Sources")
+    ]
 )
