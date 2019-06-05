@@ -5,6 +5,8 @@
 //  Created by Jelle Vandebeeck on 01/12/2018.
 //
 
+import Foundation
+
 /// The serializer is responsible for generating the response that is returned by the service request.
 public protocol Serializer {
     /// The response returned by the `execute`'s `completion` handler.

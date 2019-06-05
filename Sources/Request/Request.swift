@@ -5,6 +5,8 @@
 //  Created by Jelle Vandebeeck on 01/12/2018.
 //
 
+import Foundation
+
 /// A nicer way of defining the request header format.
 public typealias RequestHeaders = [String: String]
 /// A nicer way of defining the query format.
