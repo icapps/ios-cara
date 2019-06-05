@@ -6,6 +6,7 @@
 //
 
 import os
+import Foundation
 
 /// The `Console` logger logs some minimal request information to the console.
 public class ConsoleLogger {

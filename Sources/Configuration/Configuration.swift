@@ -5,6 +5,8 @@
 //  Created by Jelle Vandebeeck on 01/12/2018.
 //
 
+import Foundation
+
 /// A nicer way of defining the mapping between host and public keys.
 public typealias PublicKeys = [String: String]
 
