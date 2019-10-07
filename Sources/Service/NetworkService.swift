@@ -56,6 +56,8 @@ class NetworkService: NSObject {
             self?.complete(on: executionQueue, block: { completion(response) })
         }
         task.resume()
+        // This causes the delegate to be released correctly.
+        session.finishTasksAndInvalidate()
         return task
     }
     
