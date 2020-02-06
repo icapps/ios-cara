@@ -54,7 +54,7 @@ class PublicKeyPinningService {
             
             var error: Unmanaged<CFError>?
             if let publicKeyData = SecKeyCopyExternalRepresentation(publicKey, &error) {
-                var keyWithHeader = Data(bytes: rsa2048Asn1Header)
+                var keyWithHeader = Data(rsa2048Asn1Header)
                 keyWithHeader.append(publicKeyData as Data)
                 let sha256 = keyWithHeader.sha256
                 // When the public keys don't match continue to the next certificate.
@@ -71,7 +71,8 @@ class PublicKeyPinningService {
 private extension Data {
     var sha256: Data {
         var hash = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
-        withUnsafeBytes { _ = CC_SHA256($0, CC_LONG(self.count), &hash) }
-        return Data(bytes: hash)
+        withUnsafeBytes { _ = CC_SHA256($0.baseAddress, CC_LONG(self.count), &hash) }
+        return Data(hash)
+
     }
 }
