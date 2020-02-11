@@ -93,7 +93,7 @@ class ServiceSpec: QuickSpec {
                     
                     let interceptor = MockedInterceptor()
                     interceptor.interceptHandle = { error, retry in
-                        configuration.mockedHeaders = ["Some": "Header"]
+                        configuration.headers = ["Some": "Header"]
                         self.stub(http(.get, uri: "https://relative.com/request"), http(200))
                         return false
                     }
@@ -114,7 +114,7 @@ class ServiceSpec: QuickSpec {
                     
                     let interceptor = MockedInterceptor()
                     interceptor.interceptHandle = { error, retry in
-                        configuration.mockedHeaders = ["Some": "Header"]
+                        configuration.headers = ["Some": "Header"]
                         self.stub(http(.get, uri: "https://relative.com/request"), http(200))
                         DispatchQueue.global().asyncAfter(deadline: .now() + 0.1, execute: retry)
                         return true
@@ -138,7 +138,7 @@ class ServiceSpec: QuickSpec {
                     var count: Int = 0
                     interceptor.interceptHandle = { error, retry in
                         count += 1
-                        configuration.mockedHeaders = ["Some": "Header"]
+                        configuration.headers = ["Some": "Header"]
                         if count > 1 {
                             // Make sure the second try also fails.
                             self.stub(http(.get, uri: "https://relative.com/request"), http(200))
