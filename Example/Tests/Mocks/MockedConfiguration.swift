@@ -12,11 +12,15 @@ class MockedConfiguration: Cara.Configuration {
     var baseURL: URL?
     var publicKeys: PublicKeys?
     var loggers: [Logger]?    
-    var headers: RequestHeaders?
+    var mockedHeaders: RequestHeaders?
     
     init(baseURL: URL?, headers: RequestHeaders? = nil, publicKeys: PublicKeys? = nil) {
         self.baseURL = baseURL
-        self.headers = headers
+        self.mockedHeaders = headers
         self.publicKeys = publicKeys
+    }
+    
+    func headers(for request: Request) -> RequestHeaders? {
+        return mockedHeaders
     }
 }

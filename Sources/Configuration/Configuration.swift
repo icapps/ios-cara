@@ -18,19 +18,11 @@ public protocol Configuration {
     var publicKeys: PublicKeys? { get }
     /// Set the loggers when you want to receive more information on the requests.
     var loggers: [Logger]? { get }
-    /// Set the headers that will be used for all the requests.
-    @available(*, deprecated, renamed: "headers(for:)")
-    var headers: RequestHeaders? { get }
     /// Set the headers that will be used for all the requests. The current request is passed
     /// so that some additional logic can be applied before returning the headers.
     ///
     /// - parameters request: The current request.
+    ///
+    /// - return: The request headers.
     func headers(for request: Request) -> RequestHeaders?
-}
-
-public extension Configuration {
-    /// We manually override this method because we want to deprecate the use of `headers`.
-    func headers(for request: Request) -> RequestHeaders? {
-        return headers
-    }
 }
