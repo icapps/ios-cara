@@ -52,7 +52,9 @@ extension Request {
     private func makeHeaders(with configuration: Configuration) -> RequestHeaders? {
         var requestHeaders: RequestHeaders?
         // When headers are available in the configuration we use them.
-        if let headers = configuration.headers { requestHeaders = headers }
+        if let headers = configuration.headers(for: self) {
+            requestHeaders = headers
+        }
         // When headers are available in this request we use them.
         if let headers = headers {
             requestHeaders = requestHeaders ?? RequestHeaders()
