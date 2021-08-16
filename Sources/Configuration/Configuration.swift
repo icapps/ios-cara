@@ -25,4 +25,14 @@ public protocol Configuration {
     ///
     /// - return: The request headers.
     func headers(for request: Request) -> RequestHeaders?
+    /// Alter the session configuration before triggering the request.
+    ///
+    /// - parameters configuration: The session configiguration used by the `URLSession`.
+    func alter(configuration: URLSessionConfiguration)
+}
+
+public extension Configuration {
+    func alter(configuration: URLSessionConfiguration) {
+        // Default implementation does nothing.
+    }
 }

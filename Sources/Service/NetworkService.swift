@@ -35,7 +35,9 @@ class NetworkService: NSObject {
         // Trigger the loggers before the request is done.
         configuration.start(urlRequest: urlRequest)
         // Prepare the session.
-        let session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
+        let sessionConfiguration: URLSessionConfiguration = .default
+        configuration.alter(configuration: sessionConfiguration)
+        let session = URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
         // Execute the task.
         let task = session.dataTask(with: urlRequest) { [weak self] data, urlResponse, error in
             /// When the url response has a response error and an interceptor is set we check if the request flow
