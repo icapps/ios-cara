@@ -61,6 +61,46 @@ class NetworkService: NSObject {
         return task
     }
     
+    // swiftlint:disable function_parameter_count
+    @available(iOSApplicationExtension 15.0, *)
+    func execute<S: Serializer>(_ urlRequest: URLRequest,
+                                with serializer: S,
+                                isInterceptable: Bool,
+                                retryCount: UInt,
+                                retry: @escaping () -> Void) async throws -> S.Response? {
+        // Trigger the loggers before the request is done.
+        configuration.start(urlRequest: urlRequest)
+        // Prepare the session.
+        let session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
+        
+        // Create the right variables.
+        var data: Data?
+        var urlResponse: URLResponse?
+        var error: Error?
+        
+        // Execute the task.
+        do {
+            (data, urlResponse) = try await session.data(for: urlRequest)
+        } catch let err {
+            error = err
+        }
+        
+        /// When the url response has a response error and an interceptor is set we check if the request flow
+        /// should be stopped.
+        if
+            let responseError = urlResponse?.responseError,
+            let interceptor = interceptor,
+            isInterceptable, interceptor.intercept(responseError, data: data, retryCount: retryCount, retry: retry) {
+            
+            return nil
+        }
+        
+        let responseError: Error? = error ?? urlResponse?.responseError
+        return serializer.serialize(data: data,
+                                    error: responseError,
+                                    response: urlResponse as? HTTPURLResponse)
+    }
+    
     // MARK: - Retry
     
     var interceptor: Interceptor?
