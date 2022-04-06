@@ -60,9 +60,26 @@ class NetworkService: NSObject {
         session.finishTasksAndInvalidate()
         return task
     }
+
+    // MARK: - Retry
     
+    var interceptor: Interceptor?
+    
+    // MARK: - Helpers
+    
+    /// Perform the block on the given queue, when no queue is given we just execute the block.
+    private func complete(on queue: DispatchQueue?, block: @escaping () -> Void) {
+        guard let queue = queue else {
+            block()
+            return
+        }
+        queue.async(execute: block)
+    }
+}
+
+@available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
+extension NetworkService {
     // swiftlint:disable function_parameter_count
-    @available(iOSApplicationExtension 15.0, *)
     func execute<S: Serializer>(_ urlRequest: URLRequest,
                                 with serializer: S,
                                 isInterceptable: Bool,
@@ -99,21 +116,6 @@ class NetworkService: NSObject {
         return serializer.serialize(data: data,
                                     error: responseError,
                                     response: urlResponse as? HTTPURLResponse)
-    }
-    
-    // MARK: - Retry
-    
-    var interceptor: Interceptor?
-    
-    // MARK: - Helpers
-    
-    /// Perform the block on the given queue, when no queue is given we just execute the block.
-    private func complete(on queue: DispatchQueue?, block: @escaping () -> Void) {
-        guard let queue = queue else {
-            block()
-            return
-        }
-        queue.async(execute: block)
     }
 }
 
