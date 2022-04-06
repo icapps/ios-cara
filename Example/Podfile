@@ -14,8 +14,8 @@ target 'Tests' do
   pod 'SwiftLint', '~> 0.28'
 
   # The test frameworks
-  pod 'Quick',      '~> 1.3'
-  pod 'Nimble',     '~> 7.3'
+  pod 'Quick'
+  pod 'Nimble'
   pod 'Mockingjay', :git => 'https://github.com/kylef/Mockingjay.git'
 end
 
