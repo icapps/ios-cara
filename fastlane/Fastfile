@@ -18,6 +18,7 @@ lane :pr do
   # Check the code formatting.
   swiftlint strict: true,
             path: "Example",
+            config_file: 'Example/.swiftlint.yml',
             executable: 'Example/Pods/Swiftlint/swiftlint'
 
   # Validate the QuickSpec to not use `fit`, `fcontext`, or `fdescribe`.

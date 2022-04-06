@@ -60,7 +60,7 @@ class NetworkService: NSObject {
         session.finishTasksAndInvalidate()
         return task
     }
-    
+
     // MARK: - Retry
     
     var interceptor: Interceptor?
@@ -75,6 +75,49 @@ class NetworkService: NSObject {
         }
         queue.async(execute: block)
     }
+}
+
+@available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
+extension NetworkService {
+    
+    func execute<S: Serializer>(_ urlRequest: URLRequest,
+                                with serializer: S,
+                                isInterceptable: Bool,
+                                retryCount: UInt,
+                                retry: @escaping () -> Void) async throws -> S.Response? {
+        // Trigger the loggers before the request is done.
+        configuration.start(urlRequest: urlRequest)
+        // Prepare the session.
+        let session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
+        
+        // Create the right variables.
+        var data: Data?
+        var urlResponse: URLResponse?
+        var error: Error?
+        
+        // Execute the task.
+        do {
+            (data, urlResponse) = try await session.data(for: urlRequest)
+        } catch let err {
+            error = err
+        }
+        
+        /// When the url response has a response error and an interceptor is set we check if the request flow
+        /// should be stopped.
+        if
+            let responseError = urlResponse?.responseError,
+            let interceptor = interceptor,
+            isInterceptable, interceptor.intercept(responseError, data: data, retryCount: retryCount, retry: retry) {
+            
+            return nil
+        }
+        
+        let responseError: Error? = error ?? urlResponse?.responseError
+        return serializer.serialize(data: data,
+                                    error: responseError,
+                                    response: urlResponse as? HTTPURLResponse)
+    }
+    
 }
 
 extension NetworkService: URLSessionDataDelegate {

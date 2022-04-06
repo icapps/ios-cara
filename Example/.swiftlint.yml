@@ -3,5 +3,8 @@ included:
   - Tests
   - ../Sources
 
+excluded:
+  - Pods
+
 disabled_rules:
   - trailing_whitespace

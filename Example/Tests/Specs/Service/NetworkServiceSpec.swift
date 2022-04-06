@@ -76,7 +76,7 @@ class NetworkServiceSpec: QuickSpec {
                     let one = URLRequest(url: URL(string: "https://relative.com/one")!)
                     
                     let interceptor = MockedInterceptor()
-                    interceptor.interceptHandle = { error, retry in
+                    interceptor.interceptHandle = { _, retry in
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: retry)
                         return false
                     }
@@ -100,7 +100,7 @@ class NetworkServiceSpec: QuickSpec {
                     let one = URLRequest(url: URL(string: "https://relative.com/one")!)
                     
                     let interceptor = MockedInterceptor()
-                    interceptor.interceptHandle = { error, retry in
+                    interceptor.interceptHandle = { _, retry in
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: retry)
                         return true
                     }
@@ -123,7 +123,83 @@ class NetworkServiceSpec: QuickSpec {
                     let one = URLRequest(url: URL(string: "https://relative.com/one")!)
                     
                     let interceptor = MockedInterceptor()
-                    interceptor.interceptHandle = { error, retry in
+                    interceptor.interceptHandle = { _, retry in
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: retry)
+                        return true
+                    }
+                    service.interceptor = interceptor
+                    
+                    waitUntil { done in
+                        service.execute(one,
+                                        with: MockedSerializer(),
+                                        isInterceptable: false,
+                                        retryCount: 0,
+                                        executionQueue: nil,
+                                        retry: {},
+                                        completion: { _ in
+                            done()
+                        })
+                    }
+                }
+            }
+            
+            context("refreshAsync") {
+                it("should not retry a request") {
+                    self.stub(http(.get, uri: "https://relative.com/one"), http(401))
+                    let one = URLRequest(url: URL(string: "https://relative.com/one")!)
+                    
+                    let interceptor = MockedInterceptor()
+                    interceptor.interceptHandle = { _, retry in
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: retry)
+                        return false
+                    }
+                    service.interceptor = interceptor
+                    
+                    waitUntil { done in
+                        let ser = service
+                        Task.init {
+                            do {
+                                _ = try await ser?.execute(one,
+                                                           with: MockedSerializer(),
+                                                           isInterceptable: true,
+                                                           retryCount: 0,
+                                                           retry: {})
+                            }
+                            
+                            done()
+                        }
+                    }
+                }
+                
+                it("should retry a request") {
+                    self.stub(http(.get, uri: "https://relative.com/one"), http(401))
+                    let one = URLRequest(url: URL(string: "https://relative.com/one")!)
+                    
+                    let interceptor = MockedInterceptor()
+                    interceptor.interceptHandle = { _, retry in
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: retry)
+                        return true
+                    }
+                    service.interceptor = interceptor
+                    
+                    waitUntil { done in
+                        service.execute(one,
+                                        with: MockedSerializer(),
+                                        isInterceptable: true,
+                                        retryCount: 0,
+                                        executionQueue: nil,
+                                        retry: {
+                            done()
+                        }, completion: { _ in })
+                    }
+                }
+                
+                it("should not retry a request when not interceptable") {
+                    self.stub(http(.get, uri: "https://relative.com/one"), http(401))
+                    let one = URLRequest(url: URL(string: "https://relative.com/one")!)
+                    
+                    let interceptor = MockedInterceptor()
+                    interceptor.interceptHandle = { _, retry in
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: retry)
                         return true
                     }
