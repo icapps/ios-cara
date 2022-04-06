@@ -79,7 +79,7 @@ class NetworkService: NSObject {
 
 @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
 extension NetworkService {
-    // swiftlint:disable function_parameter_count
+    
     func execute<S: Serializer>(_ urlRequest: URLRequest,
                                 with serializer: S,
                                 isInterceptable: Bool,
@@ -117,6 +117,7 @@ extension NetworkService {
                                     error: responseError,
                                     response: urlResponse as? HTTPURLResponse)
     }
+    
 }
 
 extension NetworkService: URLSessionDataDelegate {

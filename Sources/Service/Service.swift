@@ -87,7 +87,7 @@ open class Service {
     /// differently.
     /// ex. refresh, maintenance mode, ...
     public var interceptor: Interceptor? {
-        set { networkService.interceptor = newValue }
         get { return networkService.interceptor }
+        set { networkService.interceptor = newValue }
     }
 }

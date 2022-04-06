@@ -76,7 +76,7 @@ class NetworkServiceSpec: QuickSpec {
                     let one = URLRequest(url: URL(string: "https://relative.com/one")!)
                     
                     let interceptor = MockedInterceptor()
-                    interceptor.interceptHandle = { error, retry in
+                    interceptor.interceptHandle = { _, retry in
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: retry)
                         return false
                     }
@@ -100,7 +100,7 @@ class NetworkServiceSpec: QuickSpec {
                     let one = URLRequest(url: URL(string: "https://relative.com/one")!)
                     
                     let interceptor = MockedInterceptor()
-                    interceptor.interceptHandle = { error, retry in
+                    interceptor.interceptHandle = { _, retry in
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: retry)
                         return true
                     }
@@ -123,7 +123,7 @@ class NetworkServiceSpec: QuickSpec {
                     let one = URLRequest(url: URL(string: "https://relative.com/one")!)
                     
                     let interceptor = MockedInterceptor()
-                    interceptor.interceptHandle = { error, retry in
+                    interceptor.interceptHandle = { _, retry in
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: retry)
                         return true
                     }
@@ -149,7 +149,7 @@ class NetworkServiceSpec: QuickSpec {
                     let one = URLRequest(url: URL(string: "https://relative.com/one")!)
                     
                     let interceptor = MockedInterceptor()
-                    interceptor.interceptHandle = { error, retry in
+                    interceptor.interceptHandle = { _, retry in
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: retry)
                         return false
                     }
@@ -176,7 +176,7 @@ class NetworkServiceSpec: QuickSpec {
                     let one = URLRequest(url: URL(string: "https://relative.com/one")!)
                     
                     let interceptor = MockedInterceptor()
-                    interceptor.interceptHandle = { error, retry in
+                    interceptor.interceptHandle = { _, retry in
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: retry)
                         return true
                     }
@@ -199,7 +199,7 @@ class NetworkServiceSpec: QuickSpec {
                     let one = URLRequest(url: URL(string: "https://relative.com/one")!)
                     
                     let interceptor = MockedInterceptor()
-                    interceptor.interceptHandle = { error, retry in
+                    interceptor.interceptHandle = { _, retry in
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: retry)
                         return true
                     }
