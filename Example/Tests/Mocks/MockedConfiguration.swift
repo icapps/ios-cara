@@ -13,14 +13,24 @@ class MockedConfiguration: Cara.Configuration {
     var publicKeys: PublicKeys?
     var loggers: [Logger]?    
     var mockedHeaders: RequestHeaders?
+    let mockedQuery: RequestQuery?
     
-    init(baseURL: URL?, headers: RequestHeaders? = nil, publicKeys: PublicKeys? = nil) {
+    init(baseURL: URL?,
+         headers: RequestHeaders? = nil,
+         publicKeys: PublicKeys? = nil,
+         defaultQuery: RequestQuery? = nil
+    ) {
         self.baseURL = baseURL
         self.mockedHeaders = headers
         self.publicKeys = publicKeys
+        self.mockedQuery = defaultQuery
     }
     
     func headers(for request: Request) -> RequestHeaders? {
         return mockedHeaders
+    }
+
+    var defaultQuery: RequestQuery? {
+        return mockedQuery
     }
 }

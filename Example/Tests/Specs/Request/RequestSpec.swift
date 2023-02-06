@@ -129,6 +129,26 @@ class RequestSpec: QuickSpec {
                 expect(urlRequest?.url?.query).to(contain("key=value"))
                 expect(urlRequest?.url?.query).to(contain("jake=the_snake"))
             }
+
+            it("should add default query parameters from the configuration") {
+                let configuration = MockedConfiguration(baseURL: URL(string: "https://relative.com")!,
+                                                        defaultQuery: ["default1": "value1", "default2": "value2"])
+                let request = MockedRequest(url: URL(string: "request"))
+                let urlRequest = try? request.makeURLRequest(with: configuration)
+                expect(urlRequest?.url?.query).to(contain("default1=value1"))
+                expect(urlRequest?.url?.query).to(contain("default2=value2"))
+            }
+
+            it("should append default query parameters from the configuration") {
+                let configuration = MockedConfiguration(baseURL: URL(string: "https://relative.com")!,
+                                                        defaultQuery: ["default1": "value1", "default2": "value2"])
+                let request = MockedRequest(url: URL(string: "request"), query: ["key": "value", "jake": "the_snake"])
+                let urlRequest = try? request.makeURLRequest(with: configuration)
+                expect(urlRequest?.url?.query).to(contain("key=value"))
+                expect(urlRequest?.url?.query).to(contain("jake=the_snake"))
+                expect(urlRequest?.url?.query).to(contain("default1=value1"))
+                expect(urlRequest?.url?.query).to(contain("default2=value2"))
+            }
         }
         
         context("headers") {

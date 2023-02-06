@@ -46,7 +46,10 @@ extension Request {
         guard let correctURL = requestComponents?.url else { throw ResponseError.invalidURL }
         
         // Return the relative url appended to the base url.
-        return correctURL.appendingQuery(from: self)
+        let result = correctURL
+            .appendingQuery(query)
+            .appendingQuery(configuration.defaultQuery)
+        return result
     }
     
     private func makeHeaders(with configuration: Configuration) -> RequestHeaders? {
@@ -73,11 +76,11 @@ extension Request {
 }
 
 fileprivate extension URL {
-    func appendingQuery(from request: Request) -> URL {
+    func appendingQuery(_ requestQuery: RequestQuery?) -> URL {
         guard
-            let query = request.query,
+            let query = requestQuery,
             var urlComponents = URLComponents(url: self, resolvingAgainstBaseURL: false) else { return self }
-        
+
         let queryItems: [URLQueryItem] = query.map { URLQueryItem(name: $0.key, value: $0.value) }
         // When the initial url doesn't contain query items we set the request's items. Otherwise we append the
         // items to the existing ones.
