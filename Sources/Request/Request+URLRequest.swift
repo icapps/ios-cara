@@ -7,23 +7,37 @@
 
 import Foundation
 
-extension Request {
-    func makeURLRequest(with configuration: Configuration) throws -> URLRequest {
-        let url = try makeURL(with: configuration)
+public protocol RequestBuilderProtocol {
+    func makeURLRequest(from request: Request) throws -> URLRequest
+}
+
+public class RequestBuilder: RequestBuilderProtocol {
+
+    let configuration: Configuration
+
+    init(configuration: Configuration) {
+        self.configuration = configuration
+    }
+
+    public func makeURLRequest(from request: Request) throws -> URLRequest {
+        let url = try makeURL(from: request)
         var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = method.httpMethod
-        urlRequest.allHTTPHeaderFields = makeHeaders(with: configuration)
-        urlRequest.httpBody = try makeBody()
-        urlRequest.cachePolicy = cachePolicy
-        urlRequest.networkServiceType = networkServiceType
+        urlRequest.httpMethod = request.method.httpMethod
+        urlRequest.allHTTPHeaderFields = makeHeaders(from: request)
+        urlRequest.httpBody = try makeBody(from: request)
+        urlRequest.cachePolicy = request.cachePolicy
+        urlRequest.networkServiceType = request.networkServiceType
         return urlRequest
     }
+}
+
+private extension RequestBuilder {
     
-    private func makeURL(with configuration: Configuration) throws -> URL {
+    func makeURL(from request: Request) throws -> URL {
         // A correct url should be set. And when this is the case we alreay try to append the query
         // to this url.
         guard
-            let url = url,
+            let url = request.url,
             let components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
             throw ResponseError.invalidURL
         }
@@ -46,28 +60,26 @@ extension Request {
         guard let correctURL = requestComponents?.url else { throw ResponseError.invalidURL }
         
         // Return the relative url appended to the base url.
-        let result = correctURL
-            .appendingQuery(query)
-            .appendingQuery(configuration.defaultQuery(for: self))
-        return result
+        return correctURL
+            .appendingQuery(request.query)
     }
     
-    private func makeHeaders(with configuration: Configuration) -> RequestHeaders? {
+    func makeHeaders(from request: Request) -> RequestHeaders? {
         var requestHeaders: RequestHeaders?
         // When headers are available in the configuration we use them.
-        if let headers = configuration.headers(for: self) {
+        if let headers = configuration.headers(for: request) {
             requestHeaders = headers
         }
         // When headers are available in this request we use them.
-        if let headers = headers {
+        if let headers = request.headers {
             requestHeaders = requestHeaders ?? RequestHeaders()
             requestHeaders?.merge(dict: headers)
         }
         return requestHeaders
     }
     
-    private func makeBody() throws -> Data? {
-        guard let body  = body else { return nil }
+    func makeBody(from request: Request) throws -> Data? {
+        guard let body  = request.body else { return nil }
         // When the body is of the data type we just return this raw data.
         if let body = body as? Data { return body }
         // In all other cases we try to parse the json.
