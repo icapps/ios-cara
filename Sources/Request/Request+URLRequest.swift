@@ -87,13 +87,22 @@ private extension RequestBuilder {
     }
 }
 
-fileprivate extension URL {
+extension URL {
     func appendingQuery(_ requestQuery: RequestQuery?) -> URL {
-        guard
-            let query = requestQuery,
-            var urlComponents = URLComponents(url: self, resolvingAgainstBaseURL: false) else { return self }
+        guard let query = requestQuery else { return self }
+        if #available(iOS 16, *) {
+            return appending(queryItems: query.queryItems)
+        } else {
+            return appendingQueryItems(query.queryItems)
+        }
+    }
 
-        let queryItems: [URLQueryItem] = query.map { URLQueryItem(name: $0.key, value: $0.value) }
+    // Pre-iOS16 fallback for appending query items to a URL
+    func appendingQueryItems(_ queryItems: [URLQueryItem]) -> URL {
+        guard
+            var urlComponents = URLComponents(url: self, resolvingAgainstBaseURL: false) else {
+            return self
+        }
         // When the initial url doesn't contain query items we set the request's items. Otherwise we append the
         // items to the existing ones.
         if urlComponents.queryItems == nil {
@@ -102,5 +111,12 @@ fileprivate extension URL {
             urlComponents.queryItems?.append(contentsOf: queryItems)
         }
         return urlComponents.url ?? self
+    }
+}
+
+extension RequestQuery {
+
+    var queryItems: [URLQueryItem] {
+        return self.map { URLQueryItem(name: $0.key, value: $0.value) }
     }
 }
