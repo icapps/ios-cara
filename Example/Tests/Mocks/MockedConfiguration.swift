@@ -30,7 +30,7 @@ class MockedConfiguration: Cara.Configuration {
         return mockedHeaders
     }
 
-    var defaultQuery: RequestQuery? {
+    func defaultQuery(for request: Request) -> RequestQuery? {
         return mockedQuery
     }
 }

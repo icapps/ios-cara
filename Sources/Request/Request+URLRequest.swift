@@ -48,7 +48,7 @@ extension Request {
         // Return the relative url appended to the base url.
         let result = correctURL
             .appendingQuery(query)
-            .appendingQuery(configuration.defaultQuery)
+            .appendingQuery(configuration.defaultQuery(for: self))
         return result
     }
     

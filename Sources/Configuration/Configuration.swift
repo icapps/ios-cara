@@ -26,12 +26,12 @@ public protocol Configuration {
     /// - return: The request headers.
     func headers(for request: Request) -> RequestHeaders?
     /// Request queries that should be applied to all requests
-    var defaultQuery: RequestQuery? { get }
+    func defaultQuery(for request: Request) -> RequestQuery?
 }
 
 public extension Configuration {
 
-    var defaultQuery: RequestQuery? {
+    func defaultQuery(for request: Request) -> RequestQuery? {
         return nil
     }
 }
