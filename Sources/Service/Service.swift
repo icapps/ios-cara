@@ -29,10 +29,11 @@ open class Service {
     ///
     /// - parameter configuration: Configure the service layer through this instance.
     /// - parameter requestBuilder: The class responsible for creating the request
-    public init(configuration: Configuration, requestBuilder: RequestBuilderProtocol) {
+    public init(configuration: Configuration,
+                requestBuilder: RequestBuilderProtocol) {
         self.networkService = NetworkService(configuration: configuration,
                                              pinningService: PublicKeyPinningService(configuration: configuration))
-        self.requestBuilder = RequestBuilder(configuration: configuration)
+        self.requestBuilder = requestBuilder
     }
     
     // MARK: - Execute
