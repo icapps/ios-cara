@@ -132,28 +132,36 @@ class RequestSpec: QuickSpec {
                 expect(urlRequest?.url?.query).to(contain("key=value"))
                 expect(urlRequest?.url?.query).to(contain("jake=the_snake"))
             }
+        }
 
-//            it("should add default query parameters from the configuration") {
-//                configuration = MockedConfiguration(baseURL: URL(string: "https://relative.com")!,
-//                                                        defaultQuery: ["default1": "value1", "default2": "value2"])
-//                builder = RequestBuilder(configuration: configuration)
-//                let request = MockedRequest(url: URL(string: "request"))
-//                let urlRequest = try? builder.makeURLRequest(from: request)
-//                expect(urlRequest?.url?.query).to(contain("default1=value1"))
-//                expect(urlRequest?.url?.query).to(contain("default2=value2"))
-//            }
-//
-//            it("should append default query parameters from the configuration") {
-//                configuration = MockedConfiguration(baseURL: URL(string: "https://relative.com")!,
-//                                                        defaultQuery: ["default1": "value1", "default2": "value2"])
-//                builder = RequestBuilder(configuration: configuration)
-//                let request = MockedRequest(url: URL(string: "request"), query: ["key": "value", "jake": "the_snake"])
-//                let urlRequest = try? builder.makeURLRequest(from: request)
-//                expect(urlRequest?.url?.query).to(contain("key=value"))
-//                expect(urlRequest?.url?.query).to(contain("jake=the_snake"))
-//                expect(urlRequest?.url?.query).to(contain("default1=value1"))
-//                expect(urlRequest?.url?.query).to(contain("default2=value2"))
-//            }
+        context("custom request builder") {
+
+            class CustomRequestBuilder: RequestBuilder {
+                override func makeURLRequest(from request: Request) throws -> URLRequest {
+                    var urlRequest = try super.makeURLRequest(from: request)
+                    urlRequest.url = urlRequest.url?.appendingQuery(["default1": "value1", "default2": "value2"])
+                    return urlRequest
+                }
+            }
+
+            it("should add default query parameters from the configuration") {
+                builder = CustomRequestBuilder(configuration: configuration)
+                let request = MockedRequest(url: URL(string: "request"))
+                let urlRequest = try? builder.makeURLRequest(from: request)
+                expect(urlRequest?.url?.query).to(contain("default1=value1"))
+                expect(urlRequest?.url?.query).to(contain("default2=value2"))
+            }
+
+            it("should append default query parameters from the configuration") {
+                configuration = MockedConfiguration(baseURL: URL(string: "https://relative.com")!)
+                builder = CustomRequestBuilder(configuration: configuration)
+                let request = MockedRequest(url: URL(string: "request"), query: ["key": "value", "jake": "the_snake"])
+                let urlRequest = try? builder.makeURLRequest(from: request)
+                expect(urlRequest?.url?.query).to(contain("key=value"))
+                expect(urlRequest?.url?.query).to(contain("jake=the_snake"))
+                expect(urlRequest?.url?.query).to(contain("default1=value1"))
+                expect(urlRequest?.url?.query).to(contain("default2=value2"))
+            }
         }
         
         context("headers") {
