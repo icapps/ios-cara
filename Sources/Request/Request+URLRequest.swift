@@ -15,7 +15,7 @@ public class RequestBuilder: RequestBuilderProtocol {
 
     let configuration: Configuration
 
-    init(configuration: Configuration) {
+    public init(configuration: Configuration) {
         self.configuration = configuration
     }
 
