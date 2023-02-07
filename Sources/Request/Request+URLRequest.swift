@@ -11,7 +11,7 @@ public protocol RequestBuilderProtocol {
     func makeURLRequest(from request: Request) throws -> URLRequest
 }
 
-public class RequestBuilder: RequestBuilderProtocol {
+open class RequestBuilder: RequestBuilderProtocol {
 
     let configuration: Configuration
 
@@ -19,7 +19,7 @@ public class RequestBuilder: RequestBuilderProtocol {
         self.configuration = configuration
     }
 
-    public func makeURLRequest(from request: Request) throws -> URLRequest {
+    open func makeURLRequest(from request: Request) throws -> URLRequest {
         let url = try makeURL(from: request)
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = request.method.httpMethod
