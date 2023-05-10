@@ -85,7 +85,7 @@ extension NetworkService: URLSessionDataDelegate {
         guard
             let serverTrust = challenge.protectionSpace.serverTrust,
             challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust else {
-            completionHandler(.cancelAuthenticationChallenge, nil)
+            completionHandler(.performDefaultHandling, nil)
             return
         }
         
