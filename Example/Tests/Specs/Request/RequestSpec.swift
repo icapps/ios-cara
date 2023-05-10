@@ -172,6 +172,14 @@ class RequestSpec: QuickSpec {
                 let urlRequest = try? request.makeURLRequest(with: configuration)
                 expect(urlRequest?.httpBody).to(beNil())
             }
+
+            it("should have an encodable body") {
+                let body = MockedEncodable(hello: "Jake")
+                let request = MockedRequest(url: URL(string: "request"), body: body)
+                let urlRequest = try? request.makeURLRequest(with: configuration)
+                let data = try? JSONEncoder().encode(body)
+                expect(urlRequest?.httpBody) == data
+            }
             
             it("should have a json body") {
                 let body = ["hello": ["jake", ["the", "snake"]]]
