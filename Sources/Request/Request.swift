@@ -23,9 +23,10 @@ public protocol Request {
     var query: RequestQuery? { get }
     /// Set the headers for this request.
     var headers: RequestHeaders? { get }
-    /// Set the type of body with it's content. In Cara's case we support 2 major types of body:
+    /// Set the type of body with it's content. In Cara's case we support 3 types of body:
     /// - A raw `Data` object
-    /// - An `Any` object that can be parsed as a json.
+    /// - A type that implements `Encodable`
+    /// - An `Any` object that can be serialized to json using `JSONSerialization`.
     var body: Any? { get }
     /// Set a cache policy for every request.
     var cachePolicy: URLRequest.CachePolicy { get }
