@@ -11,9 +11,4 @@ extension Configuration {
     func start(urlRequest: URLRequest) {
         loggers?.forEach { $0.start(urlRequest: urlRequest) }
     }
-    
-    @available(iOS 10.0, *)
-    func end(urlRequest: URLRequest, urlResponse: URLResponse, metrics: URLSessionTaskMetrics, error: Error?) {
-        loggers?.forEach { $0.end(urlRequest: urlRequest, urlResponse: urlResponse, metrics: metrics, error: error) }
-    }
 }

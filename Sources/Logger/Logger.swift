@@ -13,12 +13,4 @@ public protocol Logger {
     ///
     /// - parameters urlRequest: The request that is will be executed.
     func start(urlRequest: URLRequest)
-    /// The `end` function is triggered just after the request finised collecting the metrics.
-    ///
-    /// - parameters urlRequest: The request that is was executed after redirection.
-    /// - parameters urlResponse: The response of the request.
-    /// - parameters metrics: The metrics for the request.
-    /// - parameters error: The error is an error occured.
-    @available(iOS 10.0, *)
-    func end(urlRequest: URLRequest, urlResponse: URLResponse, metrics: URLSessionTaskMetrics, error: Error?)
 }

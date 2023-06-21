@@ -93,16 +93,4 @@ extension NetworkService: URLSessionDataDelegate {
         
         pinningService.handle(serverTrust, host: host, completionHandler: completionHandler)
     }
-    
-    func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
-        guard
-            let urlRequest = task.currentRequest,
-            let urlResponse = task.response else { return }
-        
-        // Trigger the loggers when the request finished.
-        configuration.end(urlRequest: urlRequest,
-                          urlResponse: urlResponse,
-                          metrics: metrics,
-                          error: task.error ?? urlResponse.responseError)
-    }
 }
