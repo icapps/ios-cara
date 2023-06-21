@@ -23,6 +23,7 @@ extension ConsoleLogger: Logger {
     }
     
     // swiftlint:disable function_body_length
+    @available(iOS 10.0, *)
     public func end(urlRequest: URLRequest, urlResponse: URLResponse, metrics: URLSessionTaskMetrics, error: Error?) {
         guard
             let method = urlRequest.httpMethod,
