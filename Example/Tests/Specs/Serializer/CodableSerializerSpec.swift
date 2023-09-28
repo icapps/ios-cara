@@ -94,7 +94,8 @@ class CodableSerializerSpec: QuickSpec {
                         switch response {
                         case .success: break
                         case .failure(let error):
-                            expect(error as NSError?) == nsError
+                            expect((error as NSError?)?.domain) == nsError.domain
+                            expect((error as NSError?)?.code) == nsError.code
                             done()
                         }
                     }

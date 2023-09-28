@@ -11,19 +11,29 @@ import Foundation
 open class Service {
     
     // MARK: - Internal
-    
-    private let configuration: Configuration
+
     private let networkService: NetworkService
+    private let requestBuilder: RequestBuilderProtocol
     
     // MARK: - Init
     
     /// Initialize the Service layer.
     ///
     /// - parameter configuration: Configure the service layer through this instance.
-    public init(configuration: Configuration) {
-        self.configuration = configuration
+    public convenience init(configuration: Configuration) {
+        self.init(configuration: configuration,
+                  requestBuilder: RequestBuilder(configuration: configuration))
+    }
+
+    /// Initialize the Service layer.
+    ///
+    /// - parameter configuration: Configure the service layer through this instance.
+    /// - parameter requestBuilder: The class responsible for creating the request
+    public init(configuration: Configuration,
+                requestBuilder: RequestBuilderProtocol) {
         self.networkService = NetworkService(configuration: configuration,
                                              pinningService: PublicKeyPinningService(configuration: configuration))
+        self.requestBuilder = requestBuilder
     }
     
     // MARK: - Execute
@@ -61,7 +71,7 @@ open class Service {
                                         completion: @escaping (_ response: S.Response) -> Void) -> URLSessionDataTask? {
         do {
             // Create the request.
-            let urlRequest = try request.makeURLRequest(with: configuration)
+            let urlRequest = try requestBuilder.makeURLRequest(from: request)
             return networkService.execute(urlRequest,
                                           with: serializer,
                                           isInterceptable: request.isInterceptable,
