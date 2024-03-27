@@ -50,7 +50,7 @@ class PublicKeyPinningService {
             // When the public key can not be obtained, continue to the next certificate.
             guard
                 let secTrust = optionalSecTrust,
-                let publicKey = SecTrustCopyPublicKey(secTrust) else { continue }
+                let publicKey = SecTrustCopyKey(secTrust) else { continue }
             
             var error: Unmanaged<CFError>?
             if let publicKeyData = SecKeyCopyExternalRepresentation(publicKey, &error) {
