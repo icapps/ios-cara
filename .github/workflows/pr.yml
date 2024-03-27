@@ -12,6 +12,6 @@ jobs:
     steps:
     - uses: maxim-lobanov/setup-xcode@v1
       with:
-        xcode-version: '15.2.0'
+        xcode-version: '14.2.0'
     - run: bundle install
     - run: fastlane pr
