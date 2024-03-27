@@ -1,7 +1,7 @@
 install! 'cocoapods', deterministic_uuids: false, share_schemes_for_development_pods: false
 
 # Supported platform.
-platform :ios, '10.0'
+platform :ios, '14.0'
 
 # Use frameworks for Swift.
 use_frameworks!
