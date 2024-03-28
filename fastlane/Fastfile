@@ -4,12 +4,6 @@ fastlane_version '2.121.0'
 # Don't generate README files.
 skip_docs
 
-##########################
-### BUILD SERVER SETUP ###
-##########################
-
-setup_travis
-
 #############
 ### LANES ###
 #############
