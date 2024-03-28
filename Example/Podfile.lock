@@ -1,37 +1,48 @@
 PODS:
-  - Mockingjay (2.0.1):
-    - Mockingjay/Core (= 2.0.1)
-    - Mockingjay/XCTest (= 2.0.1)
-  - Mockingjay/Core (2.0.1):
-    - URITemplate (~> 2.0)
-  - Mockingjay/XCTest (2.0.1):
-    - Mockingjay/Core
-  - Nimble (7.3.4)
-  - Quick (1.3.4)
-  - SwiftLint (0.31.0)
-  - URITemplate (2.0.3)
+  - CwlCatchException (2.2.0):
+    - CwlCatchExceptionSupport (~> 2.2.0)
+  - CwlCatchExceptionSupport (2.2.0)
+  - CwlMachBadInstructionHandler (2.2.0)
+  - CwlPosixPreconditionTesting (2.2.0)
+  - CwlPreconditionTesting (2.2.1):
+    - CwlCatchException (~> 2.2.0)
+    - CwlMachBadInstructionHandler (~> 2.2.0)
+    - CwlPosixPreconditionTesting (~> 2.2.0)
+  - Hippolyte (1.4.0)
+  - Nimble (13.2.1):
+    - CwlPreconditionTesting (~> 2.2.0)
+  - Quick (7.5.0)
+  - SwiftLint (0.49.1)
 
 DEPENDENCIES:
-  - Mockingjay (~> 2.0)
-  - Nimble (~> 7.3)
-  - Quick (~> 1.3)
-  - SwiftLint (~> 0.28)
+  - Hippolyte (~> 1.4.0)
+  - Nimble (~> 13.2.1)
+  - Quick (~> 7.5.0)
+  - SwiftLint (~> 0.49.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - Mockingjay
+  trunk:
+    - CwlCatchException
+    - CwlCatchExceptionSupport
+    - CwlMachBadInstructionHandler
+    - CwlPosixPreconditionTesting
+    - CwlPreconditionTesting
+    - Hippolyte
     - Nimble
     - Quick
     - SwiftLint
-    - URITemplate
 
 SPEC CHECKSUMS:
-  Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
-  Nimble: 051e3d8912d40138fa5591c78594f95fb172af37
-  Quick: f4f7f063c524394c73ed93ac70983c609805d481
-  SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
-  URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
+  CwlCatchException: 51bf8319009a31104ea6f0568730d1ecc25b6454
+  CwlCatchExceptionSupport: 1345d6adb01a505933f2bc972dab60dcb9ce3e50
+  CwlMachBadInstructionHandler: ea1030428925d9bf340882522af30712fb4bf356
+  CwlPosixPreconditionTesting: a125dee731883f2582715f548c6b6c92c7fde145
+  CwlPreconditionTesting: ccfd08aca58d14e04062b2a3dd2fd52e09857453
+  Hippolyte: 6fb073778d61d94ab3b48a83a2c0f64492b77c0b
+  Nimble: 9e81a67096dab1d1f5160d7a3f8fa7a1eeec38fd
+  Quick: 2b651168441479b949ba987f3cee41a9cc53aa32
+  SwiftLint: 32ee33ded0636d0905ef6911b2b67bbaeeedafa5
 
-PODFILE CHECKSUM: 5bb4cab47f4fc1e8a16154941089f2d6a2a7e2b9
+PODFILE CHECKSUM: 48cd7f3cb7490a16b98a18edb5c4c48730972bdd
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.15.2
