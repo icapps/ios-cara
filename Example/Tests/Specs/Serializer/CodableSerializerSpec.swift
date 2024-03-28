@@ -146,4 +146,5 @@ class CodableSerializerSpec: QuickSpec {
             }
         }
     }
+    // swiftlint:enable switch_case_alignment function_body_length cyclomatic_complexity
 }

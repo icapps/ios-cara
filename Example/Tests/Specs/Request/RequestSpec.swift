@@ -202,4 +202,5 @@ class RequestSpec: QuickSpec {
             expect(urlRequest?.networkServiceType) == .background
         }
     }
+    // swiftlint:enable function_body_length
 }

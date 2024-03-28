@@ -189,4 +189,5 @@ class NetworkServiceSpec: QuickSpec {
             }
         }
     }
+    // swiftlint:enable function_body_length
 }

@@ -256,4 +256,5 @@ class ServiceSpec: QuickSpec {
             }
         }
     }
+    // swiftlint:enable function_body_length
 }
