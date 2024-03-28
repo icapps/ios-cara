@@ -181,10 +181,9 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/CwlMachBadInstructionHandler/CwlMachBadInstructionHandler.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CwlPosixPreconditionTesting/CwlPosixPreconditionTesting.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CwlPreconditionTesting/CwlPreconditionTesting.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Mockingjay/Mockingjay.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Hippolyte/Hippolyte.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Quick/Quick.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/URITemplate/URITemplate.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/CwlCatchException/CwlCatchException.framework"
@@ -192,10 +191,9 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/CwlMachBadInstructionHandler/CwlMachBadInstructionHandler.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CwlPosixPreconditionTesting/CwlPosixPreconditionTesting.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CwlPreconditionTesting/CwlPreconditionTesting.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Mockingjay/Mockingjay.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Hippolyte/Hippolyte.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Quick/Quick.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/URITemplate/URITemplate.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

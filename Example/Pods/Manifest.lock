@@ -8,21 +8,14 @@ PODS:
     - CwlCatchException (~> 2.2.0)
     - CwlMachBadInstructionHandler (~> 2.2.0)
     - CwlPosixPreconditionTesting (~> 2.2.0)
-  - Mockingjay (3.0.0-alpha.1):
-    - Mockingjay/Core (= 3.0.0-alpha.1)
-    - Mockingjay/XCTest (= 3.0.0-alpha.1)
-  - Mockingjay/Core (3.0.0-alpha.1):
-    - URITemplate (~> 3.0)
-  - Mockingjay/XCTest (3.0.0-alpha.1):
-    - Mockingjay/Core
+  - Hippolyte (1.4.0)
   - Nimble (13.2.1):
     - CwlPreconditionTesting (~> 2.2.0)
   - Quick (7.5.0)
   - SwiftLint (0.49.1)
-  - URITemplate (3.0.1)
 
 DEPENDENCIES:
-  - Mockingjay (from `https://github.com/kylef/Mockingjay.git`, branch `master`)
+  - Hippolyte (~> 1.4.0)
   - Nimble (~> 13.2.1)
   - Quick (~> 7.5.0)
   - SwiftLint (~> 0.49.0)
@@ -34,20 +27,10 @@ SPEC REPOS:
     - CwlMachBadInstructionHandler
     - CwlPosixPreconditionTesting
     - CwlPreconditionTesting
+    - Hippolyte
     - Nimble
     - Quick
     - SwiftLint
-    - URITemplate
-
-EXTERNAL SOURCES:
-  Mockingjay:
-    :branch: master
-    :git: https://github.com/kylef/Mockingjay.git
-
-CHECKOUT OPTIONS:
-  Mockingjay:
-    :commit: b88c9dce2b7561cccbf35e2882b3c71a2efa387a
-    :git: https://github.com/kylef/Mockingjay.git
 
 SPEC CHECKSUMS:
   CwlCatchException: 51bf8319009a31104ea6f0568730d1ecc25b6454
@@ -55,12 +38,11 @@ SPEC CHECKSUMS:
   CwlMachBadInstructionHandler: ea1030428925d9bf340882522af30712fb4bf356
   CwlPosixPreconditionTesting: a125dee731883f2582715f548c6b6c92c7fde145
   CwlPreconditionTesting: ccfd08aca58d14e04062b2a3dd2fd52e09857453
-  Mockingjay: 97656c6f59879923976a0a52ef09da45756cca82
+  Hippolyte: 6fb073778d61d94ab3b48a83a2c0f64492b77c0b
   Nimble: 9e81a67096dab1d1f5160d7a3f8fa7a1eeec38fd
   Quick: 2b651168441479b949ba987f3cee41a9cc53aa32
   SwiftLint: 32ee33ded0636d0905ef6911b2b67bbaeeedafa5
-  URITemplate: 5f5a79f3e384884102c4e6b3325d159c20a8035a
 
-PODFILE CHECKSUM: cc5998a3df9268dea99089d2d6ebc01c9362f00a
+PODFILE CHECKSUM: 48cd7f3cb7490a16b98a18edb5c4c48730972bdd
 
 COCOAPODS: 1.15.2

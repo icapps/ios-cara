@@ -1,7 +1,7 @@
 install! 'cocoapods', deterministic_uuids: false, share_schemes_for_development_pods: false
 
 # Supported platform.
-platform :ios, '12.0'
+platform :ios, '13.0'
 
 # Use frameworks for Swift.
 use_frameworks!
@@ -16,7 +16,7 @@ target 'Tests' do
   # The test frameworks
   pod 'Quick',      '~> 7.5.0'
   pod 'Nimble',     '~> 13.2.1'
-  pod 'Mockingjay', :git => 'https://github.com/kylef/Mockingjay.git', :branch => 'master'
+  pod 'Hippolyte',     '~> 1.4.0'
 
 end
 
