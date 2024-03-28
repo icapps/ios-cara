@@ -3,8 +3,9 @@ included:
   - Tests
   - ../Sources
 
-excluded: # case-sensitive paths to ignore during linting. Takes precedence over `included`
+excluded:
   - Pods
 
 disabled_rules:
   - trailing_whitespace
+  - line_length
