@@ -25,6 +25,7 @@
 		BEBF72B2A088D7289F7B2876 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56EC7F2EF94A0A4D1B403A27 /* Pods_Tests.framework */; };
 		F31234B32BB593E2000C4F3A /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31234B22BB593E2000C4F3A /* MockURLProtocol.swift */; };
 		F31234B52BB59C45000C4F3A /* StubbedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31234B42BB59C45000C4F3A /* StubbedRequest.swift */; };
+		F3253C382BB61739006B1BF4 /* MockedEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3253C372BB61739006B1BF4 /* MockedEncodable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		9DEA80C221D97275002A56A7 /* MockedLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedLogger.swift; sourceTree = "<group>"; };
 		F31234B22BB593E2000C4F3A /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
 		F31234B42BB59C45000C4F3A /* StubbedRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubbedRequest.swift; sourceTree = "<group>"; };
+		F3253C372BB61739006B1BF4 /* MockedEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedEncodable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				F3253C362BB6170D006B1BF4 /* Stubs */,
 				9D0E402A21B3FC2D0088D678 /* Helpers */,
 				9D60FF2621B402BE0078F791 /* Mocks */,
 				9D21FEF621D8F061006EF131 /* Resources */,
@@ -139,7 +142,7 @@
 				9D21FF0721D971C6006EF131 /* MockedPublicKeyPinningService.swift */,
 				9D60FF2721B402CA0078F791 /* MockedRequest.swift */,
 				9D60FF2C21B42A560078F791 /* MockedSerializer.swift */,
-				F31234B42BB59C45000C4F3A /* StubbedRequest.swift */,
+				F3253C372BB61739006B1BF4 /* MockedEncodable.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -187,6 +190,14 @@
 				56EC7F2EF94A0A4D1B403A27 /* Pods_Tests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F3253C362BB6170D006B1BF4 /* Stubs */ = {
+			isa = PBXGroup;
+			children = (
+				F31234B42BB59C45000C4F3A /* StubbedRequest.swift */,
+			);
+			path = Stubs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,6 +349,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3253C382BB61739006B1BF4 /* MockedEncodable.swift in Sources */,
 				9D446A9C21B3EAC100FEA1F7 /* ServiceSpec.swift in Sources */,
 				9D21FF0621D97196006EF131 /* NetworkServiceSpec.swift in Sources */,
 				9DAD37C521B45A900042C19C /* RequestSpec.swift in Sources */,
