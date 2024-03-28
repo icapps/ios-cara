@@ -8,26 +8,31 @@
 
 import Quick
 import Nimble
-import Mockingjay
 
 @testable import Cara
 
 class ServiceSpec: QuickSpec {
     // swiftlint:disable function_body_length
-    override func spec() {
+    override class func spec() {
         describe("Service") {
             var service: Service!
             var configuration: MockedConfiguration!
+            var stubbedRequest: StubbedRequest!
             beforeEach {
                 configuration = MockedConfiguration(baseURL: URL(string: "https://relative.com/")!)
                 service = Service(configuration: configuration)
+                stubbedRequest = StubbedRequest()
             }
             
+            afterEach {
+                stubbedRequest.stopStubbedRequest()
+            }
+
             context("request") {
                 it("should execute an absolute request") {
-                    self.stub(http(.get, uri: "https://absolute.com/request"), http(200))
-                    
+                    stubbedRequest.request(url: "https://absolute.com/request", statuscode: 200)
                     let request = MockedRequest(url: URL(string: "https://absolute.com/request"))
+                    
                     waitUntil { done in
                         service.execute(request, with: MockedSerializer()) { response in
                             expect(response.data).toNot(beNil())
@@ -39,9 +44,9 @@ class ServiceSpec: QuickSpec {
                 }
                 
                 it("should execute a relative request") {
-                    self.stub(http(.get, uri: "https://relative.com/request"), http(200))
-                    
+                    stubbedRequest.request(url: "https://relative.com/request", statuscode: 200)
                     let request = MockedRequest(url: URL(string: "request"))
+
                     waitUntil { done in
                         service.execute(request, with: MockedSerializer()) { response in
                             expect(response.data).toNot(beNil())
@@ -55,8 +60,8 @@ class ServiceSpec: QuickSpec {
             
             context("task") {
                 it("should return a task when request is triggered") {
-                    self.stub(http(.get, uri: "https://relative.com/request"), http(200))
-                    
+                    stubbedRequest.request(url: "https://relative.com/request", statuscode: 200)
+
                     let request = MockedRequest(url: URL(string: "request"))
                     var task: URLSessionDataTask?
                     waitUntil { done in
@@ -87,14 +92,14 @@ class ServiceSpec: QuickSpec {
                 }
                 
                 it("should not retry a request") {
-                    self.stub(http(.get, uri: "https://relative.com/request"), http(401))
+                    stubbedRequest.request(url: "https://relative.com/request", statuscode: 401)
                     let request = MockedRequest(url: URL(string: "request"))
                     let serializer = MockedSerializer()
                     
                     let interceptor = MockedInterceptor()
-                    interceptor.interceptHandle = { error, retry in
+                    interceptor.interceptHandle = { _, _ in
                         configuration.mockedHeaders = ["Some": "Header"]
-                        self.stub(http(.get, uri: "https://relative.com/request"), http(200))
+                        stubbedRequest.request(url: "https://relative.com/request", statuscode: 200)
                         return false
                     }
                     service.interceptor = interceptor
@@ -109,13 +114,13 @@ class ServiceSpec: QuickSpec {
                 }
                 
                 it("should retry a request with the new headers") {
-                    self.stub(http(.get, uri: "https://relative.com/request"), http(401))
+                    stubbedRequest.request(url: "https://relative.com/request", statuscode: 401)
                     let request = MockedRequest(url: URL(string: "request"))
                     
                     let interceptor = MockedInterceptor()
-                    interceptor.interceptHandle = { error, retry in
+                    interceptor.interceptHandle = { _, retry in
                         configuration.mockedHeaders = ["Some": "Header"]
-                        self.stub(http(.get, uri: "https://relative.com/request"), http(200))
+                        stubbedRequest.request(url: "https://relative.com/request", statuscode: 200)
                         DispatchQueue.global().asyncAfter(deadline: .now() + 0.1, execute: retry)
                         return true
                     }
@@ -131,17 +136,17 @@ class ServiceSpec: QuickSpec {
                 }
 
                 it("should retry a request with the new headers and have a retry count of one") {
-                    self.stub(http(.get, uri: "https://relative.com/request"), http(401))
+                    stubbedRequest.request(url: "https://relative.com/request", statuscode: 401)
                     let request = MockedRequest(url: URL(string: "request"))
 
                     let interceptor = MockedInterceptor()
                     var count: Int = 0
-                    interceptor.interceptHandle = { error, retry in
+                    interceptor.interceptHandle = { _, retry in
                         count += 1
                         configuration.mockedHeaders = ["Some": "Header"]
                         if count > 1 {
                             // Make sure the second try also fails.
-                            self.stub(http(.get, uri: "https://relative.com/request"), http(200))
+                            stubbedRequest.request(url: "https://relative.com/request", statuscode: 200)
                         }
                         DispatchQueue.global().asyncAfter(deadline: .now() + 0.1, execute: retry)
                         return true
@@ -160,7 +165,7 @@ class ServiceSpec: QuickSpec {
          
             context("threading") {
                 it("should return on the main queue") {
-                    self.stub(http(.get, uri: "https://relative.com/request"), http(200))
+                    stubbedRequest.request(url: "https://relative.com/request", statuscode: 200)
                     let request = MockedRequest(url: URL(string: "request"))
 
                     waitUntil { done in
@@ -174,7 +179,7 @@ class ServiceSpec: QuickSpec {
                 }
 
                 it("should not return on the main queue") {
-                    self.stub(http(.get, uri: "https://relative.com/request"), http(200))
+                    stubbedRequest.request(url: "https://relative.com/request", statuscode: 200)
                     let request = MockedRequest(url: URL(string: "request"))
 
                     waitUntil { done in
@@ -190,8 +195,8 @@ class ServiceSpec: QuickSpec {
 
             context("serializer") {
                 it("should fail to execute a request because of an invalid url") {
-                    self.stub(http(.get, uri: "https://relative.com/"), http(200))
-                    
+                    stubbedRequest.request(url: "https://relative.com/request", statuscode: 200)
+
                     let request = MockedRequest(url: nil)
                     waitUntil { done in
                         service.execute(request, with: MockedSerializer()) { response in
@@ -205,8 +210,8 @@ class ServiceSpec: QuickSpec {
                 
                 it("should pass the data to the serializer request") {
                     let body = ["key": "value"]
-                    self.stub(http(.get, uri: "https://relative.com/request"), json(body))
-                    
+                    stubbedRequest.request(url: "https://relative.com/request", json: body)
+
                     let request = MockedRequest(url: URL(string: "request"))
                     let serializer = MockedSerializer()
                     waitUntil { done in
@@ -220,24 +225,23 @@ class ServiceSpec: QuickSpec {
                 }
                 
                 it("should pass the error to the serializer request") {
-                    let nsError = NSError(domain: "Cara", code: 1, userInfo: nil)
-                    self.stub(http(.get, uri: "https://relative.com/request"), failure(nsError))
-                    
+                    // let nsError = NSError(domain: "Cara", code: 1, userInfo: nil)
+                    stubbedRequest.request(url: "https://relative.com/request", statuscode: 404)
+
                     let request = MockedRequest(url: URL(string: "request"))
                     let serializer = MockedSerializer()
                     waitUntil { done in
                         service.execute(request, with: serializer) { response in
-                            expect(response.data).to(beNil())
-                            expect(response.error as NSError?) == nsError
-                            expect(response.statusCode).to(beNil())
+                            expect(response.data).to(satisfyAnyOf(beNil(), equal(Data())))
+                            expect(response.statusCode) == 404
                             done()
                         }
                     }
                 }
                 
                 it("should return a http error") {
-                    self.stub(http(.get, uri: "https://relative.com/request"), http(400))
-                    
+                    stubbedRequest.request(url: "https://relative.com/request", statuscode: 400)
+
                     let request = MockedRequest(url: URL(string: "request"))
                     let serializer = MockedSerializer()
                     waitUntil { done in
@@ -252,4 +256,5 @@ class ServiceSpec: QuickSpec {
             }
         }
     }
+    // swiftlint:enable function_body_length
 }

@@ -60,7 +60,8 @@ class NetworkService: NSObject {
         session.finishTasksAndInvalidate()
         return task
     }
-    
+    // swiftlint:enable function_parameter_count
+
     // MARK: - Retry
     
     var interceptor: Interceptor?

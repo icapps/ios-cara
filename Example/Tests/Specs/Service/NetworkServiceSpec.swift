@@ -8,24 +8,29 @@
 
 import Quick
 import Nimble
-import Mockingjay
 import Foundation
 
 @testable import Cara
 
 class NetworkServiceSpec: QuickSpec {
     // swiftlint:disable function_body_length
-    override func spec() {
+    override class func spec() {
         describe("NetworkService") {
             var service: NetworkService!
             var configuration: MockedConfiguration!
             var pinningService: MockedPublicKeyPinningService!
+            var stubbedRequest: StubbedRequest!
             beforeEach {
                 configuration = MockedConfiguration(baseURL: URL(string: "https://relative.com/")!)
                 pinningService = MockedPublicKeyPinningService(configuration: configuration)
                 service = NetworkService(configuration: configuration, pinningService: pinningService)
+                stubbedRequest = StubbedRequest()
             }
-            
+
+            afterEach {
+                stubbedRequest.stopStubbedRequest()
+            }
+
             context("logger") {
                 var loggerOne: MockedLogger!
                 var loggerTwo: MockedLogger!
@@ -36,9 +41,9 @@ class NetworkServiceSpec: QuickSpec {
                 }
                 
                 it("should trigger the start on all the configuration") {
-                    self.stub(http(.get, uri: "https://relative.com/request"), delay: 0.1, http(200))
+                    stubbedRequest.request(url: "https://relative.com/request", statuscode: 200)
                     let request = URLRequest(url: URL(string: "https://relative.com/request")!)
-                    
+
                     service.execute(request,
                                     with: MockedSerializer(),
                                     isInterceptable: true,
@@ -46,12 +51,13 @@ class NetworkServiceSpec: QuickSpec {
                                     executionQueue: nil,
                                     retry: {},
                                     completion: { _ in })
+
                     expect(loggerOne.didTriggerStartRequest).toNot(beNil())
                     expect(loggerTwo.didTriggerStartRequest).toNot(beNil())
                 }
                 
                 it("should trigger the end on all the configuration") {
-                    self.stub(http(.get, uri: "https://relative.com/request"), delay: 0.1, http(200))
+                    stubbedRequest.request(url: "https://relative.com/request", statuscode: 200)
                     let request = URLRequest(url: URL(string: "https://relative.com/request")!)
                     
                     waitUntil { done in
@@ -72,11 +78,11 @@ class NetworkServiceSpec: QuickSpec {
             
             context("refresh") {
                 it("should not retry a request") {
-                    self.stub(http(.get, uri: "https://relative.com/one"), http(401))
+                    stubbedRequest.request(url: "https://relative.com/one", statuscode: 401)
                     let one = URLRequest(url: URL(string: "https://relative.com/one")!)
                     
                     let interceptor = MockedInterceptor()
-                    interceptor.interceptHandle = { error, retry in
+                    interceptor.interceptHandle = { _, retry in
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: retry)
                         return false
                     }
@@ -96,11 +102,11 @@ class NetworkServiceSpec: QuickSpec {
                 }
                 
                 it("should retry a request") {
-                    self.stub(http(.get, uri: "https://relative.com/one"), http(401))
+                    stubbedRequest.request(url: "https://relative.com/one", statuscode: 401)
                     let one = URLRequest(url: URL(string: "https://relative.com/one")!)
                     
                     let interceptor = MockedInterceptor()
-                    interceptor.interceptHandle = { error, retry in
+                    interceptor.interceptHandle = { _, retry in
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: retry)
                         return true
                     }
@@ -119,11 +125,11 @@ class NetworkServiceSpec: QuickSpec {
                 }
                 
                 it("should not retry a request when not interceptable") {
-                    self.stub(http(.get, uri: "https://relative.com/one"), http(401))
+                    stubbedRequest.request(url: "https://relative.com/one", statuscode: 401)
                     let one = URLRequest(url: URL(string: "https://relative.com/one")!)
                     
                     let interceptor = MockedInterceptor()
-                    interceptor.interceptHandle = { error, retry in
+                    interceptor.interceptHandle = { _, retry in
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: retry)
                         return true
                     }
@@ -145,7 +151,7 @@ class NetworkServiceSpec: QuickSpec {
             
             context("threading") {
                 it("should return on the main queue") {
-                    self.stub(http(.get, uri: "https://relative.com/request"), http(200))
+                    stubbedRequest.request(url: "https://relative.com/request", statuscode: 200)
                     let request = URLRequest(url: URL(string: "https://relative.com/request")!)
                     
                     waitUntil { done in
@@ -163,7 +169,7 @@ class NetworkServiceSpec: QuickSpec {
                 }
                 
                 it("should return on the global queue") {
-                    self.stub(http(.get, uri: "https://relative.com/request"), http(200))
+                    stubbedRequest.request(url: "https://relative.com/request", statuscode: 200)
                     let request = URLRequest(url: URL(string: "https://relative.com/request")!)
                     
                     waitUntil { done in
@@ -183,4 +189,5 @@ class NetworkServiceSpec: QuickSpec {
             }
         }
     }
+    // swiftlint:enable function_body_length
 }

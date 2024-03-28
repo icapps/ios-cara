@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4E9F73F3B0153ADAB06FE9E1 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29AE4C1B0B54510CFC6AD931 /* Pods_Tests.framework */; };
-		9D0E402C21B3FC490088D678 /* CaraQuickConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0E402B21B3FC490088D678 /* CaraQuickConfiguration.swift */; };
 		9D21FEF121D8EE98006EF131 /* PublicKeyPinningServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D21FEF021D8EE98006EF131 /* PublicKeyPinningServiceSpec.swift */; };
 		9D21FEF321D8F02F006EF131 /* SecTrust+Apple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D21FEF221D8F02F006EF131 /* SecTrust+Apple.swift */; };
 		9D21FEF521D8F05C006EF131 /* apple.com.cer in Resources */ = {isa = PBXBuildFile; fileRef = 9D21FEF421D8F05C006EF131 /* apple.com.cer */; };
@@ -24,14 +22,17 @@
 		9DAD37C521B45A900042C19C /* RequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD37C421B45A900042C19C /* RequestSpec.swift */; };
 		9DCD7F59222B00330042539B /* MockedInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCD7F58222B00330042539B /* MockedInterceptor.swift */; };
 		9DEA80C321D97275002A56A7 /* MockedLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEA80C221D97275002A56A7 /* MockedLogger.swift */; };
+		BEBF72B2A088D7289F7B2876 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56EC7F2EF94A0A4D1B403A27 /* Pods_Tests.framework */; };
+		F31234B32BB593E2000C4F3A /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31234B22BB593E2000C4F3A /* MockURLProtocol.swift */; };
+		F31234B52BB59C45000C4F3A /* StubbedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31234B42BB59C45000C4F3A /* StubbedRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		29AE4C1B0B54510CFC6AD931 /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B992619292F276108EA57B6 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
+		23EF479FD0AB25D618B24179 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
+		56EC7F2EF94A0A4D1B403A27 /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACE51AFB9204008FA782 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9D0E402B21B3FC490088D678 /* CaraQuickConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaraQuickConfiguration.swift; sourceTree = "<group>"; };
+		76F47634AC1979E9A8CAAFF4 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		9D21FEF021D8EE98006EF131 /* PublicKeyPinningServiceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKeyPinningServiceSpec.swift; sourceTree = "<group>"; };
 		9D21FEF221D8F02F006EF131 /* SecTrust+Apple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SecTrust+Apple.swift"; sourceTree = "<group>"; };
 		9D21FEF421D8F05C006EF131 /* apple.com.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = apple.com.cer; sourceTree = "<group>"; };
@@ -47,7 +48,8 @@
 		9DAD37C421B45A900042C19C /* RequestSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSpec.swift; sourceTree = "<group>"; };
 		9DCD7F58222B00330042539B /* MockedInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedInterceptor.swift; sourceTree = "<group>"; };
 		9DEA80C221D97275002A56A7 /* MockedLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedLogger.swift; sourceTree = "<group>"; };
-		DF61D7691CFD97C63E743260 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		F31234B22BB593E2000C4F3A /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
+		F31234B42BB59C45000C4F3A /* StubbedRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubbedRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +58,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D551C922273757100DDD584 /* Cara.framework in Frameworks */,
-				4E9F73F3B0153ADAB06FE9E1 /* Pods_Tests.framework in Frameworks */,
+				BEBF72B2A088D7289F7B2876 /* Pods_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,8 +116,8 @@
 		9D0E402A21B3FC2D0088D678 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				9D0E402B21B3FC490088D678 /* CaraQuickConfiguration.swift */,
 				9D21FEF221D8F02F006EF131 /* SecTrust+Apple.swift */,
+				F31234B22BB593E2000C4F3A /* MockURLProtocol.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -137,6 +139,7 @@
 				9D21FF0721D971C6006EF131 /* MockedPublicKeyPinningService.swift */,
 				9D60FF2721B402CA0078F791 /* MockedRequest.swift */,
 				9D60FF2C21B42A560078F791 /* MockedSerializer.swift */,
+				F31234B42BB59C45000C4F3A /* StubbedRequest.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -171,8 +174,8 @@
 		BE8BAC8BF52F590C6CECB46C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				DF61D7691CFD97C63E743260 /* Pods-Tests.debug.xcconfig */,
-				2B992619292F276108EA57B6 /* Pods-Tests.release.xcconfig */,
+				76F47634AC1979E9A8CAAFF4 /* Pods-Tests.debug.xcconfig */,
+				23EF479FD0AB25D618B24179 /* Pods-Tests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -181,7 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				9D551C912273757100DDD584 /* Cara.framework */,
-				29AE4C1B0B54510CFC6AD931 /* Pods_Tests.framework */,
+				56EC7F2EF94A0A4D1B403A27 /* Pods_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -193,12 +196,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Tests" */;
 			buildPhases = (
-				EAD099F8354CAAC3C775136F /* [CP] Check Pods Manifest.lock */,
+				B043D1B866E60CDD35D0E232 /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
 				9DCEBC4F21ADDF1F0031AC75 /* Swiftlint */,
-				4F454FEDE895594F40B0C55A /* [CP] Embed Pods Frameworks */,
+				828F3150FCFE7BA94E1DE5B2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -256,28 +259,32 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4F454FEDE895594F40B0C55A /* [CP] Embed Pods Frameworks */ = {
+		828F3150FCFE7BA94E1DE5B2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Mockingjay/Mockingjay.framework",
+				"${BUILT_PRODUCTS_DIR}/CwlCatchException/CwlCatchException.framework",
+				"${BUILT_PRODUCTS_DIR}/CwlCatchExceptionSupport/CwlCatchExceptionSupport.framework",
+				"${BUILT_PRODUCTS_DIR}/CwlMachBadInstructionHandler/CwlMachBadInstructionHandler.framework",
+				"${BUILT_PRODUCTS_DIR}/CwlPosixPreconditionTesting/CwlPosixPreconditionTesting.framework",
+				"${BUILT_PRODUCTS_DIR}/CwlPreconditionTesting/CwlPreconditionTesting.framework",
+				"${BUILT_PRODUCTS_DIR}/Hippolyte/Hippolyte.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
-				"${BUILT_PRODUCTS_DIR}/URITemplate/URITemplate.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mockingjay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CwlCatchException.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CwlCatchExceptionSupport.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CwlMachBadInstructionHandler.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CwlPosixPreconditionTesting.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CwlPreconditionTesting.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hippolyte.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/URITemplate.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -302,7 +309,7 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
-		EAD099F8354CAAC3C775136F /* [CP] Check Pods Manifest.lock */ = {
+		B043D1B866E60CDD35D0E232 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -334,12 +341,13 @@
 				9D446A9C21B3EAC100FEA1F7 /* ServiceSpec.swift in Sources */,
 				9D21FF0621D97196006EF131 /* NetworkServiceSpec.swift in Sources */,
 				9DAD37C521B45A900042C19C /* RequestSpec.swift in Sources */,
-				9D0E402C21B3FC490088D678 /* CaraQuickConfiguration.swift in Sources */,
 				9DCD7F59222B00330042539B /* MockedInterceptor.swift in Sources */,
 				9D60FF2821B402CA0078F791 /* MockedRequest.swift in Sources */,
 				9D21FF0821D971C6006EF131 /* MockedPublicKeyPinningService.swift in Sources */,
 				9D60FF2A21B402E00078F791 /* MockedConfiguration.swift in Sources */,
+				F31234B32BB593E2000C4F3A /* MockURLProtocol.swift in Sources */,
 				9D21FEF121D8EE98006EF131 /* PublicKeyPinningServiceSpec.swift in Sources */,
+				F31234B52BB59C45000C4F3A /* StubbedRequest.swift in Sources */,
 				9D60FF2D21B42A560078F791 /* MockedSerializer.swift in Sources */,
 				9D21FEF321D8F02F006EF131 /* SecTrust+Apple.swift in Sources */,
 				9DEA80C321D97275002A56A7 /* MockedLogger.swift in Sources */,
@@ -399,7 +407,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -449,7 +457,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -460,7 +468,7 @@
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF61D7691CFD97C63E743260 /* Pods-Tests.debug.xcconfig */;
+			baseConfigurationReference = 76F47634AC1979E9A8CAAFF4 /* Pods-Tests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -472,7 +480,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Tests/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -484,7 +492,7 @@
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B992619292F276108EA57B6 /* Pods-Tests.release.xcconfig */;
+			baseConfigurationReference = 23EF479FD0AB25D618B24179 /* Pods-Tests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -492,7 +500,7 @@
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Tests/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

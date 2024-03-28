@@ -13,7 +13,7 @@ import Nimble
 
 class RequestSpec: QuickSpec {
     // swiftlint:disable function_body_length
-    override func spec() {
+    override class func spec() {
         var configuration: MockedConfiguration!
         beforeEach {
             configuration = MockedConfiguration(baseURL: URL(string: "https://relative.com")!)
@@ -210,4 +210,5 @@ class RequestSpec: QuickSpec {
             expect(urlRequest?.networkServiceType) == .background
         }
     }
+    // swiftlint:enable function_body_length
 }
