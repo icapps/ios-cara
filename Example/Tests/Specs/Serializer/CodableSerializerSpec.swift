@@ -20,20 +20,24 @@ private class User: Codable {
 
 class CodableSerializerSpec: QuickSpec {
     // swiftlint:disable function_body_length cyclomatic_complexity
-    override func spec() {
+    override class func spec() {
         describe("CodableSerializer") {
             var service: Service!
             var serializer: CodableSerializer<User>!
+
             beforeEach {
                 let configuration = MockedConfiguration(baseURL: URL(string: "https://relative.com/")!)
                 service = Service(configuration: configuration)
                 
                 serializer = CodableSerializer<User>()
             }
-            
+            context("test") {
+                beforeEach {
+                    self.stub(http(.get, uri: "https://relative.com/request"), http(200))
+                }
+            }
             it("should not serialize to a simple model but still be successful.") {
-                self.stub(http(.get, uri: "https://relative.com/request"), http(200))
-                
+
                 let request = MockedRequest(url: URL(string: "request"), method: .get)
                 waitUntil { done in
                     service.execute(request, with: serializer) { response in

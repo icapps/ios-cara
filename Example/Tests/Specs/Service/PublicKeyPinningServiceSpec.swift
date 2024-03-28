@@ -12,7 +12,7 @@ import Nimble
 @testable import Cara
 
 class PublicKeyPinningServiceSpec: QuickSpec {
-    override func spec() {
+    override class func spec() {
         describe("PublicKeyPinningService") {
             var configuration: MockedConfiguration!
             var service: PublicKeyPinningService!

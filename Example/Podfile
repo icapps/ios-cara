@@ -1,7 +1,7 @@
 install! 'cocoapods', deterministic_uuids: false, share_schemes_for_development_pods: false
 
 # Supported platform.
-platform :ios, '14.0'
+platform :ios, '12.0'
 
 # Use frameworks for Swift.
 use_frameworks!
@@ -11,12 +11,13 @@ inhibit_all_warnings!
 
 target 'Tests' do
   # Linter
-  pod 'SwiftLint', '~> 0.28'
+  pod 'SwiftLint', '~> 0.49.0'
 
   # The test frameworks
-  pod 'Quick',      '~> 1.3'
-  pod 'Nimble',     '~> 7.3'
-  pod 'Mockingjay', '~> 2.0'
+  pod 'Quick',      '~> 7.5.0'
+  pod 'Nimble',     '~> 13.2.1'
+  pod 'Mockingjay', :git => 'https://github.com/kylef/Mockingjay.git', :branch => 'master'
+
 end
 
 post_install do |installer|

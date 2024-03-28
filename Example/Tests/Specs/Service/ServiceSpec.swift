@@ -14,7 +14,7 @@ import Mockingjay
 
 class ServiceSpec: QuickSpec {
     // swiftlint:disable function_body_length
-    override func spec() {
+    override class func spec() {
         describe("Service") {
             var service: Service!
             var configuration: MockedConfiguration!

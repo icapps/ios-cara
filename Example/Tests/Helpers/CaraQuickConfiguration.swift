@@ -10,7 +10,7 @@ import Quick
 import Mockingjay
 
 class CaraQuickConfiguration: QuickConfiguration {
-    override class func configure(_ configuration: Quick.Configuration) {
+    override class func configure(_ configuration: Quick.QCKConfiguration) {
         configuration.beforeEach { _ in
             // Remove all the stubs.
             MockingjayProtocol.removeAllStubs()

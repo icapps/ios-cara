@@ -13,7 +13,7 @@ import Nimble
 
 class ResponseErrorSpec: QuickSpec {
     // swiftlint:disable function_body_length
-    override func spec() {
+    override class func spec() {
         describe("ResponseError") {
             context("handling") {
                 it("should not be an error") {

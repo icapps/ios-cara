@@ -15,7 +15,7 @@ import Foundation
 
 class NetworkServiceSpec: QuickSpec {
     // swiftlint:disable function_body_length
-    override func spec() {
+    override class func spec() {
         describe("NetworkService") {
             var service: NetworkService!
             var configuration: MockedConfiguration!
