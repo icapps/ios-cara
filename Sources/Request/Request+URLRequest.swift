@@ -64,10 +64,15 @@ extension Request {
     }
     
     private func makeBody() throws -> Data? {
-        guard let body  = body else { return nil }
+        guard let body else { return nil }
         // When the body is of the data type we just return this raw data.
         if let body = body as? Data { return body }
-        // In all other cases we try to parse the json.
+        // When the body implements Encodable we try to encode it to json.
+        if let body = body as? Encodable {
+            return try JSONEncoder().encode(body)
+        }
+
+        // In all other cases we try to encode it to json.
         return try JSONSerialization.data(withJSONObject: body, options: [])
     }
 }

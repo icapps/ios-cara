@@ -28,4 +28,5 @@ extension SecTrust {
         SecTrustCreateWithCertificates(certificates, policy, &optionalSecTrust)
         return optionalSecTrust!
     }
+    // swiftlint:enable force_try
 }

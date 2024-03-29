@@ -21,8 +21,7 @@ extension ConsoleLogger: Logger {
             let url = urlRequest.url else { return }
         os_log("☁️ %{public}@: %{public}@", log: OSLog.request, type: .info, method, url.absoluteString)
     }
-    
-    // swiftlint:disable function_body_length
+
     public func end(urlRequest: URLRequest, urlResponse: URLResponse, metrics: URLSessionTaskMetrics, error: Error?) {
         guard
             let method = urlRequest.httpMethod,
@@ -70,5 +69,4 @@ extension ConsoleLogger: Logger {
             }
         }
     }
-    // swiftlint:enable function_body_length
 }
